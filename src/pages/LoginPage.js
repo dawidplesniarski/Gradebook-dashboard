@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {loginFunction} from "../actions/loginActions";
 import Spinner from "../components/Spinner/Spinner";
+import {Link} from "react-router-dom";
+import TextInput from "../components/TextInput/TextInput";
 
 const StyledWrapper = styled.div`
 height: 50%;
@@ -14,7 +16,7 @@ flex-direction: column;
 margin-top: 15%;
 `;
 
-const LoginPage = ({loginFunction, loginReducer}) => {
+const LoginPage = ({loginFunction, loginReducer, history}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -23,12 +25,10 @@ const LoginPage = ({loginFunction, loginReducer}) => {
     return (
         <StyledWrapper>
             <h1>Login</h1>
-            {loginReducer.isLoading && <Spinner/>}
-            <input className={'LoginPage-Input'} onChange={event => setLogin(event.target.value)} placeholder={'Podaj login'}/>
-            <input className={'LoginPage-Input'} onChange={event => setPassword(event.target.value)} placeholder={'Podaj hasło'} type={'password'}/>
-            <button className={'LoginButton'} onClick={() => loginFunction(login, password, () => setMessage('Success'))}>Login</button>
-            {/*<span>{message}</span>*/}
-            {/*{loginReducer.loginData ? <span>{loginReducer.loginData.employee.lastName}</span> : <span></span>}*/}
+            <TextInput onChange={event => setLogin(event.target.value)} type={'text'} name={'login'} placeholder={'Podaj login'}/>
+            <TextInput onChange={event => setPassword(event.target.value)} type={'password'} name={'password'} placeholder={'Podaj hasło'}/>
+            <button className={'LoginButton'} onClick={() => loginFunction(login, password, () => history.push('/mainPage'))}>Login</button>
+
         </StyledWrapper>
     );
 };

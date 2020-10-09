@@ -7,26 +7,26 @@ import { connect } from 'react-redux'
 import Spinner from "./components/Spinner/Spinner";
 
 
-function App({loginReducer}) {
+const App = ({loginReducer}) =>{
     return (
         <Router>
-            <Switch>
-                {loginReducer.isLoading ? (
-                    <Spinner/>
+                <Switch>
+                    {loginReducer.isLoading ? (
+                        <Spinner/>
                     ) : (
                         <>
-                        {loginReducer.isLogged ? (
-                            <>
-                                <Route path={'/mainPage'} component={MainPage}/>
-                            </>
-                        ) : (
-                            <>
-                                <Route path={'/'} component={LoginPage}/>
-                            </>
-                        )}
+                            {loginReducer.isLogged ? (
+                                <>
+                                    <Route path={'/mainPage'} component={MainPage}/>
+                                </>
+                            ) : (
+                                <>
+                                    <Route path={'/'} component={LoginPage}/>
+                                </>
+                            )}
                         </>
-                )}
-            </Switch>
+                    )}
+                </Switch>
         </Router>
     );
 }
