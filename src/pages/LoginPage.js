@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import '../styles/LoginPage.css'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import {loginFunction, logoutFunction} from "../actions/loginActions";
+import {loginFunction} from "../actions/loginActions";
 import Spinner from "../components/Spinner/Spinner";
 
 const StyledWrapper = styled.div`
@@ -15,7 +14,7 @@ flex-direction: column;
 margin-top: 15%;
 `;
 
-const LoginPage = ({loginFunction, loginReducer, logoutFunction}) => {
+const LoginPage = ({loginFunction, loginReducer}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -29,7 +28,7 @@ const LoginPage = ({loginFunction, loginReducer, logoutFunction}) => {
             <input className={'LoginPage-Input'} onChange={event => setPassword(event.target.value)} placeholder={'Podaj hasło'} type={'password'}/>
             <button className={'LoginButton'} onClick={() => loginFunction(login, password, () => setMessage('Success'))}>Login</button>
             {/*<span>{message}</span>*/}
-            {loginReducer.loginData ? <span>{loginReducer.loginData.employee.lastName}</span> : <span></span>}
+            {/*{loginReducer.loginData ? <span>{loginReducer.loginData.employee.lastName}</span> : <span></span>}*/}
         </StyledWrapper>
     );
 };
