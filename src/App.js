@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux'
-import Spinner from "./components/Spinner/Spinner";
+import Spinner from "./components/Atoms/Spinner/Spinner";
 
 
 const App = ({loginReducer}) =>{
@@ -17,11 +17,12 @@ const App = ({loginReducer}) =>{
                         <>
                             {loginReducer.isLogged ? (
                                 <>
-                                    <Route path={'/mainPage'} component={MainPage}/>
+                                    {/*<Route path={'/mainPage'} component={MainPage}/>*/}
                                 </>
                             ) : (
                                 <>
-                                    <Route path={'/'} component={LoginPage}/>
+                                    <Route exact path={'/'} component={LoginPage}/>
+                                    <Route path={'/mainPage'} component={MainPage}/>
                                 </>
                             )}
                         </>

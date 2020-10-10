@@ -1,13 +1,12 @@
-import React, {useState, } from 'react';
+import React, {useState,} from 'react';
 import styled from 'styled-components';
 import '../styles/LoginPage.css'
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {loginFunction} from "../actions/loginActions";
-import Spinner from "../components/Spinner/Spinner";
-import {Link} from "react-router-dom";
-import TextInput from "../components/TextInput/TextInput";
-
+import TextInput from "../components/Atoms/TextInput/TextInput";
+import Wave from '../assets/wave.svg';
+import LoginBox from "../components/Forms/LoginBox/LoginBox";
 const StyledWrapper = styled.div`
 height: 50%;
 display: flex;
@@ -23,18 +22,21 @@ const LoginPage = ({loginFunction, loginReducer, history}) => {
 
 
     return (
-        <StyledWrapper>
-            <h1>Login</h1>
-            <TextInput onChange={event => setLogin(event.target.value)} type={'text'} name={'login'} placeholder={'Podaj login'}/>
-            <TextInput onChange={event => setPassword(event.target.value)} type={'password'} name={'password'} placeholder={'Podaj hasło'}/>
-            <button className={'LoginButton'} onClick={() => loginFunction(login, password, () => history.push('/mainPage'))}>Login</button>
-
-        </StyledWrapper>
+        <div>
+            <StyledWrapper>
+                <LoginBox
+                    loginFunction={() => loginFunction(login, password, () => history.push('/mainPage'))}
+                    passwordOnChange={event => setPassword(event.target.value)}
+                    loginOnChange={event => setLogin(event.target.value)}
+                />
+            </StyledWrapper>
+            <img className={'Wave'} src={Wave} alt={'wave'}/>
+        </div>
     );
 };
 
-const mapStateToProps = ({ loginReducer}) => {
-    return { loginReducer };
+const mapStateToProps = ({loginReducer}) => {
+    return {loginReducer};
 };
 
 const mapDispatchToProps = (dispatch) => {
