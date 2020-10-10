@@ -4,15 +4,17 @@ import '../styles/LoginPage.css'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {loginFunction} from "../actions/loginActions";
-import TextInput from "../components/Atoms/TextInput/TextInput";
 import Wave from '../assets/wave.svg';
+import MainPhoto from '../assets/login_page_photo.svg';
+import MaleAvatar from '../assets/male-avatar.svg';
 import LoginBox from "../components/Forms/LoginBox/LoginBox";
+
 const StyledWrapper = styled.div`
-height: 50%;
-display: flex;
+width: 100vw;
+height: 100vh;
+display: grid;
 align-items: center;
-flex-direction: column;
-margin-top: 15%;
+grid-template-columns: repeat(2, 1fr);
 `;
 
 const LoginPage = ({loginFunction, loginReducer, history}) => {
@@ -22,14 +24,18 @@ const LoginPage = ({loginFunction, loginReducer, history}) => {
 
 
     return (
-        <div>
-            <StyledWrapper>
+        <div className={'container'}>
+            <div className={'img'}>
+                <img src={MainPhoto}/>
+            </div>
+            <div className={'login-container'}>
+                <img className={'avatar'} src={MaleAvatar} alt={'avatar'}/>
                 <LoginBox
                     loginFunction={() => loginFunction(login, password, () => history.push('/mainPage'))}
                     passwordOnChange={event => setPassword(event.target.value)}
                     loginOnChange={event => setLogin(event.target.value)}
                 />
-            </StyledWrapper>
+            </div>
             <img className={'Wave'} src={Wave} alt={'wave'}/>
         </div>
     );

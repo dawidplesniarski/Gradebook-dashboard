@@ -5,7 +5,7 @@ const StyledWrapper = styled.div`
   width: 300px;
   height: 40px;
   position: relative;
-  // margin-top: 2rem;
+  margin-bottom: 20px;
   padding: 0 1rem;
 `;
 

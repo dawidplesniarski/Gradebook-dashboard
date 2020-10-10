@@ -5,8 +5,9 @@ const StyledHeaderWrapper = styled.div`
     top: 0;
     width: 100%;
     align-items: center;
-    background: rgb(88,176,156);
-    background: radial-gradient(circle, rgba(88,176,156,1) 35%, rgba(64,136,120,1) 100%);
+    background: hex(88,176,156);
+    background: rgb(0,203,169);
+    background: radial-gradient(circle, rgba(0,203,169,1) 35%, rgba(72,153,135,1) 100%);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 `;

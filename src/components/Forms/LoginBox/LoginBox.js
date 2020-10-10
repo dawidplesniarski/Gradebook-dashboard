@@ -1,6 +1,7 @@
 import React from "react";
 import { LoginBoxWrapper } from './LoginBox.styles';
 import TextInput from "../../Atoms/TextInput/TextInput";
+import Button from "../../Atoms/Button/Button";
 
 const LoginBox = ({loginFunction, loginOnChange, passwordOnChange}) => {
     return(
@@ -8,7 +9,7 @@ const LoginBox = ({loginFunction, loginOnChange, passwordOnChange}) => {
             <h1>Login</h1>
             <TextInput onChange={loginOnChange} type={'text'} name={'login'} placeholder={'Podaj login'}/>
             <TextInput onChange={passwordOnChange} type={'password'} name={'password'} placeholder={'Podaj hasło'}/>
-            <button className={'LoginButton'} onClick={loginFunction}>Login</button>
+            <Button onClick={loginFunction}>Login</Button>
         </LoginBoxWrapper>
     );
 };

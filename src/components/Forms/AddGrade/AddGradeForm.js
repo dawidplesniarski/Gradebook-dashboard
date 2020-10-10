@@ -3,6 +3,7 @@ import {StyledWrapper} from "./AddGradeForm.styles";
 import SelectMenu from "../../Atoms/SelectMenu/SelectMenu";
 import axios from "axios";
 import TextInput from "../../Atoms/TextInput/TextInput";
+import Button from "../../Atoms/Button/Button";
 
 const AddGradeForm = () => {
     const [album, setAlbum] = useState('');
@@ -44,7 +45,7 @@ const AddGradeForm = () => {
             <TextInput onChange={event => setAlbum(event.target.value)} placeholder={'Album'} type={'text'} name={'album'}/>
             <TextInput onChange={event => setGrade(event.target.value)} placeholder={'Ocena'} min={2} max={5} step={0.5} type={'number'} name={'ocena'}/>
             <SelectMenu placeholder={'Przedmiot'} onChange={(event) => setSubjectId(event.target.value)} name={'subjectId'} data={data}/>
-            <button className={'LoginButton'} onClick={async() => await addGrade()}>Dodaj ocenę</button>
+            <Button onClick={async() => await addGrade()}>Dodaj ocenę</Button>
         </StyledWrapper>
     );
 };

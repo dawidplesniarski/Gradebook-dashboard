@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 const LoginBoxWrapper = styled.div`
-    display: flex;
     flex-direction: column;
-    width: 40%;
-    align-items: center;
+    width: 100%;
 `;
 
 export {LoginBoxWrapper};

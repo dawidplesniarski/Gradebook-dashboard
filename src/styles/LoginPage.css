@@ -1,35 +1,75 @@
-.LoginBox {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-}
 
-.LoginPage-Input {
-    width: 30%;
-    height: 35px;
-    border-radius: 10px;
-    border-width: 0px;
-    background-color: #eeeeee;
-    margin-bottom: 20px;
-    font-family: Helvetica, serif;
-    font-size: 15px;
-}
-.LoginButton {
-    width: 20%;
-    height: 30px;
-    border-radius: 10px;
-    border-width: 0px;
-    background-color: #f5f5f5;
-    font-size: 15px;
-}
 .Wave {
     position: fixed;
     height: 100%;
     left: 0;
     bottom: -20%;
     z-index: -1;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+}
+
+.avatar {
+    width: 100px;
+}
+
+.img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    min-width: 200px;
+    max-width: 400px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.img img {
+    width: 500px;
+}
+
+@media screen and (max-width: 1050px){
+    .container{
+        grid-gap: 5rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .login-container {
+        width: 290px;
+    }
+    .img img {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .img {
+        display: none;
+    }
+    .container{
+        /*grid-template-columns: 1fr;*/
+        display: flex;
+        justify-content: center;
+    }
+    .Wave {
+        display: none;
+    }
+    .login-container {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+    }
 }
