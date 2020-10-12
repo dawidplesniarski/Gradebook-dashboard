@@ -53,6 +53,13 @@
     .img img {
         width: 400px;
     }
+    .Wave {
+        position: fixed;
+        height: 100%;
+        left: 0;
+        bottom: -25%;
+        z-index: -1;
+    }
 }
 
 @media screen and (max-width: 900px) {

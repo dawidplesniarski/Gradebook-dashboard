@@ -6,6 +6,7 @@ import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
 import SideBar from "../components/SideBar/SideBar";
 import '../styles/MainPage.css'
 import {getUniversities} from "../actions/universityActions";
+import UniversitiesTable from "../components/Tables/UniversitiesTable";
 
 const StyledWrapper = styled.div`
 height: 50%;
@@ -18,6 +19,7 @@ margin-top: 20%;
 
 const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
 
+
     useEffect(() => {
         getUniversities();
     }, []);
@@ -25,7 +27,10 @@ const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
         <StyledWrapper>
             <div className={'main-page-container'}>
                 <SideBar/>
-                <AddGradeForm/>
+                {/*<AddGradeForm/>*/}
+                <div className={'table-wrapper'}>
+                    {universityReducer.universities.length > 0 ? <UniversitiesTable data={universityReducer.universities} /> : <div/>}
+                </div>
             </div>
         </StyledWrapper>
     );
