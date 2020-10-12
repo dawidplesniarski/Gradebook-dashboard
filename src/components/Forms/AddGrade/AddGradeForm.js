@@ -22,9 +22,7 @@ const AddGradeForm = () => {
             );
         } catch (err) {
             console.log(err);
-        } finally {
-            setStatus('Ocena dodana pomyślnie');
-        }
+        };
     };
 
     const fetchSubjects = () => {

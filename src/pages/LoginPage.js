@@ -20,13 +20,13 @@ grid-template-columns: repeat(2, 1fr);
 const LoginPage = ({loginFunction, loginReducer, history}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [disabledButton, setButtonDisabled] = useState(true);
 
 
     return (
         <div className={'container'}>
             <div className={'img'}>
-                <img src={MainPhoto}/>
+                <img src={MainPhoto} alt={'Main photo'}/>
             </div>
             <div className={'login-container'}>
                 <img className={'avatar'} src={MaleAvatar} alt={'avatar'}/>

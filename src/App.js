@@ -9,26 +9,45 @@ import Spinner from "./components/Atoms/Spinner/Spinner";
 
 const App = ({loginReducer}) =>{
     return (
-        <Router>
-                <Switch>
-                    {loginReducer.isLoading ? (
-                        <Spinner/>
+        // <Router>
+        //         <Switch>
+        //             {loginReducer.isLoading ? (
+        //                 <Spinner/>
+        //             ) : (
+        //                 <>
+        //                     {loginReducer.isLogged ? (
+        //                         <>
+        //                             {/*<Route path={'/mainPage'} component={MainPage}/>*/}
+        //                         </>
+        //                     ) : (
+        //                         <>
+        //                             <Route exact path={'/'} component={LoginPage}/>
+        //                             <Route path={'/mainPage'} component={MainPage}/>
+        //                         </>
+        //                     )}
+        //                 </>
+        //             )}
+        //         </Switch>
+        // </Router>
+    <Router>
+        <Switch>
+            {loginReducer.isLoading ? (
+                <Spinner/>
+            ) : (
+                <>
+                    {loginReducer.isLogged ? (
+                        <>
+                            <Route path={'/mainPage'} component={MainPage}/>
+                        </>
                     ) : (
                         <>
-                            {loginReducer.isLogged ? (
-                                <>
-                                    {/*<Route path={'/mainPage'} component={MainPage}/>*/}
-                                </>
-                            ) : (
-                                <>
-                                    <Route exact path={'/'} component={LoginPage}/>
-                                    <Route path={'/mainPage'} component={MainPage}/>
-                                </>
-                            )}
+                            <Route path={'/'} component={LoginPage}/>
                         </>
                     )}
-                </Switch>
-        </Router>
+                </>
+            )}
+        </Switch>
+    </Router>
     );
 }
 

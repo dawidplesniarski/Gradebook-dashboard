@@ -1,0 +1,15 @@
+.main-page-container {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .main-page-container {
+        display: flex;
+        align-items: center;
+        margin-left: 100px;
+    }
+}

@@ -1,0 +1,36 @@
+import React from "react";
+import {SideBarWrapper, StyledImg, StyledParagraph} from "./SideBar.styles";
+import Avatar from '../../assets/male-avatar.svg';
+import {connect} from "react-redux";
+import SideBarButton from "../Atoms/SideBarButton/SideBarButton";
+
+const SideBar = ({loginReducer}) => {
+    return(
+        <SideBarWrapper>
+            <StyledImg src={loginReducer.loginData.employee.imageUrl !== '' ? loginReducer.loginData.employee.imageUrl : Avatar} alt={'Avatar'}/>
+            <StyledParagraph>{loginReducer.loginData.employee.academicTitle}</StyledParagraph>
+            <StyledParagraph>{loginReducer.loginData.employee.name} {loginReducer.loginData.employee.lastName}</StyledParagraph>
+            <SideBarButton>
+                Dodaj ocenę
+            </SideBarButton>
+            <SideBarButton>
+                Dodaj ocenę
+            </SideBarButton>
+            <SideBarButton>
+                Dodaj ocenę
+            </SideBarButton>
+            {loginReducer.loginData.employee.isAdmin === true ?
+                <SideBarButton>
+                    Panel administratora
+                </SideBarButton> :
+                <div/>
+            }
+        </SideBarWrapper>
+    );
+};
+
+const mapStateToProps = ({loginReducer}) => {
+    return {loginReducer};
+};
+
+export default connect(mapStateToProps)(SideBar);
