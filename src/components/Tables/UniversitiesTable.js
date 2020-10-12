@@ -73,7 +73,7 @@ const UniversitiesTable = ({data}) => {
                             <StyledLinkWrapper>
                                 <StyledLink
                                 onClick={() => console.log(values.universityName)}>
-                                    Zobacz
+                                    Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>
                         )

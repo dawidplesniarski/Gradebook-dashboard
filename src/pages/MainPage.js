@@ -7,14 +7,13 @@ import SideBar from "../components/SideBar/SideBar";
 import '../styles/MainPage.css'
 import {getUniversities} from "../actions/universityActions";
 import UniversitiesTable from "../components/Tables/UniversitiesTable";
+import Teacher from '../assets/teacher.svg'
 
 const StyledWrapper = styled.div`
 height: 50%;
 display: flex;
 align-items: center;
 flex-direction: column;
-justify-content: center;
-margin-top: 20%;
 `;
 
 const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
@@ -29,6 +28,7 @@ const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
                 <SideBar/>
                 {/*<AddGradeForm/>*/}
                 <div className={'table-wrapper'}>
+                    <img className={'theme-image-container'} src={Teacher} alt={'teacher photo'}/>
                     {universityReducer.universities.length > 0 ? <UniversitiesTable data={universityReducer.universities} /> : <div/>}
                 </div>
             </div>
