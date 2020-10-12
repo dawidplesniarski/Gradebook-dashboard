@@ -4,8 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux'
-import Spinner from "./components/Atoms/Spinner/Spinner";
-
+import LoadingSpinner from "./components/Atoms/LoadingSpinner/Spinner";
 
 const App = ({loginReducer}) =>{
     return (
@@ -32,7 +31,7 @@ const App = ({loginReducer}) =>{
     <Router>
         <Switch>
             {loginReducer.isLoading ? (
-                <Spinner/>
+                <LoadingSpinner/>
             ) : (
                 <>
                     {loginReducer.isLogged ? (

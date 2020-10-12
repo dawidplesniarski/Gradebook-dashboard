@@ -4,9 +4,9 @@ import '../styles/LoginPage.css'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {loginFunction} from "../actions/loginActions";
-import Wave from '../assets/wave.svg';
-import MainPhoto from '../assets/login_page_photo.svg';
-import MaleAvatar from '../assets/male-avatar.svg';
+import Wave from '../assets/images/wave1.svg';
+import MainPhoto from '../assets/images/login_page_photo1.svg';
+import MaleAvatar from '../assets/images/male-avatar1.svg';
 import LoginBox from "../components/Forms/LoginBox/LoginBox";
 
 const StyledWrapper = styled.div`
@@ -20,7 +20,6 @@ grid-template-columns: repeat(2, 1fr);
 const LoginPage = ({loginFunction, loginReducer, history}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const [disabledButton, setButtonDisabled] = useState(true);
 
 
     return (

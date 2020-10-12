@@ -9,8 +9,9 @@ const ButtonWrapper = styled.button`
     font-size: 17px;
     letter-spacing: 2px;
     &:hover {
-    background-color: #6ecaaa;
+    background-color: #0099ff;
     color: #fff
+    }
 `;
 
 export {ButtonWrapper};

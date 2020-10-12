@@ -7,7 +7,7 @@ import SideBar from "../components/SideBar/SideBar";
 import '../styles/MainPage.css'
 import {getUniversities} from "../actions/universityActions";
 import UniversitiesTable from "../components/Tables/UniversitiesTable";
-import Teacher from '../assets/teacher.svg'
+import Teacher from '../assets/images/teacher1.svg'
 
 const StyledWrapper = styled.div`
 height: 50%;

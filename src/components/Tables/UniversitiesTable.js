@@ -15,6 +15,12 @@ const StyledLink = styled(Link)`
   letter-spacing: 1px;
   text-decoration: none;
   text-align: center;
+  &:hover {
+    background-color: #0099ff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 1px;
+    }
 `;
 
 const TableWrapper = styled.div`

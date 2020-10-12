@@ -1,6 +1,6 @@
 import React from "react";
 import {SideBarWrapper, StyledImg, StyledParagraph} from "./SideBar.styles";
-import Avatar from '../../assets/male-avatar.svg';
+import Avatar from '../../assets/images/male-avatar.svg';
 import {connect} from "react-redux";
 import SideBarButton from "../Atoms/SideBarButton/SideBarButton";
 
@@ -11,13 +11,13 @@ const SideBar = ({loginReducer}) => {
             <StyledParagraph>{loginReducer.loginData.employee.academicTitle}</StyledParagraph>
             <StyledParagraph>{loginReducer.loginData.employee.name} {loginReducer.loginData.employee.lastName}</StyledParagraph>
             <SideBarButton>
-                Dodaj ocenę
+                Button
             </SideBarButton>
             <SideBarButton>
-                Dodaj ocenę
+                Button
             </SideBarButton>
             <SideBarButton>
-                Dodaj ocenę
+                Button
             </SideBarButton>
             {loginReducer.loginData.employee.isAdmin === true ?
                 <SideBarButton>

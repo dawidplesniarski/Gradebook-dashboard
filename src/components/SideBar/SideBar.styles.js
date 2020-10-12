@@ -5,23 +5,24 @@ const SideBarWrapper = styled.div`
  height: 100%;
  width: 15%;
  min-width: 150px;
- background-color: #6ecaaa;
+ background-color: #0099ff;
  position: fixed;
  top: 0;
  left: 0;
+ bottom:0;
  display: flex;
  flex-direction: column;
  justify-content: flex-start;
  align-items: center;
  padding-top: 15px;
  text-align: center;
- 
+ border-top-right-radius: 20px;
+ border-bottom-right-radius: 20px;
 `;
 
 const StyledImg = styled.img`
-width: 100px;
-height: 100px;
-border-radius: 100px;
+width: 80%;
+border-radius: 20px;
 `;
 
 const StyledParagraph = styled.p`
