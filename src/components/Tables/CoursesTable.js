@@ -1,10 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
-import {setCurrentUniversity} from "../../actions/universityActions";
 import {useTable} from 'react-table';
 import {Link} from "react-router-dom";
-import {getUniversities} from "../../actions/universityActions";
-import {connect} from "react-redux";
 
 const StyledLinkWrapper = styled.div`
     display: flex;
@@ -63,16 +60,15 @@ const Styles = styled.div`
   }
 `;
 
-const UniversitiesTable = ({data, setCurrentUniversity}) => {
-
+const CoursesTable = ({data}) => {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Uczelnie',
+                Header: 'Kierunki studiów',
                 columns: [
                     {
-                        Header: 'Nazwa uczelni',
-                        accessor: 'universityName'
+                        Header: 'Nazwa kierunku',
+                        accessor: 'courseName'
                     },
                     {
                         Header: 'Wybierz',
@@ -80,8 +76,7 @@ const UniversitiesTable = ({data, setCurrentUniversity}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                onClick={() => setCurrentUniversity(values)}
-                                to={'#'}>
+                                    onClick={() => console.log(values.courseName)}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>
@@ -102,7 +97,7 @@ const UniversitiesTable = ({data, setCurrentUniversity}) => {
     } = useTable({
         columns,
         data,
-    })
+    });
 
     return (
         <TableWrapper>
@@ -133,13 +128,7 @@ const UniversitiesTable = ({data, setCurrentUniversity}) => {
             </Styles>
         </TableWrapper>
 
-    )
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCurrentUniversity: (university) => dispatch(setCurrentUniversity(university))
-    };
+    );
 };
 
-export default connect(null, mapDispatchToProps)(UniversitiesTable);
+export default CoursesTable;

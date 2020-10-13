@@ -43,7 +43,7 @@ const setUniversityStudentsError = (error) => {
     };
 };
 
-const setCurrentUniversity = (university) => {
+export const setCurrentUniversity = (university) => {
     return {
         type: SET_CURRENT_UNIVERSITY,
         payload: university
@@ -72,3 +72,7 @@ export const getUniversityStudents = (universityName) => async dispatch => {
         dispatch(setUniversityStudentsError(err));
     }
 };
+
+// export const setCurrentUniversityFunction = (university) => dispatch => {
+//     dispatch(setCurrentUniversity(university));
+// }
