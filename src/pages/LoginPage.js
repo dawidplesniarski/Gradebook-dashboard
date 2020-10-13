@@ -33,6 +33,7 @@ const LoginPage = ({loginFunction, loginReducer, history}) => {
                     loginFunction={() => loginFunction(login, password, () => history.push('/mainPage'))}
                     passwordOnChange={event => setPassword(event.target.value)}
                     loginOnChange={event => setLogin(event.target.value)}
+                    buttonDisabled={login === '' || password === ''}
                 />
             </div>
             <img className={'Wave'} src={Wave} alt={'wave'}/>

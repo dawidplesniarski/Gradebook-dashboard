@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import axios from 'axios';
 import SideBar from "../components/SideBar/SideBar";
 import '../styles/MainPage.css'
 import {getUniversities} from "../actions/universityActions";
 import UniversitiesTable from "../components/Tables/UniversitiesTable";
 import Teacher from '../assets/images/teacher1.svg'
-import {API_URL} from "../utils/helpers";
-import CoursesTable from "../components/Tables/CoursesTable";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+
 
 const StyledWrapper = styled.div`
 height: 50%;
@@ -18,18 +18,7 @@ align-items: center;
 flex-direction: column;
 `;
 
-const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
-    const [courses, setCourses] = useState([]);
-
-    function getCourses () {
-        try {
-            axios.get(`${API_URL}/course/findAll`).then(res => {
-                setCourses(res.data)
-            });
-        } catch (err) {
-
-        }
-    }
+const MainPage = ({universityReducer, getUniversities}) => {
 
     useEffect(() => {
         getUniversities();
@@ -38,9 +27,16 @@ const MainPage = ({loginReducer, universityReducer, getUniversities}) => {
         <StyledWrapper>
             <div className={'main-page-container'}>
                 <SideBar/>
-                <div className={'table-wrapper'}>
+                <div className={'main-table-wrapper'}>
                     <img className={'theme-image-container'} src={Teacher} alt={'teacher photo'}/>
-                    {universityReducer.universities.length > 0 ? <UniversitiesTable data={universityReducer.universities}/> : <div/>}
+                    <Grow in={(universityReducer.universities.length > 0)}
+                    timeout={300}>
+                        <div className={'table-wrapper'}>
+                            <Paper elevation={5}>
+                                <UniversitiesTable data={universityReducer.universities}/>
+                            </Paper>
+                        </div>
+                    </Grow>
                 </div>
             </div>
         </StyledWrapper>

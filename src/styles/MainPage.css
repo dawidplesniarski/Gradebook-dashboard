@@ -5,7 +5,7 @@
     padding-left: 8%;
 }
 
-.table-wrapper {
+.main-table-wrapper {
     display: flex;
     width: 100%;
     margin-top: 30px;
@@ -13,9 +13,13 @@
     align-items: center;
 }
 
-.table-wrapper img {
+.main-table-wrapper img {
     width: 60%;
     margin-bottom: 20px;
+}
+
+.table-wrapper {
+    width: 100%;
 }
 
 @media screen and (max-width: 900px) {

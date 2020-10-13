@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const ButtonWrapper = styled.button`
     width: 75%;
@@ -12,6 +12,11 @@ const ButtonWrapper = styled.button`
     background-color: #0099ff;
     color: #fff
     }
+    ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 50%;
+    `}
 `;
 
 export {ButtonWrapper};
