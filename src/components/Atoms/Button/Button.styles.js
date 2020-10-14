@@ -9,10 +9,15 @@ const ButtonWrapper = styled.button`
     font-size: 17px;
     letter-spacing: 2px;
     &:hover {
+    ${({disabled}) =>
+    !disabled &&
+    css`
     background-color: #0099ff;
-    color: #fff
+    color: #fff;
+    `
     }
-    ${({ disabled }) =>
+    }
+    ${({disabled}) =>
     disabled &&
     css`
       opacity: 50%;

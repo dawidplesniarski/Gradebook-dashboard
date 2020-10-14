@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {setCurrentUniversity} from "../../actions/universityActions";
 import {useTable} from 'react-table';
 import {Link} from "react-router-dom";
-import {getUniversities} from "../../actions/universityActions";
 import {connect} from "react-redux";
 
 const StyledLinkWrapper = styled.div`

@@ -5,7 +5,8 @@ import {
     UNIVERSITIES_ERROR,
     SET_UNIVERSITY_STUDENTS,
     UNIVERSITY_STUDENTS_ERROR,
-    SET_CURRENT_UNIVERSITY
+    SET_CURRENT_UNIVERSITY,
+    SET_CURRENT_COURSE
 } from "../reducers/universityReducer";
 import {API_URL} from "../utils/helpers";
 
@@ -50,6 +51,13 @@ export const setCurrentUniversity = (university) => {
     };
 };
 
+export const setCourseCurrent = (course) => {
+    return {
+        type: SET_CURRENT_COURSE,
+        payload: course
+    };
+};
+
 export const getUniversities = () => async dispatch => {
     dispatch(fetchStart());
 
@@ -72,7 +80,3 @@ export const getUniversityStudents = (universityName) => async dispatch => {
         dispatch(setUniversityStudentsError(err));
     }
 };
-
-// export const setCurrentUniversityFunction = (university) => dispatch => {
-//     dispatch(setCurrentUniversity(university));
-// }

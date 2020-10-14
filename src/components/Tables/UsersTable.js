@@ -1,9 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 import {useTable} from 'react-table';
-import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {setCourseCurrent} from "../../actions/universityActions";
 
 const StyledLinkWrapper = styled.div`
     display: flex;
@@ -25,7 +24,7 @@ const StyledLink = styled(Link)`
 `;
 
 const TableWrapper = styled.div`
-    width: 100%;
+    width: 50%;
     align-items: center;
     min-width: 300px;
     font-size: 20px;
@@ -38,8 +37,7 @@ const Styles = styled.div`
     border-spacing: 0;
     border: 0.5px solid #f4f4f4;
     border-radius: 10px;
-    width: 100%;
-    max-height: 500px;
+    width: 50%;
   
     tr {
       :last-child {
@@ -63,15 +61,23 @@ const Styles = styled.div`
   }
 `;
 
-const CoursesTable = ({data, setCourseCurrent}) => {
+const UsersTable = ({data}) => {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Kierunki studiów',
+                Header: 'Studenci',
                 columns: [
                     {
-                        Header: 'Nazwa kierunku',
-                        accessor: 'courseName'
+                        Header: 'Imię',
+                        accessor: 'name'
+                    },
+                    {
+                        Header: 'Nazwisko',
+                        accessor: 'lastName'
+                    },
+                    {
+                        Header: 'Album',
+                        accessor: 'albumNo'
                     },
                     {
                         Header: 'Wybierz',
@@ -79,8 +85,8 @@ const CoursesTable = ({data, setCourseCurrent}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                    onClick={() => setCourseCurrent(values)}
-                                to={'/studentsPage'}>
+                                    onClick={() => console.log('values.lastName')}
+                                    to={'#'}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>
@@ -101,7 +107,7 @@ const CoursesTable = ({data, setCourseCurrent}) => {
     } = useTable({
         columns,
         data,
-    });
+    })
 
     return (
         <TableWrapper>
@@ -132,13 +138,7 @@ const CoursesTable = ({data, setCourseCurrent}) => {
             </Styles>
         </TableWrapper>
 
-    );
+    )
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setCourseCurrent: (course) => dispatch(setCourseCurrent(course))
-    };
-}
-
-export default connect(null, mapDispatchToProps)(CoursesTable);
+export default UsersTable;
