@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
-import styled from "styled-components";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import SideBar from "../components/SideBar/SideBar";
-import '../styles/MainPage.css'
 import axios from 'axios';
 import {API_URL} from "../utils/helpers";
 import {getUniversities} from "../actions/universityActions";
@@ -12,14 +10,7 @@ import CoursesTable from "../components/Tables/CoursesTable";
 import Teacher from '../assets/images/teacher1.svg'
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
-
-
-const StyledWrapper = styled.div`
-height: 50%;
-display: flex;
-align-items: center;
-flex-direction: column;
-`;
+import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 
 const MainPage = ({universityReducer, getUniversities}) => {
 
@@ -27,7 +18,7 @@ const MainPage = ({universityReducer, getUniversities}) => {
 
     function fetchAllCourses() {
         try {
-            axios.get(`${API_URL}/course/findAll`).then(res =>{
+            axios.get(`${API_URL}/course/findAll`).then(res => {
                 setCoursesData(res.data);
             });
         } catch {
@@ -41,30 +32,30 @@ const MainPage = ({universityReducer, getUniversities}) => {
     }, []);
     return (
         <StyledWrapper>
-            <div className={'main-page-container'}>
+            <MainPageContainer>
                 <SideBar/>
-                <div className={'main-table-wrapper'}>
-                    <img className={'theme-image-container'} src={Teacher} alt={'teacher photo'}/>
+                <MainTableWrapper>
+                    <img src={Teacher} alt={'teacher photo'}/>
                     {!universityReducer.currentUniversity ?
                         <Grow in={(universityReducer.universities.length > 0)}
                               timeout={300}>
-                            <div className={'table-wrapper'}>
+                            <TableWrapper>
                                 <Paper elevation={5}>
                                     <UniversitiesTable data={universityReducer.universities}/>
                                 </Paper>
-                            </div>
+                            </TableWrapper>
                         </Grow>
                         :
                         <Grow timeout={300} in={universityReducer.currentUniversity}>
-                            <div className={'table-wrapper'}>
+                            <TableWrapper>
                                 <Paper elevation={5}>
                                     <CoursesTable data={coursesData}/>
                                 </Paper>
-                            </div>
+                            </TableWrapper>
                         </Grow>
                     }
-                </div>
-            </div>
+                </MainTableWrapper>
+            </MainPageContainer>
         </StyledWrapper>
     );
 }

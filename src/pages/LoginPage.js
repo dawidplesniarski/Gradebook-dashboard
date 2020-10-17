@@ -9,13 +9,6 @@ import MainPhoto from '../assets/images/login_page_photo1.svg';
 import MaleAvatar from '../assets/images/male-avatar1.svg';
 import LoginBox from "../components/Forms/LoginBox/LoginBox";
 
-const StyledWrapper = styled.div`
-width: 100vw;
-height: 100vh;
-display: grid;
-align-items: center;
-grid-template-columns: repeat(2, 1fr);
-`;
 
 const LoginPage = ({loginFunction, loginReducer, history}) => {
     const [login, setLogin] = useState('');

@@ -3,18 +3,14 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import axios from 'axios';
 import {API_URL} from "../utils/helpers";
-import styled from 'styled-components';
 import {getUniversities} from "../actions/universityActions";
 import SideBar from "../components/SideBar/SideBar";
 import Teacher from '../assets/images/teacher1.svg'
 import UsersTable from "../components/Tables/UsersTable";
+import Paper from "@material-ui/core/Paper";
+import Grow from "@material-ui/core/Grow";
+import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 
-const StyledWrapper = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-height: 50%;
-`;
 
 const StudentsPage = ({universityReducer}) => {
     const [studentsData, setStudentsData] = useState([]);
@@ -31,16 +27,23 @@ const StudentsPage = ({universityReducer}) => {
 
     useEffect(() => {
         fetchAllStudents(universityReducer.currentUniversity._id, universityReducer.currentCourse._id);
-    },[]);
+    }, []);
 
-    return(
+    return (
         <StyledWrapper>
-            <SideBar/>
-            <div className={'main-table-wrapper'}>
-                <img className={'theme-image-container'} src={Teacher} alt={'teacher photo'}/>
-                {studentsData.length > 0 ? <UsersTable data={studentsData}/> : <div/>}
-
-            </div>
+            <MainPageContainer>
+                <SideBar/>
+                <MainTableWrapper>
+                    <img src={Teacher} alt={'teacher photo'}/>
+                    <Grow in={(studentsData.length > 0)} timeout={300}>
+                        <div style={{width: '120%'}}>
+                            <Paper elevation={5}>
+                                <UsersTable data={studentsData}/>
+                            </Paper>
+                        </div>
+                    </Grow>
+                </MainTableWrapper>
+            </MainPageContainer>
         </StyledWrapper>
 
     );
@@ -48,7 +51,7 @@ const StudentsPage = ({universityReducer}) => {
 
 const mapStateToProps = (universityReducer) => {
     return universityReducer;
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

@@ -1,0 +1,31 @@
+.student-main-page-container {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding-left: 8%;
+}
+
+.student-main-table-wrapper {
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.student-main-table-wrapper img {
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.student-table-wrapper {
+    width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+    .student-main-page-container {
+        display: flex;
+        align-items: center;
+        margin-left: 100px;
+    }
+}

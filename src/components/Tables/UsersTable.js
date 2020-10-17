@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
 `;
 
 const TableWrapper = styled.div`
-    width: 50%;
+    width: 100%;
     align-items: center;
     min-width: 300px;
     font-size: 20px;
@@ -37,7 +37,7 @@ const Styles = styled.div`
     border-spacing: 0;
     border: 0.5px solid #f4f4f4;
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
   
     tr {
       :last-child {
@@ -78,6 +78,10 @@ const UsersTable = ({data}) => {
                     {
                         Header: 'Album',
                         accessor: 'albumNo'
+                    },
+                    {
+                      Header: 'Uniwersytet',
+                      accessor: 'universityId.universityName'
                     },
                     {
                         Header: 'Wybierz',
