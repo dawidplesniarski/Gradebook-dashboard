@@ -11,10 +11,12 @@ import Teacher from '../assets/images/teacher1.svg'
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
+import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
     const [coursesData, setCoursesData] = useState([]);
+    const [filter, setFilter] = useState('');
 
     function fetchAllCourses() {
         try {
@@ -37,12 +39,14 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
                 <SideBar/>
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
+                    <SearchBar placeholder={'Wyszukaj uniwersytet'} onChange={e => setFilter(e.target.value)}/>
                     {!universityReducer.currentUniversity ?
                         <Grow in={(universityReducer.universities.length > 0)}
                               timeout={300}>
                             <TableWrapper>
                                 <Paper elevation={5}>
-                                    <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)}/>
+                                    <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)
+                                        .filter(university => university.universityName.toLowerCase().includes(filter.toLowerCase()))}/>
                                 </Paper>
                             </TableWrapper>
                         </Grow>

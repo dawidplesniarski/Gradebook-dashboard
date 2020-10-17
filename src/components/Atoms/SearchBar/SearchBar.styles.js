@@ -8,4 +8,5 @@ export const StyledSearchBar = styled.input`
   background-color: #eaeaea;
   font-family: Helvetica, serif;
   font-size: 15px;
+  margin-bottom: 20px;
 `;
