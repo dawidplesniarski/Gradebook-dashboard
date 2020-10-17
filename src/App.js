@@ -3,6 +3,7 @@ import './App.css';
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import StudentsPage from "./pages/StudentsPage";
+import StudentDetails from "./pages/StudentDetails";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingSpinner from "./components/Atoms/LoadingSpinner/Spinner";
@@ -39,6 +40,7 @@ const App = ({loginReducer}) =>{
                         <>
                             <Route exact path={'/mainPage'} component={MainPage}/>
                             <Route path={'/studentsPage'} component={StudentsPage}/>
+                            <Route path={'/studentDetails'} component={StudentDetails}/>
                         </>
                     ) : (
                         <>

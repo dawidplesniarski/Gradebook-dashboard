@@ -2,7 +2,8 @@ import React from "react";
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useTable} from 'react-table';
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
+import {setCurrentStudent} from "../../actions/studentActions";
 
 const StyledLinkWrapper = styled.div`
     display: flex;
@@ -61,7 +62,7 @@ const Styles = styled.div`
   }
 `;
 
-const UsersTable = ({data}) => {
+const UsersTable = ({data, setCurrentStudent}) => {
     const columns = React.useMemo(
         () => [
             {
@@ -89,8 +90,8 @@ const UsersTable = ({data}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                    onClick={() => console.log('values.lastName')}
-                                    to={'#'}>
+                                    onClick={() => setCurrentStudent(values)}
+                                    to={'/studentDetails'}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>
@@ -145,4 +146,10 @@ const UsersTable = ({data}) => {
     )
 };
 
-export default UsersTable;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentStudent: (student) => dispatch(setCurrentStudent(student))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(UsersTable);

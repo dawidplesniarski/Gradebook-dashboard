@@ -12,7 +12,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 
-const MainPage = ({universityReducer, getUniversities}) => {
+const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
     const [coursesData, setCoursesData] = useState([]);
 

@@ -9,7 +9,7 @@ import Teacher from '../assets/images/teacher1.svg'
 import UsersTable from "../components/Tables/UsersTable";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
-import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
+import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
 
 
 const StudentsPage = ({universityReducer}) => {

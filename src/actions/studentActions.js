@@ -4,7 +4,8 @@ import {
     SET_STUDENT_INFO,
     SET_STUDENT_INFO_ERROR,
     SET_STUDENT_GRADES,
-    SET_STUDENT_GRADES_ERROR
+    SET_STUDENT_GRADES_ERROR,
+    SET_CURRENT_STUDENT
 } from "../reducers/studentReducer";
 import {API_URL} from "../utils/helpers";
 
@@ -14,10 +15,10 @@ const fetchStart = () => {
     };
 };
 
-const setStudentInfo = (student) => {
+const setStudentInfo = (studentInfo) => {
     return {
         type: SET_STUDENT_INFO,
-        payload: student
+        payload: studentInfo
     };
 };
 
@@ -39,5 +40,12 @@ const setStudentGradesError = (error) => {
     return {
         type: SET_STUDENT_GRADES_ERROR,
         payload: error
+    };
+};
+
+export const setCurrentStudent = (student) => {
+    return {
+        type: SET_CURRENT_STUDENT,
+        payload: student
     };
 };
