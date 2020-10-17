@@ -3,7 +3,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import SideBar from "../components/SideBar/SideBar";
 import axios from 'axios';
-import {API_URL} from "../utils/helpers";
+import {API_URL, compareArrays} from "../utils/helpers";
 import {getUniversities} from "../actions/universityActions";
 import UniversitiesTable from "../components/Tables/UniversitiesTable";
 import CoursesTable from "../components/Tables/CoursesTable";
@@ -26,6 +26,7 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
         }
     }
 
+
     useEffect(() => {
         getUniversities();
         fetchAllCourses();
@@ -41,7 +42,7 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
                               timeout={300}>
                             <TableWrapper>
                                 <Paper elevation={5}>
-                                    <UniversitiesTable data={universityReducer.universities}/>
+                                    <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)}/>
                                 </Paper>
                             </TableWrapper>
                         </Grow>

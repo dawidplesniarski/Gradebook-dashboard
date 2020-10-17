@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import {setCurrentUniversity} from "../../actions/universityActions";
 import {useTable} from 'react-table';
@@ -26,7 +26,6 @@ const StyledLink = styled(Link)`
 
 const TableWrapper = styled.div`
     width: 100%;
-    align-items: center;
     min-width: 300px;
     font-size: 20px;
     color: #464e51;
@@ -131,7 +130,6 @@ const UniversitiesTable = ({data, setCurrentUniversity}) => {
                 </table>
             </Styles>
         </TableWrapper>
-
     )
 }
 

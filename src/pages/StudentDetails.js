@@ -2,16 +2,30 @@ import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {getUniversities} from "../actions/universityActions";
+import styled from 'styled-components';
+import SideBar from "../components/SideBar/SideBar";
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding-left: 8%;
+  
+  @media screen and (max-width: 900px) {
+   margin-left: 100px;
+   }
+`;
 
 const StudentPage = (studentReducer) => {
-    useEffect(() => {
-        console.log(studentReducer.currentStudent)
-    },[])
+
     return(
-        <div>
-            {studentReducer.currentStudent && <span>{studentReducer.currentStudent.name}</span>}
-            {studentReducer.currentStudent && <span>{studentReducer.currentStudent.lastName}</span>}
-        </div>
+        <StyledContainer>
+            <SideBar/>
+            <span>Dawid</span>
+            <span>Pleśniarski</span>
+        </StyledContainer>
     );
 };
 
