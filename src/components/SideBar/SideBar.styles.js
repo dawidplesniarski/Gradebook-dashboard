@@ -6,6 +6,8 @@ const SideBarWrapper = styled.div`
  width: 15%;
  min-width: 150px;
  background-color: #0099ff;
+ transform: ${({open}) => open? 'translateX(0)' : 'translateX(-100%)'};
+ transition: transform 0.3s ease-in-out;
  position: fixed;
  top: 0;
  left: 0;
@@ -14,7 +16,7 @@ const SideBarWrapper = styled.div`
  flex-direction: column;
  justify-content: flex-start;
  align-items: center;
- padding-top: 15px;
+ padding-top: 3rem;
  text-align: center;
  border-top-right-radius: 20px;
  border-bottom-right-radius: 20px;
@@ -26,7 +28,6 @@ border-radius: 20px;
 `;
 
 const StyledParagraph = styled.p`
-font-family: Helvetica;
 font-size: 17px;
 font-weight: 450;
 color: #fff;

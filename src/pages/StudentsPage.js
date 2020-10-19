@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
+import Burger from "../components/Hamburger/Burger";
 
 
 const StudentsPage = ({universityReducer}) => {
@@ -34,7 +35,7 @@ const StudentsPage = ({universityReducer}) => {
     return (
         <StyledWrapper>
             <MainPageContainer>
-                <SideBar/>
+                <Burger/>
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
                     <Grow in={(studentsData.length > 0)} timeout={300}>

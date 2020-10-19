@@ -12,6 +12,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
+import Burger from "../components/Hamburger/Burger";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
@@ -37,7 +38,7 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
     return (
         <StyledWrapper>
             <MainPageContainer>
-                <SideBar/>
+                <Burger/>
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
                     {!universityReducer.currentUniversity ?

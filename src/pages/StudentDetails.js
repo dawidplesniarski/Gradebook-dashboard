@@ -4,6 +4,7 @@ import {withRouter} from "react-router";
 import {getCurrentStudent} from "../actions/studentActions";
 import styled from 'styled-components';
 import SideBar from "../components/SideBar/SideBar";
+import Burger from "../components/Hamburger/Burger";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -38,14 +39,14 @@ const StudentPage = ({studentReducer, getCurrentStudent}) => {
 
     return(
         <StyledContainer>
-            <SideBar/>
-            {studentReducer.currentStudent ?
-                <UserInfoHeader>
-                    <StyledStudentAvatar src={studentReducer.currentStudent.imageUrl} alt={'Avatar'}/>
-                    <span>{studentReducer.currentStudent.name}</span>
-                    <span>{studentReducer.currentStudent.lastName}</span>
-                </UserInfoHeader>
-             : <div/>}
+            <Burger/>
+            {/*{studentReducer.currentStudent ?*/}
+            {/*    <UserInfoHeader>*/}
+            {/*        <StyledStudentAvatar src={studentReducer.currentStudent.imageUrl} alt={'Avatar'}/>*/}
+            {/*        <span>{studentReducer.currentStudent.name}</span>*/}
+            {/*        <span>{studentReducer.currentStudent.lastName}</span>*/}
+            {/*    </UserInfoHeader>*/}
+            {/* : <div/>}*/}
         </StyledContainer>
     );
 };

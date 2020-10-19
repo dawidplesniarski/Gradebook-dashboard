@@ -11,10 +11,6 @@ const MainPageContainer = styled.div`
    display: flex;
    align-items: center;
    width: 50%;
-   padding-left: 8%;
-   @media screen and (max-width: 900px) {
-   margin-left: 100px;
-   }
 `;
 
 const MainTableWrapper = styled.div`
