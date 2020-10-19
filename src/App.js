@@ -1,36 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import StudentsPage from "./pages/StudentsPage";
-import StudentDetails from "./pages/StudentDetails";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import CurrentStudentDetails from "./pages/CurrentStudentDetails";
+import {Switch, Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingSpinner from "./components/Atoms/LoadingSpinner/Spinner";
+import {authCheck} from "./actions/loginActions";
 
-const App = ({loginReducer}) =>{
+const App = ({loginReducer, authCheck, history}) =>{
+    useEffect(() => {
+        // authCheck(() => history.push('/mainPage'), ()=> history.push('/'));
+    },[])
     return (
-        // <Router>
-        //         <Switch>
-        //             {loginReducer.isLoading ? (
-        //                 <Spinner/>
-        //             ) : (
-        //                 <>
-        //                     {loginReducer.isLogged ? (
-        //                         <>
-        //                             {/*<Route path={'/mainPage'} component={MainPage}/>*/}
-        //                         </>
-        //                     ) : (
-        //                         <>
-        //                             <Route exact path={'/'} component={LoginPage}/>
-        //                             <Route path={'/mainPage'} component={MainPage}/>
-        //                         </>
-        //                     )}
-        //                 </>
-        //             )}
-        //         </Switch>
-        // </Router>
-    <Router>
         <Switch>
             {loginReducer.isLoading ? (
                 <LoadingSpinner/>
@@ -40,7 +23,7 @@ const App = ({loginReducer}) =>{
                         <>
                             <Route exact path={'/mainPage'} component={MainPage}/>
                             <Route path={'/studentsPage'} component={StudentsPage}/>
-                            <Route path={'/studentDetails'} component={StudentDetails}/>
+                            <Route path={'/studentDetails'} component={CurrentStudentDetails}/>
                         </>
                     ) : (
                         <>
@@ -50,7 +33,6 @@ const App = ({loginReducer}) =>{
                 </>
             )}
         </Switch>
-    </Router>
     );
 }
 
@@ -58,4 +40,12 @@ const mapStateToProps = ({loginReducer}) => {
     return {loginReducer};
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authCheck: (successCallback, errorCallback) => dispatch(authCheck(successCallback, errorCallback))
+    }
+}
+
+const AppWithRouter = withRouter(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppWithRouter);

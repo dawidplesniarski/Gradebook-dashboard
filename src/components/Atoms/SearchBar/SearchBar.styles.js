@@ -9,4 +9,5 @@ export const StyledSearchBar = styled.input`
   font-family: Helvetica, serif;
   font-size: 15px;
   margin-bottom: 20px;
+  padding-left: 10px;
 `;

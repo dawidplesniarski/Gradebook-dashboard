@@ -1,8 +1,8 @@
 import React from "react";
 import {SideBarWrapper, StyledImg, StyledParagraph} from "./SideBar.styles";
-import Avatar from '../../assets/images/male-avatar.svg';
+import Avatar from '../../../assets/images/male-avatar.svg';
 import {connect} from "react-redux";
-import SideBarButton from "../Atoms/SideBarButton/SideBarButton";
+import SideBarButton from "../../Atoms/SideBarButton/SideBarButton";
 
 const SideBar = ({loginReducer, open}) => {
     return(

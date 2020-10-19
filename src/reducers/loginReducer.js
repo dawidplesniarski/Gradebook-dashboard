@@ -2,6 +2,7 @@ export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
+export const SET_LOGGED = 'SET_LOGGED';
 
 const initialState = {
     isLoading: false,
@@ -45,6 +46,12 @@ export const loginReducer = (state = initialState, action) => {
                 isLogged: false,
                 loginData: false,
                 loginFailed: null
+            };
+        case SET_LOGGED:
+            return {
+                ...state,
+                isLoading: false,
+                isLogged: action.payload
             }
         default:
             return state;

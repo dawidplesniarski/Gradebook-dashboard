@@ -4,14 +4,13 @@ import {connect} from "react-redux";
 import axios from 'axios';
 import {API_URL} from "../utils/helpers";
 import {getUniversities} from "../actions/universityActions";
-import SideBar from "../components/SideBar/SideBar";
 import Teacher from '../assets/images/teacher1.svg'
 import UsersTable from "../components/Tables/UsersTable";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
-import Burger from "../components/Hamburger/Burger";
+import Burger from "../components/Molecules/Hamburger/Burger";
 
 
 const StudentsPage = ({universityReducer}) => {

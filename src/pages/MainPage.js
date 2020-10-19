@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import SideBar from "../components/SideBar/SideBar";
 import axios from 'axios';
 import {API_URL, compareArrays} from "../utils/helpers";
 import {getUniversities} from "../actions/universityActions";
@@ -12,7 +11,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
-import Burger from "../components/Hamburger/Burger";
+import Burger from "../components/Molecules/Hamburger/Burger";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 

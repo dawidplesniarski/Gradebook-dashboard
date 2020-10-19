@@ -16,7 +16,7 @@ const SideBarWrapper = styled.div`
  flex-direction: column;
  justify-content: flex-start;
  align-items: center;
- padding-top: 3rem;
+ padding-top: 3.5rem;
  text-align: center;
  border-top-right-radius: 20px;
  border-bottom-right-radius: 20px;

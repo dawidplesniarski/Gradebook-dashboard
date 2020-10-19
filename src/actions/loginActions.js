@@ -3,7 +3,8 @@ import{
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_ERROR,
-    LOGIN_LOGOUT
+    LOGIN_LOGOUT,
+    SET_LOGGED
 } from '../reducers/loginReducer';
 
 const loginStart = () => {
@@ -13,6 +14,7 @@ const loginStart = () => {
 };
 
 const loginSuccess = data => {
+    localStorage.setItem('token', data.token);
     return{
         type: LOGIN_SUCCESS,
         payload: data
@@ -26,9 +28,27 @@ const loginFailed = error => {
     }
 }
 
+const setLogged = (isLogged) => {
+    return {
+        type: SET_LOGGED,
+        payload: isLogged
+    }
+}
+
 const logout = () => {
     return{
         type: LOGIN_LOGOUT,
+    }
+}
+
+export const authCheck = (successCallback, errorCallback) => async dispatch => {
+    dispatch(loginStart());
+    const token = localStorage.getItem('token');
+    if(token) {
+        successCallback();
+        dispatch(setLogged(true));
+    } else {
+        errorCallback();
     }
 }
 
