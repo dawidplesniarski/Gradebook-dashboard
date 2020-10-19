@@ -12,7 +12,9 @@ const initialState = {
     universitiesError: null,
     universityStudents: [],
     universityStudentsError: null,
+    // currentUniversity: '5f65dd5e6ebfc206ff0d9cf5',
     currentUniversity: null,
+    // currentCourse: '5f65cd60cc094b04401300bf'
     currentCourse: null
 };
 
