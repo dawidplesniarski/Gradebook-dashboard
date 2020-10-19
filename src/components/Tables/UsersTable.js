@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {useTable} from 'react-table';
 import {connect} from "react-redux";
-import {setCurrentStudent} from "../../actions/studentActions";
+import {setCurrentStudentId} from "../../actions/studentActions";
 
 const StyledLinkWrapper = styled.div`
     display: flex;
@@ -62,7 +62,7 @@ const Styles = styled.div`
   }
 `;
 
-const UsersTable = ({data, setCurrentStudent}) => {
+const UsersTable = ({data, setCurrentStudentId}) => {
     const columns = React.useMemo(
         () => [
             {
@@ -90,7 +90,7 @@ const UsersTable = ({data, setCurrentStudent}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                    onClick={() => setCurrentStudent(values)}
+                                    onClick={() => setCurrentStudentId(values._id)}
                                     to={'/studentDetails'}>
                                     Przejdź
                                 </StyledLink>
@@ -148,7 +148,7 @@ const UsersTable = ({data, setCurrentStudent}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentStudent: (student) => dispatch(setCurrentStudent(student))
+        setCurrentStudentId: (student) => dispatch(setCurrentStudentId(student))
     };
 };
 

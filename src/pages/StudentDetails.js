@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {getUniversities} from "../actions/universityActions";
+import {getCurrentStudent} from "../actions/studentActions";
 import styled from 'styled-components';
 import SideBar from "../components/SideBar/SideBar";
 
@@ -18,25 +18,46 @@ const StyledContainer = styled.div`
    }
 `;
 
-const StudentPage = (studentReducer) => {
+const UserInfoHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  
+  img {
+  width: 100px;
+  height: 100px;
+  }
+`;
+
+const StudentPage = ({studentReducer, getCurrentStudent}) => {
+
+    useEffect(() => {
+        getCurrentStudent(studentReducer.currentStudentId);
+    })
 
     return(
         <StyledContainer>
             <SideBar/>
-            <span>Dawid</span>
-            <span>Pleśniarski</span>
+            {studentReducer.currentStudent ?
+                <UserInfoHeader>
+                    <StyledStudentAvatar src={studentReducer.currentStudent.imageUrl} alt={'Avatar'}/>
+                    <span>{studentReducer.currentStudent.name}</span>
+                    <span>{studentReducer.currentStudent.lastName}</span>
+                </UserInfoHeader>
+             : <div/>}
         </StyledContainer>
     );
 };
 
-const mapStateToProps = ({studentReducer}) => {
+const mapStateToProps = (studentReducer) => {
     return studentReducer;
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUniversities: () => dispatch(getUniversities())
+        getCurrentStudent: (studentId) => dispatch(getCurrentStudent(studentId))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(withRouter(StudentPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(StudentPage));

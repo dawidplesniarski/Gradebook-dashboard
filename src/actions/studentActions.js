@@ -5,7 +5,9 @@ import {
     SET_STUDENT_INFO_ERROR,
     SET_STUDENT_GRADES,
     SET_STUDENT_GRADES_ERROR,
-    SET_CURRENT_STUDENT
+    SET_CURRENT_STUDENT,
+    SET_CURRENT_STUDENT_ERROR,
+    SET_CURRENT_STUDENT_ID
 } from "../reducers/studentReducer";
 import {API_URL} from "../utils/helpers";
 
@@ -43,9 +45,34 @@ const setStudentGradesError = (error) => {
     };
 };
 
-export const setCurrentStudent = (student) => {
+const setCurrentStudent = (student) => {
     return {
         type: SET_CURRENT_STUDENT,
         payload: student
+    }
+};
+
+const setCurrentStudentError = (studentError) => {
+    return {
+        type: SET_CURRENT_STUDENT_ERROR,
+        payload: studentError
+    }
+}
+
+export const setCurrentStudentId = (studentId) => {
+    return {
+        type: SET_CURRENT_STUDENT_ID,
+        payload: studentId
     };
+};
+
+export const getCurrentStudent = (studentId) => async dispatch => {
+    dispatch(fetchStart());
+
+    try {
+        const { data } = await axios.get(`${API_URL}/users/findById/${studentId}`);
+        dispatch(setCurrentStudent(data));
+    } catch(err) {
+        dispatch(setCurrentStudentError(err));
+    }
 };
