@@ -17,6 +17,7 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
     const [coursesData, setCoursesData] = useState([]);
     const [filter, setFilter] = useState('');
+    const [courseFilter, setCourseFilter] = useState('');
 
     function fetchAllCourses() {
         try {
@@ -39,11 +40,11 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
                 <SideBar/>
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
-                    <SearchBar placeholder={'Wyszukaj uniwersytet'} onChange={e => setFilter(e.target.value)}/>
                     {!universityReducer.currentUniversity ?
                         <Grow in={(universityReducer.universities.length > 0)}
                               timeout={300}>
                             <TableWrapper>
+                                <SearchBar placeholder={'Wyszukaj uniwersytet'} onChange={e => setFilter(e.target.value)}/>
                                 <Paper elevation={5}>
                                     <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)
                                         .filter(university => university.universityName.toLowerCase().includes(filter.toLowerCase()))}/>
@@ -53,8 +54,9 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
                         :
                         <Grow timeout={300} in={universityReducer.currentUniversity}>
                             <TableWrapper>
+                                <SearchBar placeholder={'Wyszukaj kierunek'} onChange={e => setCourseFilter(e.target.value)}/>
                                 <Paper elevation={5}>
-                                    <CoursesTable data={coursesData}/>
+                                    <CoursesTable data={coursesData.filter(course => course.courseName.toLowerCase().includes(courseFilter))}/>
                                 </Paper>
                             </TableWrapper>
                         </Grow>

@@ -10,10 +10,12 @@ import UsersTable from "../components/Tables/UsersTable";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
+import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 
 
 const StudentsPage = ({universityReducer}) => {
     const [studentsData, setStudentsData] = useState([]);
+    const [studentsFilter, setStudentsFilter] = useState('');
 
     function fetchAllStudents(university, course) {
         try {
@@ -36,9 +38,10 @@ const StudentsPage = ({universityReducer}) => {
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
                     <Grow in={(studentsData.length > 0)} timeout={300}>
-                        <div style={{width: '120%'}}>
+                        <div style={{width: '120%', textAlign: 'center'}}>
+                            <SearchBar placeholder={'Wyszukaj po nazwisku'} onChange={e => setStudentsFilter(e.target.value.toLowerCase())}/>
                             <Paper elevation={5}>
-                                <UsersTable data={studentsData}/>
+                                <UsersTable data={studentsData.filter(student => student.lastName.toLowerCase().includes(studentsFilter))}/>
                             </Paper>
                         </div>
                     </Grow>

@@ -31,6 +31,7 @@ const MainTableWrapper = styled.div`
 
 const TableWrapper = styled.div`
   width: 100%;
+  text-align: center;
 `;
 
 export {StyledWrapper, MainPageContainer, MainTableWrapper, TableWrapper};
