@@ -5,4 +5,8 @@ const LoginBoxWrapper = styled.div`
     width: 100%;
 `;
 
-export {LoginBoxWrapper};
+const StyledTitle = styled.h1`
+  font-family: 'Montserrat', sans-serif;
+`
+
+export {LoginBoxWrapper, StyledTitle};

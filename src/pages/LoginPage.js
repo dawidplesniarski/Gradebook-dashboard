@@ -1,5 +1,4 @@
 import React, {useState,} from 'react';
-import styled from 'styled-components';
 import '../styles/LoginPage.css'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';

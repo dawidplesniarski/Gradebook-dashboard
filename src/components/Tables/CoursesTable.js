@@ -30,6 +30,7 @@ const TableWrapper = styled.div`
     min-width: 300px;
     font-size: 20px;
     color: #464e51;
+    font-family: Montserrat,serif;
 `;
 const Styles = styled.div`
   padding: 1rem;
