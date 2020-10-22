@@ -2,11 +2,10 @@ import React from "react";
 import styled from 'styled-components';
 
 const StudentDetailsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   width: 100%;
-  height: 100vh;
-  align-items: center;
+  height: 100%;
+  text-align: center;
   padding-top: 30px;
 `;
 const UserInfoBox = styled.div`
@@ -43,12 +42,14 @@ const StyledListElement = styled.li`
   font-family: Montserrat,serif;
   font-weight: 200;
   font-size: 20px;
-  text-align: center;
+  align-self: center;
 `;
 
 const StyledList = styled.ul`
     list-style-type: none;
-    text-align: center;
+    align-items: center;
+    //text-align: center;
+    border-width: 1px;
 `;
 
 export  {StudentDetailsWrapper, UserInfoBox, StyledParagraph, StyledAlbumNumber, StyledListElement, StyledList};

@@ -8,4 +8,14 @@ export function compareArrays(arr1, arr2) {
         }
     }));
     return finalArr;
-}
+};
+
+export function compareSubjectArrays(arr1, arr2) {
+    let finalArr = [];
+    arr1.forEach((el) => arr2.forEach((el1) => {
+        if(el.subjectName === el1) {
+            finalArr.push(el);
+        }
+    }));
+    return finalArr;
+};

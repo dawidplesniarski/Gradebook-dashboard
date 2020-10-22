@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -6,12 +6,17 @@ const StyledButton = styled.button`
   justify-content: center;
   position: fixed;
   right: 30px;
-  top: 30px;
+  bottom: 40px;
   width: 60px;
   height: 60px;
   border-radius: 30px;
   background-color: #0cc30c;
   border-width: 0;
+  transition: 0.3s;
+  ${({open}) => open && `
+    transform: rotate(45deg);
+    background-color: #EC0101;
+  `}
   div {
     width: 2rem;
     height: 0.25rem;
@@ -23,9 +28,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const AddButton = () => {
+const AddButton = ({open, onClick}) => {
     return (
-        <StyledButton>
+        <StyledButton open={open} onClick={onClick}>
             <div/>
             <div/>
         </StyledButton>

@@ -5,9 +5,9 @@ import axios from "axios";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
 import {API_URL} from "../../../utils/helpers";
-import Paper from "@material-ui/core/Paper";
+import {compareSubjectArrays} from "../../../utils/helpers";
 
-const AddGradeForm = ({open, studentAlbum}) => {
+const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
     const [newGrade, setGrade] = useState('');
     const [subjectId, setSubjectId] = useState('');
     const [data, setStatus] = useState([]);
@@ -23,8 +23,7 @@ const AddGradeForm = ({open, studentAlbum}) => {
             );
         } catch (err) {
             console.log(err);
-        }
-        ;
+        };
     };
 
     const fetchSubjects = () => {
@@ -45,7 +44,7 @@ const AddGradeForm = ({open, studentAlbum}) => {
             <TextInput onChange={event => setGrade(event.target.value)} placeholder={'Ocena'} min={2} max={5} step={0.5}
                        type={'number'} name={'ocena'}/>
             <SelectMenu placeholder={'Przedmiot'} onChange={(event) => setSubjectId(event.target.value)}
-                        name={'subjectId'} data={data}/>
+                        name={'subjectId'} data={compareSubjectArrays(data, studentSubjects)}/>
             <Button onClick={async () => await addGrade()}>Dodaj ocenę</Button>
         </StyledWrapper>
     );

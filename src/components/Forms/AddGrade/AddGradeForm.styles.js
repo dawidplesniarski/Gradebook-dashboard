@@ -7,7 +7,6 @@ const StyledWrapper = styled.div`
     width: 600px;
     transform: ${({open}) => open? 'translateX(0)' : 'translateX(-300%)'};
     transition: transform 0.3s ease-in-out;
-    
     @media(max-width: 768px) {
       width: 300px;
     }
