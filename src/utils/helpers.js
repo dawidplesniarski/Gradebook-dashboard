@@ -19,3 +19,11 @@ export function compareSubjectArrays(arr1, arr2) {
     }));
     return finalArr;
 };
+
+export function getEmployeeSubjects(subjects) {
+    let finalArr = [];
+    subjects.forEach((el) => {
+        finalArr.push(el.subjectName)
+    });
+    return finalArr
+}

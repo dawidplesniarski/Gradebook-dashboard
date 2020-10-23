@@ -29,3 +29,9 @@ code {
   font-weight: normal;
   src: url("./assets/fonts/Montserrat-Light.ttf") format('truetype');
 }
+
+@font-face {
+  font-family: Montserrat;
+  font-weight: 500;
+  src: url("./assets/fonts/Montserrat-SemiBold.ttf") format('truetype');
+}
