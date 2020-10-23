@@ -8,6 +8,7 @@ import Button from "../../Atoms/Button/Button";
 import {AddQuizFormWrapper, StyledFormTitle, StyledQuestionBox, StyledAnswersBox, StyledAnswer} from './AddQuiz.styles'
 import { Checkbox } from '@material-ui/core';
 import AnswerTextInput from "../../Atoms/AnswerTextInput/AnswerTextInput";
+import AlertComponent from "../../Atoms/Alert/Alert";
 
 
 
@@ -20,6 +21,7 @@ const AddQuiz = ({loginReducer}) => {
     const [answerD, setAnswerD] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [subjectsData, setSubjectsData] = useState([]);
+    const [alertVisible, setAlertVisible] = useState(false);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const fetchSubjects = () => {
@@ -32,7 +34,7 @@ const AddQuiz = ({loginReducer}) => {
         }
     };
 
-    const addQuizTask = () => {
+    const addQuizTask = (successCallback) => {
         try {
             axios.post(`${API_URL}/test/addQuestion`,{
                 category: subject,
@@ -40,6 +42,7 @@ const AddQuiz = ({loginReducer}) => {
                 answers: [answerA, answerB, answerC, answerD],
                 correctAnswer: correctAnswer
             })
+            successCallback();
         } catch (err) {
             console.log(err);
         }
@@ -78,11 +81,12 @@ const AddQuiz = ({loginReducer}) => {
                     <Checkbox onClick={() => {setCorrectAnswer(answerD)}} disabled={answerD === '' || correctAnswer !== ''}/>
                     <AnswerTextInput onChange={(event) => setAnswerD(event.target.value)} type={'text'} name={'AnswerD'} placeholder={'Wpisz odpowiedź'}/>
                 </StyledAnswer>
-                <Button disabled={question === '' || answerA === '' || answerB === '' || subject === ''}
-                        onClick={async () => await addQuizTask()}>
+                <Button disabled={question === '' || answerA === '' || answerB === '' || subject === '' || correctAnswer === ''}
+                        onClick={async () => await addQuizTask(() => {setAlertVisible(true)})}>
                     Dodaj pytanie
                 </Button>
             </StyledAnswersBox>
+            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(false)}/> : <></>}
         </AddQuizFormWrapper>
     );
 };
