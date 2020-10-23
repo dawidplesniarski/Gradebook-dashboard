@@ -30,7 +30,6 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
         }
     }
 
-
     useEffect(() => {
         getUniversities();
         fetchAllCourses();

@@ -29,4 +29,12 @@ const StyledQuestionBox = styled.div`
   width: 95%;
 `;
 
-export {AddQuizFormWrapper, StyledFormTitle, StyledAnswersBox, StyledQuestionBox};
+const StyledAnswer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+`;
+
+export {AddQuizFormWrapper, StyledFormTitle, StyledAnswersBox, StyledQuestionBox, StyledAnswer};

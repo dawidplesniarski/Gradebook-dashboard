@@ -5,7 +5,9 @@ import {API_URL, compareSubjectArrays, getEmployeeSubjects} from "../../../utils
 import {connect} from "react-redux";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
-import {AddQuizFormWrapper, StyledFormTitle, StyledQuestionBox, StyledAnswersBox} from './AddQuiz.styles'
+import {AddQuizFormWrapper, StyledFormTitle, StyledQuestionBox, StyledAnswersBox, StyledAnswer} from './AddQuiz.styles'
+import { Checkbox } from '@material-ui/core';
+import AnswerTextInput from "../../Atoms/AnswerTextInput/AnswerTextInput";
 
 
 
@@ -16,6 +18,7 @@ const AddQuiz = ({loginReducer}) => {
     const [answerB, setAnswerB] = useState('');
     const [answerC, setAnswerC] = useState('');
     const [answerD, setAnswerD] = useState('');
+    const [correctAnswer, setCorrectAnswer] = useState('');
     const [subjectsData, setSubjectsData] = useState([]);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
@@ -35,7 +38,7 @@ const AddQuiz = ({loginReducer}) => {
                 category: subject,
                 question: question,
                 answers: [answerA, answerB, answerC, answerD],
-                correctAnswer: answerB
+                correctAnswer: correctAnswer
             })
         } catch (err) {
             console.log(err);
@@ -59,11 +62,23 @@ const AddQuiz = ({loginReducer}) => {
                 <TextInput onChange={(event) => setQuestion(event.target.value)} type={'text'} name={'Question'} placeholder={'Wpisz treść pytania'}/>
             </StyledQuestionBox>
             <StyledAnswersBox>
-                <TextInput onChange={(event) => setAnswerA(event.target.value)} type={'text'} name={'AnswerA'} placeholder={'Wpisz odpowiedź'}/>
-                <TextInput onChange={(event) => setAnswerB(event.target.value)} type={'text'} name={'AnswerB'} placeholder={'Wpisz odpowiedź'}/>
-                <TextInput onChange={(event) => setAnswerC(event.target.value)} type={'text'} name={'AnswerC'} placeholder={'Wpisz odpowiedź'}/>
-                <TextInput onChange={(event) => setAnswerD(event.target.value)} type={'text'} name={'AnswerD'} placeholder={'Wpisz odpowiedź'}/>
-                <Button disabled={question === '' || answerA === '' || answerB === '' || answerC === '' || answerD === '' || subject === ''}
+                <StyledAnswer>
+                    <Checkbox onClick={() => {setCorrectAnswer(answerA)}} disabled={answerA === '' || correctAnswer !== ''}/>
+                    <AnswerTextInput onChange={(event) => setAnswerA(event.target.value)} type={'text'} name={'AnswerA'} placeholder={'Wpisz odpowiedź'}/>
+                </StyledAnswer>
+                <StyledAnswer>
+                    <Checkbox onClick={() => {setCorrectAnswer(answerB)}} disabled={answerB === '' || correctAnswer !== ''}/>
+                    <AnswerTextInput onChange={(event) => setAnswerB(event.target.value)} type={'text'} name={'AnswerB'} placeholder={'Wpisz odpowiedź'}/>
+                </StyledAnswer>
+                <StyledAnswer>
+                    <Checkbox onClick={() => {setCorrectAnswer(answerC)}} disabled={answerC === '' || correctAnswer !== ''}/>
+                    <AnswerTextInput onChange={(event) => setAnswerC(event.target.value)} type={'text'} name={'AnswerC'} placeholder={'Wpisz odpowiedź'}/>
+                </StyledAnswer>
+                <StyledAnswer>
+                    <Checkbox onClick={() => {setCorrectAnswer(answerD)}} disabled={answerD === '' || correctAnswer !== ''}/>
+                    <AnswerTextInput onChange={(event) => setAnswerD(event.target.value)} type={'text'} name={'AnswerD'} placeholder={'Wpisz odpowiedź'}/>
+                </StyledAnswer>
+                <Button disabled={question === '' || answerA === '' || answerB === '' || subject === ''}
                         onClick={async () => await addQuizTask()}>
                     Dodaj pytanie
                 </Button>
