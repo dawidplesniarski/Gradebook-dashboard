@@ -11,9 +11,10 @@ import Grow from "@material-ui/core/Grow";
 import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
+import BackButton from "../components/Atoms/BackButton/BackButton";
 
 
-const StudentsPage = ({universityReducer}) => {
+const StudentsPage = ({universityReducer, history}) => {
     const [studentsData, setStudentsData] = useState([]);
     const [studentsFilter, setStudentsFilter] = useState('');
 
@@ -35,6 +36,7 @@ const StudentsPage = ({universityReducer}) => {
         <StyledWrapper>
             <MainPageContainer>
                 <Burger/>
+                <BackButton onClick={() => history.push('/mainPage')}/>
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
                     <Grow in={(studentsData.length > 0)} timeout={300}>

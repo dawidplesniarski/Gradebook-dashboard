@@ -17,7 +17,7 @@ import axios from "axios";
 import {API_URL} from "../utils/helpers";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 
-const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer}) => {
+const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, history}) => {
     const [isOpen, setOpen] = useState(false);
     const [filterData, setFilterData] = useState([]);
 
@@ -40,7 +40,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
     return (
         <StudentDetailsWrapper>
             <Burger/>
-            <BackButton/>
+            <BackButton onClick={() => history.push('/studentsPage')}/>
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
