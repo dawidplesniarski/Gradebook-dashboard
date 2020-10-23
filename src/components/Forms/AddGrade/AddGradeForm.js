@@ -44,12 +44,12 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
     }, []);
     return (
         <StyledWrapper open={open}>
+            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(!alertVisible)} message={'Ocena została dodana pomyślnie'}/> : <></>}
             <TextInput onChange={event => setGrade(event.target.value)} placeholder={'Ocena'} min={2} max={5} step={0.5}
                        type={'number'} name={'ocena'}/>
             <SelectMenu placeholder={'Przedmiot'} onChange={(event) => setSubjectId(event.target.value)}
                         name={'subjectId'} data={compareSubjectArrays(data, studentSubjects)}/>
             <Button onClick={async () => await addGrade(() => setAlertVisible(true))}>Dodaj ocenę</Button>
-            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(!alertVisible)} message={'Ocena została dodana pomyślnie'}/> : <></>}
         </StyledWrapper>
     );
 };

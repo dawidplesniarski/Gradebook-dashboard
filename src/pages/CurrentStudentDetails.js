@@ -15,6 +15,7 @@ import AddButton from "../components/Atoms/AddButton/AddButton";
 import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
 import axios from "axios";
 import {API_URL} from "../utils/helpers";
+import BackButton from "../components/Atoms/BackButton/BackButton";
 
 const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer}) => {
     const [isOpen, setOpen] = useState(false);
@@ -39,6 +40,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
     return (
         <StudentDetailsWrapper>
             <Burger/>
+            <BackButton/>
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
