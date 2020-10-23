@@ -6,20 +6,22 @@ import {Button} from "@material-ui/core";
 const StyledAlertWrapper = styled.div`
   display: flex;
   position: fixed;
-  width: 800px;
   top: 50%;
-  left: 50%
+  left: 50%;
+  margin-left: -100px;
+  align-items: center;
 `;
 
-const AlertComponent = ({onClick, type}) => {
-    return(
+
+const AlertComponent = ({onClick, type, message}) => {
+    return (
         <StyledAlertWrapper>
             <Alert severity={type} action={
                 <Button color="inherit" size="small" onClick={onClick}>
                     zamknij
                 </Button>
             }>
-                Pytanie zostało dodane
+                {message}
             </Alert>
         </StyledAlertWrapper>
     );

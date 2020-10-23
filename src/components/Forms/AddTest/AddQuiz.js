@@ -21,7 +21,7 @@ const AddQuiz = ({loginReducer}) => {
     const [answerD, setAnswerD] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [subjectsData, setSubjectsData] = useState([]);
-    const [alertVisible, setAlertVisible] = useState(false);
+    const [alertVisible, setAlertVisible] = useState(true);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const fetchSubjects = () => {
@@ -86,7 +86,7 @@ const AddQuiz = ({loginReducer}) => {
                     Dodaj pytanie
                 </Button>
             </StyledAnswersBox>
-            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(false)}/> : <></>}
+            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(false)} message={'Pytanie zostało dodane pomyślnie'}/> : <></>}
         </AddQuizFormWrapper>
     );
 };

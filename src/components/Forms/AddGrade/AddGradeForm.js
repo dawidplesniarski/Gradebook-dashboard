@@ -6,13 +6,15 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
 import {API_URL} from "../../../utils/helpers";
 import {compareSubjectArrays} from "../../../utils/helpers";
+import AlertComponent from "../../Atoms/Alert/Alert";
 
 const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
     const [newGrade, setGrade] = useState('');
     const [subjectId, setSubjectId] = useState('');
     const [data, setStatus] = useState([]);
+    const [alertVisible, setAlertVisible] = useState(false);
 
-    const addGrade = () => {
+    const addGrade = (successCallback) => {
         try {
             axios.post(`${API_URL}/grades/addGrade`,
                 {
@@ -21,6 +23,7 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
                     subject: subjectId
                 }
             );
+            successCallback();
         } catch (err) {
             console.log(err);
         };
@@ -45,7 +48,8 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
                        type={'number'} name={'ocena'}/>
             <SelectMenu placeholder={'Przedmiot'} onChange={(event) => setSubjectId(event.target.value)}
                         name={'subjectId'} data={compareSubjectArrays(data, studentSubjects)}/>
-            <Button onClick={async () => await addGrade()}>Dodaj ocenę</Button>
+            <Button onClick={async () => await addGrade(() => setAlertVisible(true))}>Dodaj ocenę</Button>
+            {alertVisible === true ? <AlertComponent type={'success'} onClick={() => setAlertVisible(!alertVisible)} message={'Ocena została dodana pomyślnie'}/> : <></>}
         </StyledWrapper>
     );
 };
