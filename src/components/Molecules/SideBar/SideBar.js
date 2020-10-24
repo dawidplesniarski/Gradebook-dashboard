@@ -4,8 +4,10 @@ import Avatar from '../../../assets/images/male-avatar.svg';
 import {connect} from "react-redux";
 import SideBarButton from "../../Atoms/SideBarButton/SideBarButton";
 import LogoutIcon from '../../../assets/images/logout.png'
+import {functionToLogoutUser} from "../../../actions/loginActions";
+import {withRouter} from 'react-router';
 
-const SideBar = ({loginReducer, open}) => {
+const SideBar = ({loginReducer, open, history, functionToLogoutUser}) => {
     return(
         <SideBarWrapper open={open}>
             <StyledImg src={loginReducer.loginData.employee.imageUrl !== '' ? loginReducer.loginData.employee.imageUrl : Avatar} alt={'Avatar'}/>
@@ -22,11 +24,11 @@ const SideBar = ({loginReducer, open}) => {
             </SideBarButton>
             {loginReducer.loginData.employee.isAdmin === true ?
                 <SideBarButton>
-                    Panel administratora
+                    Admin
                 </SideBarButton> :
                 <div/>
             }
-            <StyledLogoutButton>
+            <StyledLogoutButton onClick={() => functionToLogoutUser(() => {history.push('/')})}>
                 <StyledLogoutIcon src={LogoutIcon} alt={'Logout'}/>
             </StyledLogoutButton>
         </SideBarWrapper>
@@ -37,4 +39,10 @@ const mapStateToProps = ({loginReducer}) => {
     return {loginReducer};
 };
 
-export default connect(mapStateToProps)(SideBar);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        functionToLogoutUser: (successCallback) => dispatch(functionToLogoutUser(successCallback)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SideBar));

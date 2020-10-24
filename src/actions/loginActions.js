@@ -64,11 +64,12 @@ export const loginFunction = (login, password, successCallback) => async dispatc
     }
 }
 
-export const logoutFunction = (successCallback) => async dispatch => {
+export const functionToLogoutUser = (successCallback) => async dispatch => {
     try{
         dispatch(logout());
         successCallback();
+        console.log('logout success');
     }catch(err){
-        console.log('Failed when trying to logout');
+        console.log(err);
     }
 }

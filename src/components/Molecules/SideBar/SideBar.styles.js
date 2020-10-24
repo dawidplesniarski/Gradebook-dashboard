@@ -23,8 +23,14 @@ const SideBarWrapper = styled.div`
 `;
 
 const StyledImg = styled.img`
-width: 80%;
-border-radius: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  @media (max-width: 1050px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const StyledParagraph = styled.p`
@@ -57,6 +63,7 @@ const StyledLogoutButton = styled.button`
 const StyledLogoutIcon = styled.img`
   display: flex;
   text-align: center;
+  width: 50px;
   @media (max-width: 768px) {
     width: 40px;
   }

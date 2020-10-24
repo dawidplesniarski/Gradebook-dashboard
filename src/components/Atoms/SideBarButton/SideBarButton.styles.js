@@ -10,7 +10,7 @@ const StyledButton = styled.button`
     background-color : transparent;
     font-family: Montserrat,serif;
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1rem;
     border-width: 0;
     color: #FFF;
     margin-top: 15px;
@@ -19,7 +19,7 @@ const StyledButton = styled.button`
     color: #282c34;
     }
     @media (max-width: 768px) {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
 `;
 

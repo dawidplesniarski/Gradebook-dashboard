@@ -13,19 +13,22 @@ const UserInfoBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  img {
+`;
+
+const ImageWrapper = styled.img`
+  display: flex;
+  align-items: center;
   width: 250px;
   height: 250px;
-  border-radius: 200px;
-  }
-  @media(max-width: 768px) {
-    img {
-      width: 140px;
-      height: 140px;
-      border-radius: 100px;
-    }
+  border-radius: 50%;
+  object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 140px;
   }
 `;
+
 const StyledParagraph = styled.p`
   font-weight: 300;
   font-size: 25px;
@@ -43,13 +46,13 @@ const StyledListElement = styled.li`
   font-weight: 200;
   font-size: 20px;
   align-self: center;
+  margin-right: 40px;
 `;
 
 const StyledList = styled.ul`
     list-style-type: none;
     align-items: center;
-    //text-align: center;
     border-width: 1px;
 `;
 
-export  {StudentDetailsWrapper, UserInfoBox, StyledParagraph, StyledAlbumNumber, StyledListElement, StyledList};
+export  {StudentDetailsWrapper, UserInfoBox, StyledParagraph, StyledAlbumNumber, StyledListElement, StyledList, ImageWrapper};

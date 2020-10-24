@@ -9,7 +9,8 @@ import {
     UserInfoBox,
     StyledAlbumNumber,
     StyledListElement,
-    StyledList
+    StyledList,
+    ImageWrapper
 } from "../styles/StudentDetails.styles";
 import AddButton from "../components/Atoms/AddButton/AddButton";
 import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
@@ -44,7 +45,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
-                    <img src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/>
+                    <ImageWrapper src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/>
                     <StyledAlbumNumber>{studentReducer.currentStudent.albumNo}</StyledAlbumNumber>
                     <StyledParagraph>{studentReducer.currentStudent.name} {studentReducer.currentStudent.lastName}</StyledParagraph>
                     <StyledList>
