@@ -19,6 +19,7 @@ const Styles = styled.div`
     border-radius: 10px;
     width: 100%;
     max-height: 500px;
+    text-align: center;
   
     tr {
       :last-child {
@@ -55,6 +56,13 @@ const GradesTable = ({data}) => {
                     {
                         Header: 'Ocena',
                         accessor: 'grade'
+                    },
+                    {
+                        Header: 'Data wystawienia',
+                        accessor: 'date',
+                        Cell: ({row: {values}}) => (
+                            <span>{values.date.substring(0,10)}</span>
+                        )
                     }
                 ]
             }
