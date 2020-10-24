@@ -6,12 +6,21 @@ const AddQuizFormWrapper = styled.div`
   background-color: #FFF;
   //left : 30%;
   //top: 25%;
-  width: 500px;
+  width: 700px;
   height: 500px;
   display: flex;
   flex-direction: column;
   padding: 0.25rem;
   align-items: center;
+  @media (max-width: 1000px) {
+    width: 500px;
+  }
+  @media (max-width: 800px) {
+    width: 400px;
+  }
+  @media (max-width: 700px) {
+    width: 350px;
+  }
 `;
 
 const StyledFormTitle = styled.p`

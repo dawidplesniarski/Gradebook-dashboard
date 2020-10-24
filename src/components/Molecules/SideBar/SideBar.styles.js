@@ -27,6 +27,7 @@ const StyledImg = styled.img`
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  padding-bottom: 20px;
   @media (max-width: 1050px) {
     width: 100px;
     height: 100px;
