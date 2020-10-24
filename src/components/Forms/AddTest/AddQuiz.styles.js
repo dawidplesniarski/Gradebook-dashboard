@@ -2,10 +2,10 @@ import React from "react";
 import styled from 'styled-components';
 
 const AddQuizFormWrapper = styled.div`
-  position: fixed;
+  //position: fixed;
   background-color: #FFF;
-  left : 30%;
-  top: 25%;
+  //left : 30%;
+  //top: 25%;
   width: 500px;
   height: 500px;
   display: flex;

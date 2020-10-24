@@ -21,7 +21,7 @@ const AddQuiz = ({loginReducer}) => {
     const [answerD, setAnswerD] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
     const [subjectsData, setSubjectsData] = useState([]);
-    const [alertVisible, setAlertVisible] = useState(true);
+    const [alertVisible, setAlertVisible] = useState(false);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const fetchSubjects = () => {
