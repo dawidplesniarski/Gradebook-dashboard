@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useTable} from "react-table";
 import axios from 'axios';
 import {API_URL} from "../../utils/helpers";
-import Button from "../Atoms/Button/Button";
+import DeleteButton from "../Atoms/DeleteButton/DeleteButton";
 
 const TableWrapper = styled.div`
     width: 55%;
@@ -46,6 +46,11 @@ const Styles = styled.div`
   }
 `;
 
+const DeleteButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const GradesTable = ({data}) => {
 
     function deleteGrade(gradeId) {
@@ -83,9 +88,12 @@ const GradesTable = ({data}) => {
                         Header: 'Usuń ocenę',
                         accessor: '_id',
                         Cell: ({row: {values}}) => (
-                            <Button onClick={async () => await deleteGrade(values._id)}>
-                                Usuń
-                            </Button>
+                            <DeleteButtonWrapper>
+                                <DeleteButton onClick={async () => await deleteGrade(values._id)}>
+                                    Usuń
+                                </DeleteButton>
+                            </DeleteButtonWrapper>
+
                         )
                     }
                 ]
