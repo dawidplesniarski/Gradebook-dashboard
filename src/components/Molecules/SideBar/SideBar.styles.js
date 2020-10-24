@@ -20,6 +20,7 @@ const SideBarWrapper = styled.div`
  text-align: center;
  border-top-right-radius: 20px;
  border-bottom-right-radius: 20px;
+ z-index: 3;
 `;
 
 const StyledImg = styled.img`

@@ -11,7 +11,6 @@ import AddPermission from "../components/Forms/AddPermissionForm/AddPermission";
 const AddQuizPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
 `;
 
@@ -24,12 +23,12 @@ const AddQuizPage = ({history}) => {
     return (
         <AddQuizPageWrapper>
             <Burger/>
-            <StyledQuizImage src={QuizBanerImage} alt={'Quiz baner'}/>
             <BackButton onClick={() => history.push('/mainPage')}/>
+            <StyledQuizImage src={QuizBanerImage} alt={'Quiz baner'}/>
             <AddQuiz/>
             <AddPermission/>
         </AddQuizPageWrapper>
     );
 };
 
-export default (withRouter(AddQuizPage));
+export default withRouter(AddQuizPage);

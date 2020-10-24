@@ -17,6 +17,7 @@ import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
 import axios from "axios";
 import {API_URL} from "../utils/helpers";
 import BackButton from "../components/Atoms/BackButton/BackButton";
+import Button from "../components/Atoms/Button/Button";
 
 const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, history}) => {
     const [isOpen, setOpen] = useState(false);
@@ -45,6 +46,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
+                    <Button onClick={() => history.push('/studentGrades')}/>
                     <ImageWrapper src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/>
                     <StyledAlbumNumber>{studentReducer.currentStudent.albumNo}</StyledAlbumNumber>
                     <StyledParagraph>{studentReducer.currentStudent.name} {studentReducer.currentStudent.lastName}</StyledParagraph>

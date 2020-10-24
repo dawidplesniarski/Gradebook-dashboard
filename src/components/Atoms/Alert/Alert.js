@@ -10,6 +10,7 @@ const StyledAlertWrapper = styled.div`
   left: 50%;
   margin-left: -100px;
   align-items: center;
+  z-index: 10;
 `;
 
 

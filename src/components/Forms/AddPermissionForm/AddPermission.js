@@ -65,6 +65,11 @@ const AddPermission = ({loginReducer}) => {
         setStudentAlbums(oldArray => [...oldArray, album])
     };
 
+    function addPermissionSuccessCallback () {
+        setAlertVisible(true);
+        setStudentAlbums([]);
+    }
+
     useEffect(() => {
         fetchSubjects();
         fetchStudents();
@@ -106,11 +111,12 @@ const AddPermission = ({loginReducer}) => {
                 <Button
                     onClick={async () => await addTestPermission(
                         () => {
-                            setAlertVisible(true)
+                            addPermissionSuccessCallback()
                         },
                         () => {
                             setErrorAlertVisible(true)
                         })}
+                    disabled={subject === '' || studentAlbums.length === 0}
                 >
                     Dodaj uprawnienia
                 </Button>

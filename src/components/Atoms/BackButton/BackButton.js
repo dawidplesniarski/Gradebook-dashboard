@@ -14,7 +14,7 @@ const StyledBackButton = styled.button`
   border-radius: 40px;
   background-color: transparent;
   border: 1px solid black;
-  z-index: -1;
+  z-index: 1;
 `;
 
 const StyledBackButtonIcon = styled.img`
