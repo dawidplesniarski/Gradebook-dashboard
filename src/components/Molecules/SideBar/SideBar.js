@@ -16,7 +16,7 @@ const SideBar = ({loginReducer, open, history, functionToLogoutUser}) => {
             <SideBarButton>
                 Konto
             </SideBarButton>
-            <SideBarButton>
+            <SideBarButton onClick={() => history.push('/addQuiz')}>
                 Dodaj test
             </SideBarButton>
             <SideBarButton>
