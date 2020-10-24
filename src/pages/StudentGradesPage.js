@@ -19,7 +19,7 @@ const StudentGradesPage = ({history, studentReducer}) => {
 
     const fetchStudentGrades = (studentAlbum) => {
         try {
-            axios.get(`${API_URL}/grades/findByAlbum/30785`).then(res => {
+            axios.get(`${API_URL}/grades/findByAlbum/${studentAlbum}`).then(res => {
                setStudentGradesData(res.data);
             });
         } catch (err) {
@@ -28,7 +28,7 @@ const StudentGradesPage = ({history, studentReducer}) => {
     }
 
     useEffect(() => {
-        fetchStudentGrades('30785');
+        fetchStudentGrades(studentReducer.currentStudent.albumNo);
     }, []);
 
     return(

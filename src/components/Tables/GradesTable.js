@@ -1,9 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
 import {useTable} from "react-table";
+import axios from 'axios';
+import {API_URL} from "../../utils/helpers";
+import Button from "../Atoms/Button/Button";
 
 const TableWrapper = styled.div`
-    width: 40%;
+    width: 55%;
     align-items: center;
     min-width: 300px;
     font-size: 20px;
@@ -44,6 +47,14 @@ const Styles = styled.div`
 `;
 
 const GradesTable = ({data}) => {
+
+    function deleteGrade(gradeId) {
+        try{
+            axios.delete(`${API_URL}/grades/deleteGrade/${gradeId}`);
+        } catch (err) {
+            console.log(err);
+        }
+    };
     const columns = React.useMemo(
         () => [
             {
@@ -62,6 +73,19 @@ const GradesTable = ({data}) => {
                         accessor: 'date',
                         Cell: ({row: {values}}) => (
                             <span>{values.date.substring(0,10)}</span>
+                        )
+                    },
+                    {
+                        Header: 'album',
+                        accessor: 'studentAlbum'
+                    },
+                    {
+                        Header: 'Usuń ocenę',
+                        accessor: '_id',
+                        Cell: ({row: {values}}) => (
+                            <Button onClick={async () => await deleteGrade(values._id)}>
+                                Usuń
+                            </Button>
                         )
                     }
                 ]
