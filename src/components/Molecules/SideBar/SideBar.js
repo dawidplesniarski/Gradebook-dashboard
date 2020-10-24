@@ -1,8 +1,9 @@
 import React from "react";
-import {SideBarWrapper, StyledImg, StyledParagraph} from "./SideBar.styles";
+import {SideBarWrapper, StyledImg, StyledParagraph, StyledLogoutButton, StyledLogoutIcon} from "./SideBar.styles";
 import Avatar from '../../../assets/images/male-avatar.svg';
 import {connect} from "react-redux";
 import SideBarButton from "../../Atoms/SideBarButton/SideBarButton";
+import LogoutIcon from '../../../assets/images/logout.png'
 
 const SideBar = ({loginReducer, open}) => {
     return(
@@ -11,13 +12,13 @@ const SideBar = ({loginReducer, open}) => {
             <StyledParagraph>{loginReducer.loginData.employee.academicTitle}</StyledParagraph>
             <StyledParagraph>{loginReducer.loginData.employee.name} {loginReducer.loginData.employee.lastName}</StyledParagraph>
             <SideBarButton>
-                Button
+                Konto
             </SideBarButton>
             <SideBarButton>
-                Button
+                Dodaj test
             </SideBarButton>
             <SideBarButton>
-                Button
+                Ustawienia
             </SideBarButton>
             {loginReducer.loginData.employee.isAdmin === true ?
                 <SideBarButton>
@@ -25,6 +26,9 @@ const SideBar = ({loginReducer, open}) => {
                 </SideBarButton> :
                 <div/>
             }
+            <StyledLogoutButton>
+                <StyledLogoutIcon src={LogoutIcon} alt={'Logout'}/>
+            </StyledLogoutButton>
         </SideBarWrapper>
     );
 };

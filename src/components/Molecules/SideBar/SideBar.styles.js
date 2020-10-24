@@ -28,11 +28,39 @@ border-radius: 20px;
 `;
 
 const StyledParagraph = styled.p`
-font-size: 17px;
+font-size: 1.25rem;
 font-weight: 450;
 color: #fff;
 margin: 5px;
+
+@media (max-width: 900px) {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  font-size: 0.9rem;
+}
+`;
+
+const StyledLogoutButton = styled.button`
+  display: flex;
+  position: fixed;
+  bottom: 60px;
+  background-color: transparent;
+  border-width: 0;
+  &:hover {
+    border: 1px solid #FFF;
+    border-radius: 10px;
+  }
+`;
+
+const StyledLogoutIcon = styled.img`
+  display: flex;
+  text-align: center;
+  @media (max-width: 768px) {
+    width: 40px;
+  }
 `;
 
 
-export { SideBarWrapper, StyledImg, StyledParagraph };
+export { SideBarWrapper, StyledImg, StyledParagraph, StyledLogoutButton, StyledLogoutIcon };

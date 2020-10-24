@@ -7,14 +7,19 @@ const SideBarButtonWrapper = styled.div`
 const StyledButton = styled.button`
     width: 100%;
     border-radius: 10px;
-    background-color : #eeeeee;
-    font-family: Helvetica;
-    font-size: 1rem;
+    background-color : transparent;
+    font-family: Montserrat,serif;
+    font-weight: 500;
+    font-size: 1.25rem;
     border-width: 0;
+    color: #FFF;
     margin-top: 15px;
     &:hover {
-    background: rgb(244,244,244);
-    background: radial-gradient(circle, rgba(244,244,244,1) 35%, rgba(218,218,218,1) 100%);
+    background: #FFF;
+    color: #282c34;
+    }
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
     }
 `;
 
