@@ -38,7 +38,7 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
         <StyledWrapper>
             <MainPageContainer>
                 <Burger/>
-                <AddPermission/>
+                {/*<AddPermission/>*/}
                 <MainTableWrapper>
                     <img src={Teacher} alt={'teacher photo'}/>
                     {!universityReducer.currentUniversity ?

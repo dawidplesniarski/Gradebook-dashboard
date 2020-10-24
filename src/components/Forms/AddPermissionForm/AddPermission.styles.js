@@ -1,13 +1,11 @@
-import React from "react";
 import styled from 'styled-components';
 
-const AddQuizFormWrapper = styled.div`
+const AddPermissionFormWrapper = styled.div`
   //position: fixed;
   background-color: #FFF;
   //left : 30%;
   //top: 25%;
   width: 700px;
-  height: 500px;
   display: flex;
   flex-direction: column;
   padding: 0.25rem;
@@ -29,26 +27,26 @@ const StyledFormTitle = styled.p`
   font-size: 25px;
 `;
 
-const StyledAnswersBox = styled.div`
-  text-align: center;
-  width: 75%;
-`;
-
-const StyledQuestionBox = styled.div`
-  width: 75%;
-  text-align: center;
-`;
-
-const StyledAnswer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 20px;
-`;
-
 const SelectMenuWrapper = styled.div`
   width: 75%;
 `;
 
-export {AddQuizFormWrapper, StyledFormTitle, StyledAnswersBox, StyledQuestionBox, StyledAnswer, SelectMenuWrapper};
+const StyledSmallText = styled.p`
+  font-family: Montserrat, serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+`;
+
+const StyledListItemText = styled.p`
+  font-family: Montserrat,serif;
+  font-weight: normal;
+  font-size: 1rem;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 20px;
+  width: 75%;
+  text-align: center;
+`;
+
+export {AddPermissionFormWrapper, ButtonWrapper, StyledListItemText, StyledSmallText, SelectMenuWrapper, StyledFormTitle};
