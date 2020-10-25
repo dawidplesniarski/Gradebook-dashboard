@@ -5,7 +5,7 @@ import Burger from "../components/Molecules/Hamburger/Burger";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 import axios from 'axios';
 import {connect} from "react-redux";
-import {API_URL} from "../utils/helpers";
+import {API_URL, compareGradesArrays} from "../utils/helpers";
 import GradesTable from "../components/Tables/GradesTable";
 
 const StudentGradesWrapper = styled.div`
@@ -14,8 +14,9 @@ const StudentGradesWrapper = styled.div`
   align-items: center;
 `;
 
-const StudentGradesPage = ({history, studentReducer}) => {
+const StudentGradesPage = ({history, studentReducer, universityReducer}) => {
     const [studentGradesData, setStudentGradesData] = useState([]);
+    const [filterData, setFilterData] = useState([]);
 
     const fetchStudentGrades = (studentAlbum) => {
         try {
@@ -25,9 +26,20 @@ const StudentGradesPage = ({history, studentReducer}) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    };
+
+    const fetchStudentSubjects = (courseName, albumNo) => {
+        try {
+            axios.get(`${API_URL}/subject/findByStudent/${courseName}/${albumNo}`).then(res => {
+                setFilterData(res.data);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
+        fetchStudentSubjects(universityReducer.currentCourse.courseName, studentReducer.currentStudent.albumNo);
         fetchStudentGrades(studentReducer.currentStudent.albumNo);
     }, []);
 
@@ -35,13 +47,13 @@ const StudentGradesPage = ({history, studentReducer}) => {
         <StudentGradesWrapper>
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
-            {studentGradesData.length > 0 ? <GradesTable data={studentGradesData}/> : <></>}
+            {studentGradesData.length > 0 && filterData.length > 0 ? <GradesTable data={compareGradesArrays(studentGradesData, filterData)}/> : <></>}
         </StudentGradesWrapper>
     );
 };
 
-const mapStateToProps = ({studentReducer}) => {
-    return {studentReducer};
+const mapStateToProps = ({studentReducer, universityReducer}) => {
+    return {studentReducer, universityReducer};
 }
 
 export default connect(mapStateToProps)(withRouter(StudentGradesPage));

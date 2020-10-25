@@ -26,4 +26,14 @@ export function getEmployeeSubjects(subjects) {
         finalArr.push(el.subjectName)
     });
     return finalArr
-}
+};
+
+export function compareGradesArrays(allGrades, studentSubjects) {
+    let filteredGrades = [];
+    allGrades.forEach((el) => studentSubjects.forEach((el1) => {
+        if(el.subject.subjectName === el1) {
+            filteredGrades.push(el);
+        }
+    }));
+    return filteredGrades;
+};
