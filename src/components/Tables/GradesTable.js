@@ -51,7 +51,8 @@ const DeleteButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const GradesTable = ({data}) => {
+const GradesTable = ({data, employeeSubjects}) => {
+    var currentSubject = '';
 
     function deleteGrade(gradeId) {
         try{
@@ -60,6 +61,7 @@ const GradesTable = ({data}) => {
             console.log(err);
         }
     };
+
     const columns = React.useMemo(
         () => [
             {
@@ -89,7 +91,9 @@ const GradesTable = ({data}) => {
                         accessor: '_id',
                         Cell: ({row: {values}}) => (
                             <DeleteButtonWrapper>
-                                <DeleteButton onClick={async () => await deleteGrade(values._id)}>
+                                <DeleteButton
+                                    onClick={async () => await deleteGrade(values._id)}
+                                    disabled={!employeeSubjects.includes(Object.values(values)[0])}>
                                     Usuń
                                 </DeleteButton>
                             </DeleteButtonWrapper>

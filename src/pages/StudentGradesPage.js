@@ -5,7 +5,7 @@ import Burger from "../components/Molecules/Hamburger/Burger";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 import axios from 'axios';
 import {connect} from "react-redux";
-import {API_URL, compareGradesArrays} from "../utils/helpers";
+import {API_URL, compareGradesArrays, getEmployeeSubjects} from "../utils/helpers";
 import GradesTable from "../components/Tables/GradesTable";
 
 const StudentGradesWrapper = styled.div`
@@ -14,9 +14,10 @@ const StudentGradesWrapper = styled.div`
   align-items: center;
 `;
 
-const StudentGradesPage = ({history, studentReducer, universityReducer}) => {
+const StudentGradesPage = ({history, studentReducer, universityReducer, loginReducer}) => {
     const [studentGradesData, setStudentGradesData] = useState([]);
     const [filterData, setFilterData] = useState([]);
+    const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const fetchStudentGrades = (studentAlbum) => {
         try {
@@ -47,13 +48,13 @@ const StudentGradesPage = ({history, studentReducer, universityReducer}) => {
         <StudentGradesWrapper>
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
-            {studentGradesData.length > 0 && filterData.length > 0 ? <GradesTable data={compareGradesArrays(studentGradesData, filterData)}/> : <></>}
+            {studentGradesData.length > 0 && filterData.length > 0 ? <GradesTable data={compareGradesArrays(studentGradesData, filterData)} employeeSubjects={employeeSubjects}/> : <></>}
         </StudentGradesWrapper>
     );
 };
 
-const mapStateToProps = ({studentReducer, universityReducer}) => {
-    return {studentReducer, universityReducer};
+const mapStateToProps = ({studentReducer, universityReducer, loginReducer}) => {
+    return {studentReducer, universityReducer, loginReducer};
 }
 
 export default connect(mapStateToProps)(withRouter(StudentGradesPage));

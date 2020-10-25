@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const StyledButton = styled.button`
   display: flex;
@@ -13,8 +13,18 @@ const StyledButton = styled.button`
   background-color: #EC0101;
   
   &:hover {
-    opacity: 50%;
-  }
+    ${({disabled}) =>
+    !disabled &&
+    css`
+      opacity: 30%;
+    `
+}
+    }
+    ${({disabled}) =>
+    disabled &&
+    css`
+      background-color: #bcbcbc;
+    `}
     
   div {
     width: 1rem;
@@ -27,9 +37,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const DeleteButton = ({onClick}) => {
+const DeleteButton = ({onClick, disabled}) => {
   return(
-      <StyledButton onClick={onClick}>
+      <StyledButton onClick={onClick} disabled={disabled}>
           <div/>
           <div/>
       </StyledButton>
