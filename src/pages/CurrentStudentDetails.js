@@ -10,7 +10,8 @@ import {
     StyledAlbumNumber,
     StyledListElement,
     StyledList,
-    ImageWrapper
+    ImageWrapper,
+    CheckMarksButtonWrapper
 } from "../styles/StudentDetails.styles";
 import AddButton from "../components/Atoms/AddButton/AddButton";
 import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
@@ -33,7 +34,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
         }
     };
     useEffect(() => {
-        if(universityReducer.currentCourse && studentReducer.currentStudent){
+        if (universityReducer.currentCourse && studentReducer.currentStudent) {
             fetchStudentSubjects(universityReducer.currentCourse.courseName, studentReducer.currentStudent.albumNo);
         }
         getCurrentStudent(studentReducer.currentStudentId);
@@ -46,7 +47,6 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
-                    <Button onClick={() => history.push('/studentGrades')}/>
                     <ImageWrapper src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/>
                     <StyledAlbumNumber>{studentReducer.currentStudent.albumNo}</StyledAlbumNumber>
                     <StyledParagraph>{studentReducer.currentStudent.name} {studentReducer.currentStudent.lastName}</StyledParagraph>
@@ -58,6 +58,11 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
                                 </StyledListElement>)
                         }
                     </StyledList>
+                    <CheckMarksButtonWrapper>
+                        <Button onClick={() => history.push('/studentGrades')}>
+                            Sprawdź oceny {studentReducer.currentStudent.name} {studentReducer.currentStudent.lastName}
+                        </Button>
+                    </CheckMarksButtonWrapper>
                     {filterData.length > 0 ?
                         <AddGradeForm open={isOpen}
                                       studentAlbum={studentReducer.currentStudent.albumNo}

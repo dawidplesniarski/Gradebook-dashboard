@@ -4,14 +4,14 @@ import styled, {css} from 'styled-components';
 const StyledButton = styled.button`
   display: flex;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border-width: 0;
   transform: rotate(45deg);
   background-color: #EC0101;
-  
+
   &:hover {
     ${({disabled}) =>
     !disabled &&
@@ -29,6 +29,7 @@ const StyledButton = styled.button`
   div {
     width: 1rem;
     height: 0.25rem;
+
     background-color: #fff;
     &:nth-child(2) {
       position: fixed;

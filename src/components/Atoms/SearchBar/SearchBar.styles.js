@@ -10,4 +10,5 @@ export const StyledSearchBar = styled.input`
   font-size: 15px;
   margin-bottom: 20px;
   padding-left: 10px;
+  min-width: 300px;
 `;

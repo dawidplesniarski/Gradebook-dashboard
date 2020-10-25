@@ -49,7 +49,9 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
                        type={'number'} name={'ocena'}/>
             <SelectMenu placeholder={'Przedmiot'} onChange={(event) => setSubjectId(event.target.value)}
                         name={'subjectId'} data={compareSubjectArrays(data, studentSubjects)}/>
-            <Button onClick={async () => await addGrade(() => setAlertVisible(true))}>Dodaj ocenę</Button>
+            <Button
+                onClick={async () => await addGrade(() => setAlertVisible(true))}
+                disabled={subjectId === '' || newGrade === ''}>Dodaj ocenę</Button>
         </StyledWrapper>
     );
 };

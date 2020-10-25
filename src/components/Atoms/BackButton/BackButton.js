@@ -11,15 +11,25 @@ const StyledBackButton = styled.button`
   bottom: 30px;
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
+  border-radius: 50%;
   background-color: transparent;
   border: 1px solid black;
   z-index: 1;
+  @media (max-width: 768px) {
+    left: 10px;
+    bottom: 10px;
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const StyledBackButtonIcon = styled.img`
   width: 2.5rem;
   height: 2.5rem;
+  @media (max-width: 768px) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 `;
 
 const BackButton = ({onClick}) => {
