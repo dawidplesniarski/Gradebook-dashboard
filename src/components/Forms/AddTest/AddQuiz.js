@@ -40,6 +40,14 @@ const AddQuiz = ({loginReducer}) => {
         }
     };
 
+    const setCorrectAnswerFunction = (answer) => {
+        if(correctAnswer !== '') {
+            setCorrectAnswer('')
+        } else {
+            setCorrectAnswer(answer);
+        }
+    }
+
     const addQuizTask = (successCallback) => {
         try {
             axios.post(`${API_URL}/test/addQuestion`, {
@@ -76,29 +84,29 @@ const AddQuiz = ({loginReducer}) => {
             <StyledAnswersBox>
                 <StyledAnswer>
                     <Checkbox onClick={() => {
-                        setCorrectAnswer(answerA)
-                    }} disabled={answerA === '' || correctAnswer !== ''}/>
+                        setCorrectAnswerFunction(answerA);
+                    }} disabled={(answerA === '' || correctAnswer !== '') && correctAnswer !== answerA}/>
                     <AnswerTextInput onChange={(event) => setAnswerA(event.target.value)} type={'text'} name={'AnswerA'}
                                      placeholder={'Wpisz odpowiedź'}/>
                 </StyledAnswer>
                 <StyledAnswer>
                     <Checkbox onClick={() => {
-                        setCorrectAnswer(answerB)
-                    }} disabled={answerB === '' || correctAnswer !== ''}/>
+                        setCorrectAnswerFunction(answerB);
+                    }} disabled={(answerB === '' || correctAnswer !== '') && correctAnswer !== answerB}/>
                     <AnswerTextInput onChange={(event) => setAnswerB(event.target.value)} type={'text'} name={'AnswerB'}
                                      placeholder={'Wpisz odpowiedź'}/>
                 </StyledAnswer>
                 <StyledAnswer>
                     <Checkbox onClick={() => {
-                        setCorrectAnswer(answerC)
-                    }} disabled={answerC === '' || correctAnswer !== ''}/>
+                        setCorrectAnswerFunction(answerC);
+                    }} disabled={(answerC === '' || correctAnswer !== '') && correctAnswer !== answerC}/>
                     <AnswerTextInput onChange={(event) => setAnswerC(event.target.value)} type={'text'} name={'AnswerC'}
                                      placeholder={'Wpisz odpowiedź'}/>
                 </StyledAnswer>
                 <StyledAnswer>
                     <Checkbox onClick={() => {
-                        setCorrectAnswer(answerD)
-                    }} disabled={answerD === '' || correctAnswer !== ''}/>
+                        setCorrectAnswerFunction(answerD);
+                    }} disabled={(answerD === '' || correctAnswer !== '') && correctAnswer !== answerD}/>
                     <AnswerTextInput onChange={(event) => setAnswerD(event.target.value)} type={'text'} name={'AnswerD'}
                                      placeholder={'Wpisz odpowiedź'}/>
                 </StyledAnswer>
