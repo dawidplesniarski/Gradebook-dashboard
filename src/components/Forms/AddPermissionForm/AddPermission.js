@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import styled from 'styled-components';
 import {API_URL, compareSubjectArrays, getEmployeeSubjects} from "../../../utils/helpers";
 import SelectTestCategory from "../../Atoms/SelectTestCategory/SelectTestCategory";
 import {connect} from 'react-redux';
@@ -11,13 +10,12 @@ import Button from '../../Atoms/Button/Button'
 import {
     AddPermissionFormWrapper,
     ButtonWrapper,
-    StyledListItemText,
+    StyledListItemButton,
     StyledSmallText,
     SelectMenuWrapper,
     StyledFormTitle
 } from './AddPermission.styles'
 import AlertComponent from "../../Atoms/Alert/Alert";
-import {StyledWrapper} from "../AddGrade/AddGradeForm.styles";
 
 const AddPermission = ({loginReducer}) => {
     const [subjectsData, setSubjectsData] = useState([]);
@@ -65,6 +63,10 @@ const AddPermission = ({loginReducer}) => {
         setStudentAlbums(oldArray => [...oldArray, album])
     };
 
+    function deleteAlbumFromArray(album) {
+        setStudentAlbums(studentAlbums.filter((e) => (e !== album)));
+    };
+
     function addPermissionSuccessCallback () {
         setAlertVisible(true);
         setStudentAlbums([]);
@@ -100,9 +102,10 @@ const AddPermission = ({loginReducer}) => {
                 <List height={200}>
                     {
                         studentAlbums.map((element) =>
-                            <StyledListItemText>
+                            <StyledListItemButton
+                            onClick={() => deleteAlbumFromArray(element)}>
                                 {element}
-                            </StyledListItemText>
+                            </StyledListItemButton>
                         )
                     }
                 </List>

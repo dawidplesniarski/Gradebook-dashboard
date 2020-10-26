@@ -37,7 +37,7 @@ const StyledSmallText = styled.p`
   font-size: 1.2rem;
 `;
 
-const StyledListItemText = styled.p`
+const StyledListItemButton = styled.button`
   font-family: Montserrat,serif;
   font-weight: normal;
   font-size: 1rem;
@@ -49,4 +49,4 @@ const ButtonWrapper = styled.div`
   text-align: center;
 `;
 
-export {AddPermissionFormWrapper, ButtonWrapper, StyledListItemText, StyledSmallText, SelectMenuWrapper, StyledFormTitle};
+export {AddPermissionFormWrapper, ButtonWrapper, StyledListItemButton, StyledSmallText, SelectMenuWrapper, StyledFormTitle};
