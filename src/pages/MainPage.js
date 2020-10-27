@@ -56,7 +56,8 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
                             <TableWrapper>
                                 <SearchBar placeholder={'Wyszukaj kierunek'} onChange={e => setCourseFilter(e.target.value)}/>
                                 <Paper elevation={5}>
-                                    <CoursesTable data={coursesData.filter(course => course.courseName.toLowerCase().includes(courseFilter))}/>
+                                    <CoursesTable data={compareArrays(coursesData, loginReducer.loginData.employee.courseId
+                                        .filter(course => course.courseName.toLowerCase().includes(courseFilter.toLowerCase())))}/>
                                 </Paper>
                             </TableWrapper>
                         </Grow>
