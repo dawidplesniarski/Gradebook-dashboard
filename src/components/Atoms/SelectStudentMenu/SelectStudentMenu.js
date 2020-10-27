@@ -6,7 +6,7 @@ const SelectStudentMenu = ({data, onChange, name, placeholder}) => {
     return(
         <StyledWrapper>
             <Select onChange={onChange} name={name} datasrc={data} placeholder={'Studenci'}>
-                <option defaultValue={null} disabled={true}>
+                <option defaultValue={null} selected disabled hidden>
                     {placeholder}
                 </option>
                 {data.map((item, index) => <option key={index} value={item.albumNo}>{item.name} {item.lastName}, numer albumu: {item.albumNo}</option>)}

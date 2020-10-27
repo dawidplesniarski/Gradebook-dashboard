@@ -5,7 +5,7 @@ import {StyledWrapper, Select} from './SelectMenu.styles';
 const SelectMenu = ({data, onChange, name, placeholder}) => (
     <StyledWrapper>
         <Select onChange={onChange} name={name} datasrc={data} placeholder={'Przedmioty'}>
-            <option defaultValue={null} disabled={true}>
+            <option defaultValue={null} selected disabled hidden>
                 {placeholder}
             </option>
             {data.map((item, index) => <option key={index} value={item._id}>{item.subjectName}</option>
