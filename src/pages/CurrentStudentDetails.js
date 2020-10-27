@@ -16,13 +16,14 @@ import {
 import AddButton from "../components/Atoms/AddButton/AddButton";
 import AddGradeForm from "../components/Forms/AddGrade/AddGradeForm";
 import axios from "axios";
-import {API_URL} from "../utils/helpers";
+import {addGradeFormSubjects, API_URL} from "../utils/helpers";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 import Button from "../components/Atoms/Button/Button";
 
-const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, history}) => {
+const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, loginReducer, history}) => {
     const [isOpen, setOpen] = useState(false);
     const [filterData, setFilterData] = useState([]);
+    const [filteredSubjects, setFilteredSubjects] = useState([]);
 
     const fetchStudentSubjects = (courseName, albumNo) => {
         try {
@@ -31,6 +32,8 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
             });
         } catch (err) {
             console.log(err);
+        } finally {
+            setFilteredSubjects(addGradeFormSubjects(loginReducer.loginData.employee.subjectId, filterData));
         }
     };
     useEffect(() => {
@@ -66,7 +69,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
                     {filterData.length > 0 ?
                         <AddGradeForm open={isOpen}
                                       studentAlbum={studentReducer.currentStudent.albumNo}
-                                      studentSubjects={filterData}/>
+                                      studentSubjects={filteredSubjects}/>
                         : <></>}
                 </UserInfoBox>
                 :
@@ -76,8 +79,8 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
     );
 };
 
-const mapStateToProps = ({studentReducer, universityReducer}) => {
-    return {studentReducer, universityReducer};
+const mapStateToProps = ({studentReducer, universityReducer, loginReducer}) => {
+    return {studentReducer, universityReducer, loginReducer};
 };
 
 const mapDispatchToProps = (dispatch) => {

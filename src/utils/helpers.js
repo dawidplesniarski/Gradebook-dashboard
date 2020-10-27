@@ -20,6 +20,16 @@ export function compareSubjectArrays(arr1, arr2) { // compare subject object arr
     return finalArr;
 };
 
+export function addGradeFormSubjects(arr1, arr2) {
+    let finalArr = [];
+    arr1.forEach((el) => arr2.forEach((el1) => {
+        if(el.subjectName === el1) {
+            finalArr.push(el.subjectName);
+        }
+    }));
+    return finalArr;
+}
+
 export function getEmployeeSubjects(subjects) { // return array of employee subjects
     let finalArr = [];
     subjects.forEach((el) => {
