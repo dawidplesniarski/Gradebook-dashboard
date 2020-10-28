@@ -33,7 +33,9 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
         } catch (err) {
             console.log(err);
         } finally {
-            setFilteredSubjects(addGradeFormSubjects(loginReducer.loginData.employee.subjectId, filterData));
+            if(filterData.length > 0){
+                setFilteredSubjects(addGradeFormSubjects(loginReducer.loginData.employee.subjectId, filterData));
+            }
         }
     };
     useEffect(() => {
