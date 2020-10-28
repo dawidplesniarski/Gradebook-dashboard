@@ -25,8 +25,28 @@ const MainTableWrapper = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  width: 100%;
   text-align: center;
+  @media(min-width: 1000px) {
+  width: 100%;
+  }
 `;
 
-export {StyledWrapper, MainPageContainer, MainTableWrapper, TableWrapper};
+const UsersTableWrapper = styled.div`
+  text-align: center;
+  @media(min-width: 1000px) {
+  width: 120%;
+  }
+`;
+
+const UsersMainTableWrapper = styled.div`
+   display: flex;
+   margin-top: 30px;
+   flex-direction: column;
+   align-items: center;
+   img {
+   width: 60%;
+   margin-bottom: 20px;
+   }
+`;
+
+export {StyledWrapper, MainPageContainer, MainTableWrapper, TableWrapper, UsersTableWrapper, UsersMainTableWrapper};

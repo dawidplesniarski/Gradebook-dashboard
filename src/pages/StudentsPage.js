@@ -8,7 +8,7 @@ import Teacher from '../assets/images/teacher1.svg'
 import UsersTable from "../components/Tables/UsersTable";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
-import {MainTableWrapper, MainPageContainer, StyledWrapper} from "../styles/MainPage.styles";
+import {UsersMainTableWrapper, MainPageContainer, StyledWrapper, UsersTableWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
 import BackButton from "../components/Atoms/BackButton/BackButton";
@@ -33,23 +33,26 @@ const StudentsPage = ({universityReducer, history}) => {
     }, []);
 
     return (
-        <StyledWrapper>
-            <MainPageContainer>
-                <Burger/>
-                <BackButton onClick={() => history.push('/mainPage')}/>
-                <MainTableWrapper>
-                    <img src={Teacher} alt={'teacher photo'}/>
-                    <Grow in={(studentsData.length > 0)} timeout={300}>
-                        <div style={{width: '120%', textAlign: 'center'}}>
-                            <SearchBar placeholder={'Wyszukaj po nazwisku'} onChange={e => setStudentsFilter(e.target.value.toLowerCase())}/>
-                            <Paper elevation={5}>
-                                <UsersTable data={studentsData.filter(student => student.lastName.toLowerCase().includes(studentsFilter))}/>
-                            </Paper>
-                        </div>
-                    </Grow>
-                </MainTableWrapper>
-            </MainPageContainer>
-        </StyledWrapper>
+        <>
+            <Burger/>
+            <BackButton onClick={() => history.push('/mainPage')}/>
+            <StyledWrapper>
+                <MainPageContainer>
+                    <UsersMainTableWrapper>
+                        <img src={Teacher} alt={'teacher photo'}/>
+                        <Grow in={(studentsData.length > 0)} timeout={300}>
+                            <UsersTableWrapper>
+                                <SearchBar placeholder={'Wyszukaj po nazwisku'} onChange={e => setStudentsFilter(e.target.value.toLowerCase())}/>
+                                <Paper elevation={5}>
+                                    <UsersTable data={studentsData.filter(student => student.lastName.toLowerCase().includes(studentsFilter))}/>
+                                </Paper>
+                            </UsersTableWrapper>
+                        </Grow>
+                    </UsersMainTableWrapper>
+                </MainPageContainer>
+            </StyledWrapper>
+        </>
+
 
     );
 }

@@ -52,7 +52,7 @@ export const authCheck = (successCallback, errorCallback) => async dispatch => {
     }
 }
 
-export const loginFunction = (login, password, successCallback) => async dispatch => {
+export const loginFunction = (login, password, successCallback, errorCallback) => async dispatch => {
     dispatch(loginStart());
     try{
         const { data } = await axios.post('https://node-app-4fun.herokuapp.com/employee/login',{login, password});
@@ -60,6 +60,7 @@ export const loginFunction = (login, password, successCallback) => async dispatc
         successCallback();
     }catch(error){
         console.log(error);
+        errorCallback();
         dispatch(loginFailed(error));
     }
 }
