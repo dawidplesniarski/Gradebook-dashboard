@@ -2,18 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import VerifiedIcon from '../../../assets/images/verified.png';
 import ErrorIcon from '../../../assets/images/error.png'
-import Alert from '@material-ui/lab/Alert';
-import {Button} from "@material-ui/core";
-
-// const StyledAlertWrapper = styled.div`
-//   display: flex;
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   margin-left: -100px;
-//   align-items: center;
-//   z-index: 10;
-// `;
+import {Grow} from "@material-ui/core";
 
 const StyledAlertWrapper = styled.div`
   display: flex;
@@ -105,44 +94,44 @@ const StyledAlertButton = styled.button`
   letter-spacing: 3px;
   color: #FFF;
   border: 0;
+  &:hover {
+    background-color: #b1e3c0;
+  }
   @media (max-width: 768px) {
     font-size: 0.6rem;
     border-radius: 10px;
   }
   ${({type}) => type === 'error' && `
     background-color: #e54053;
+    &:hover {
+    background-color: #e56573;
+  }
   `}
 `;
 
 const AlertComponent = ({onClick, type, message}) => {
     return (
-        <StyledAlertWrapper type={type}>
-            <StyledAlertIconWrapper type={type}>
+        <Grow timeout={300} in={type !== ''}>
+            <StyledAlertWrapper type={type}>
+                <StyledAlertIconWrapper type={type}>
+                    {type === 'error' ?
+                        <StyledAlertIcon src={ErrorIcon} alt={'Error'}/> :
+                        <StyledAlertIcon src={VerifiedIcon} alt={'Success'}/>
+                    }
+                </StyledAlertIconWrapper>
                 {type === 'error' ?
-                    <StyledAlertIcon src={ErrorIcon} alt={'Error'}/> :
-                    <StyledAlertIcon src={VerifiedIcon} alt={'Success'}/>
+                    <StyledAlertTitle>Operacja nie powiodła się</StyledAlertTitle> :
+                    <StyledAlertTitle>Operacja powiodła się</StyledAlertTitle>
                 }
-            </StyledAlertIconWrapper>
-            {type === 'error' ?
-                <StyledAlertTitle>Operacja nie powiodła się</StyledAlertTitle> :
-                <StyledAlertTitle>Operacja powiodła się</StyledAlertTitle>
-            }
-            <StyledAlertMessage>
-                {message}
-            </StyledAlertMessage>
-            <StyledAlertButton onClick={onClick} type={type}>
-                Zamknij
-            </StyledAlertButton>
-        </StyledAlertWrapper>
+                <StyledAlertMessage>
+                    {message}
+                </StyledAlertMessage>
+                <StyledAlertButton onClick={onClick} type={type}>
+                    Zamknij
+                </StyledAlertButton>
+            </StyledAlertWrapper>
+        </Grow>
     );
 };
 
 export default AlertComponent;
-
-// <Alert severity={type} action={
-//     <Button color="inherit" size="small" onClick={onClick}>
-//         zamknij
-//     </Button>
-// }>
-//     {message}
-// </Alert>

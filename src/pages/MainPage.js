@@ -12,7 +12,6 @@ import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
-import AddPermission from "../components/Forms/AddPermissionForm/AddPermission";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
