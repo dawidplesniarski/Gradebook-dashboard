@@ -15,6 +15,11 @@ const LoginPage = ({loginFunction, loginReducer, history}) => {
     const [password, setPassword] = useState('');
     const [errorAlertvisible, setErrorAlertVisible] = useState(false);
 
+    useEffect(() => {
+        if(loginReducer.loginFailed){
+            setErrorAlertVisible(true);
+        }
+    },[])
 
     return (
         <>
