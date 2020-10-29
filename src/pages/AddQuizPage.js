@@ -12,6 +12,7 @@ const AddQuizPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 `;
 
 const StyledQuizImage = styled.img`
@@ -21,13 +22,15 @@ const StyledQuizImage = styled.img`
 
 const AddQuizPage = ({history}) => {
     return (
-        <AddQuizPageWrapper>
+        <>
             <Burger/>
-            <BackButton onClick={() => history.push('/mainPage')}/>
-            <StyledQuizImage src={QuizBanerImage} alt={'Quiz baner'}/>
-            <AddQuiz/>
-            <AddPermission/>
-        </AddQuizPageWrapper>
+            <AddQuizPageWrapper>
+                <BackButton onClick={() => history.push('/mainPage')}/>
+                <StyledQuizImage src={QuizBanerImage} alt={'Quiz baner'}/>
+                <AddQuiz/>
+                <AddPermission/>
+            </AddQuizPageWrapper>
+        </>
     );
 };
 

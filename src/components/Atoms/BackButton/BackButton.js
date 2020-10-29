@@ -8,7 +8,7 @@ const StyledBackButton = styled.button`
   height: 60px;
   position: fixed;
   left: 30px;
-  bottom: 30px;
+  bottom: 60px;
   align-items: center;
   justify-content: center;
   border-radius: 50%;

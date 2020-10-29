@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   align-items: center;
   position: fixed;
   right: 30px;
-  bottom: 40px;
+  bottom: 60px;
   width: 60px;
   height: 60px;
   border-radius: 50%;

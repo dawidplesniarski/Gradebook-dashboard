@@ -12,6 +12,7 @@ import {UsersMainTableWrapper, MainPageContainer, StyledWrapper, UsersTableWrapp
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
 import BackButton from "../components/Atoms/BackButton/BackButton";
+import Footer from "../components/Molecules/Footer/Footer";
 
 
 const StudentsPage = ({universityReducer, history}) => {
@@ -35,6 +36,7 @@ const StudentsPage = ({universityReducer, history}) => {
     return (
         <>
             <Burger/>
+            <Footer/>
             <BackButton onClick={() => history.push('/mainPage')}/>
             <StyledWrapper>
                 <MainPageContainer>

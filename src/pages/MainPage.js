@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
+import Footer from "../components/Molecules/Footer/Footer";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
@@ -34,36 +35,39 @@ const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
         fetchAllCourses();
     }, []);
     return (
-        <StyledWrapper>
-            <MainPageContainer>
-                <Burger/>
-                <MainTableWrapper>
-                    <img src={Teacher} alt={'teacher photo'}/>
-                    {!universityReducer.currentUniversity ?
-                        <Grow in={(universityReducer.universities.length > 0)}
-                              timeout={300}>
-                            <TableWrapper>
-                                <SearchBar placeholder={'Wyszukaj uniwersytet'} onChange={e => setFilter(e.target.value)}/>
-                                <Paper elevation={5}>
-                                    <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)
-                                        .filter(university => university.universityName.toLowerCase().includes(filter.toLowerCase()))}/>
-                                </Paper>
-                            </TableWrapper>
-                        </Grow>
-                        :
-                        <Grow timeout={300} in={universityReducer.currentUniversity}>
-                            <TableWrapper>
-                                <SearchBar placeholder={'Wyszukaj kierunek'} onChange={e => setCourseFilter(e.target.value)}/>
-                                <Paper elevation={5}>
-                                    <CoursesTable data={compareArrays(coursesData, loginReducer.loginData.employee.courseId
-                                        .filter(course => course.courseName.toLowerCase().includes(courseFilter.toLowerCase())))}/>
-                                </Paper>
-                            </TableWrapper>
-                        </Grow>
-                    }
-                </MainTableWrapper>
-            </MainPageContainer>
-        </StyledWrapper>
+        <>
+            <Burger/>
+            <Footer/>
+            <StyledWrapper>
+                <MainPageContainer>
+                    <MainTableWrapper>
+                        <img src={Teacher} alt={'teacher photo'}/>
+                        {!universityReducer.currentUniversity ?
+                            <Grow in={(universityReducer.universities.length > 0)}
+                                  timeout={300}>
+                                <TableWrapper>
+                                    <SearchBar placeholder={'Wyszukaj uniwersytet'} onChange={e => setFilter(e.target.value)}/>
+                                    <Paper elevation={5}>
+                                        <UniversitiesTable data={compareArrays(universityReducer.universities, loginReducer.loginData.employee.universityId)
+                                            .filter(university => university.universityName.toLowerCase().includes(filter.toLowerCase()))}/>
+                                    </Paper>
+                                </TableWrapper>
+                            </Grow>
+                            :
+                            <Grow timeout={300} in={universityReducer.currentUniversity}>
+                                <TableWrapper>
+                                    <SearchBar placeholder={'Wyszukaj kierunek'} onChange={e => setCourseFilter(e.target.value)}/>
+                                    <Paper elevation={5}>
+                                        <CoursesTable data={compareArrays(coursesData, loginReducer.loginData.employee.courseId
+                                            .filter(course => course.courseName.toLowerCase().includes(courseFilter.toLowerCase())))}/>
+                                    </Paper>
+                                </TableWrapper>
+                            </Grow>
+                        }
+                    </MainTableWrapper>
+                </MainPageContainer>
+            </StyledWrapper>
+        </>
     );
 }
 

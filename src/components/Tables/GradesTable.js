@@ -52,7 +52,6 @@ const DeleteButtonWrapper = styled.div`
 `;
 
 const GradesTable = ({data, employeeSubjects}) => {
-    var currentSubject = '';
 
     function deleteGrade(gradeId) {
         try{
