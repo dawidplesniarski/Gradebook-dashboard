@@ -4,7 +4,7 @@ import SelectMenu from "../../Atoms/SelectMenu/SelectMenu";
 import axios from "axios";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
-import {API_URL} from "../../../utils/helpers";
+import {API_URL, authorizationHeader} from "../../../utils/helpers";
 import {compareSubjectArrays} from "../../../utils/helpers";
 import AlertComponent from "../../Atoms/Alert/Alert";
 
@@ -15,12 +15,17 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
     const [alertVisible, setAlertVisible] = useState(false);
 
     const addGrade = (successCallback) => {
+        const token = localStorage.getItem('token');
+        console.log(token);
         try {
             axios.post(`${API_URL}/grades/addGrade`,
                 {
                     studentAlbum: studentAlbum,
                     grade: newGrade,
                     subject: subjectId
+                },
+                {
+                    headers: {'authorization': `Bearer ${token}`}
                 }
             );
             successCallback();
