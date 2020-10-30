@@ -7,6 +7,7 @@ import axios from 'axios';
 import {connect} from "react-redux";
 import {API_URL, compareGradesArrays, getEmployeeSubjects} from "../utils/helpers";
 import GradesTable from "../components/Tables/GradesTable";
+import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 
 const StudentGradesWrapper = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ const StudentGradesWrapper = styled.div`
 const StudentGradesPage = ({history, studentReducer, universityReducer, loginReducer}) => {
     const [studentGradesData, setStudentGradesData] = useState([]);
     const [filterData, setFilterData] = useState([]);
+    const [gradesFilter, setGradesFilter] = useState('');
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const fetchStudentGrades = (studentAlbum) => {
@@ -48,7 +50,10 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         <StudentGradesWrapper>
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
-            {studentGradesData.length > 0 && filterData.length > 0 ? <GradesTable data={compareGradesArrays(studentGradesData, filterData)} employeeSubjects={employeeSubjects}/> : <></>}
+            <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
+            {studentGradesData.length > 0 && filterData.length > 0 ?
+                <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))} employeeSubjects={employeeSubjects}/>
+                : <></>}
         </StudentGradesWrapper>
     );
 };
