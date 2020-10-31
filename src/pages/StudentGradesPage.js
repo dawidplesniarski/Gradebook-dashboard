@@ -54,7 +54,8 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
             <StudentGradesWrapper>
                 <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
                 {studentGradesData.length > 0 && filterData.length > 0 ?
-                    <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))} employeeSubjects={employeeSubjects}/>
+                    <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))}
+                                 employeeSubjects={employeeSubjects}/>
                     : <></>}
             </StudentGradesWrapper>
         </>

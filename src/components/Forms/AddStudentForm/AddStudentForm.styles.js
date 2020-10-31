@@ -27,6 +27,9 @@ const StyledFormTitle = styled.p`
   font-family: Montserrat,serif;
   font-weight: 500;
   font-size: 25px;
+  @media(max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const StyledFormText = styled.p`

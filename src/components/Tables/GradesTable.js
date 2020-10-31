@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import {useTable} from "react-table";
 import axios from 'axios';
 import {API_URL} from "../../utils/helpers";
 import DeleteButton from "../Atoms/DeleteButton/DeleteButton";
+import AlertComponent from "../Atoms/Alert/Alert";
 
 const TableWrapper = styled.div`
     width: 55%;
@@ -52,10 +53,12 @@ const DeleteButtonWrapper = styled.div`
 `;
 
 const GradesTable = ({data, employeeSubjects}) => {
+    const [alertVisible, setAlertVisible] = useState(false);
 
-    function deleteGrade(gradeId) {
+    function deleteGrade(gradeId, successCallback) {
         try{
             axios.delete(`${API_URL}/grades/deleteGrade/${gradeId}`);
+            successCallback();
         } catch (err) {
             console.log(err);
         }
@@ -91,7 +94,7 @@ const GradesTable = ({data, employeeSubjects}) => {
                         Cell: ({row: {values}}) => (
                             <DeleteButtonWrapper>
                                 <DeleteButton
-                                    onClick={async () => await deleteGrade(values._id)}
+                                    onClick={async () => await deleteGrade(values._id, () => setAlertVisible(true))}
                                     disabled={!employeeSubjects.includes(Object.values(values)[0])}>
                                     Usuń
                                 </DeleteButton>
@@ -117,33 +120,37 @@ const GradesTable = ({data, employeeSubjects}) => {
     });
 
     return (
-        <TableWrapper>
-            <Styles>
-                <table {...getTableProps()}>
-                    <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                        </tr>
-                    ))}
-                    </thead>
-                    <tbody {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                        prepareRow(row)
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                                })}
+        <>
+            {alertVisible ? <AlertComponent type={'success'} onClick={() => setAlertVisible(false)} message={'Ocena usunięta pomyślnie'}/> : <></>}
+            <TableWrapper>
+                <Styles>
+                    <table {...getTableProps()}>
+                        <thead>
+                        {headerGroups.map(headerGroup => (
+                            <tr {...headerGroup.getHeaderGroupProps()}>
+                                {headerGroup.headers.map(column => (
+                                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                ))}
                             </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
-            </Styles>
-        </TableWrapper>
+                        ))}
+                        </thead>
+                        <tbody {...getTableBodyProps()}>
+                        {rows.map((row, i) => {
+                            prepareRow(row)
+                            return (
+                                <tr {...row.getRowProps()}>
+                                    {row.cells.map(cell => {
+                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    })}
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
+                </Styles>
+            </TableWrapper>
+        </>
+
     );
 };
 
