@@ -56,13 +56,13 @@ const StyledIconDescription = styled.p`
   }
 `;
 
-const AdminMainPage = ({loginReducer}) => {
+const AdminMainPage = ({loginReducer, history}) => {
   return(
       <>
           <Burger isAdminOpened={true}/>
           <StyledMainPageContainer>
               <MenuIconsRow>
-                  <StyledButton>
+                  <StyledButton onClick={() => history.push('/adminStudentsPage')}>
                       <StyledIconDescription>
                           Studenci
                       </StyledIconDescription>
