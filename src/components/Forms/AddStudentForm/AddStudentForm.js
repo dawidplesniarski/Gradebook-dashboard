@@ -75,9 +75,8 @@ const AddStudentForm = ({universityReducer}) => {
     };
 
     function deleteCourseFromArray(course, index) {
-        setStudentCourses(studentCourses.filter((e) => (e !== course)));
-        setSemesters(semesters.splice(index, 1));
-        console.log(semesters);
+        setStudentCourses([]);
+        setSemesters([]);
     };
 
     useEffect(() =>{
@@ -130,13 +129,13 @@ const AddStudentForm = ({universityReducer}) => {
                         <></>}
                 </StyledSelectMenuWrapper>
 
-                <StyledFormText>Identyfikatory kierunków:</StyledFormText>
+                <StyledFormText>Kierunki:</StyledFormText>
                 <Paper elevation={5} style={{height: 100, width: 350, overflow: 'auto', textAlign: "center", marginBottom: 30}}>
                     <List height={200}>
                         {
                             studentCourses.map((element, index) =>
                                 <StyledListItemButton
-                                    onClick={() => deleteCourseFromArray(element)}>
+                                    onClick={() => deleteCourseFromArray(element, index)}>
                                     {findCourseNameById(element)}, semestr {semesters[index]}
                                 </StyledListItemButton>
                             )

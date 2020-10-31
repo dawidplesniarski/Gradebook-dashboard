@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 const AddStudentFormWrapper = styled.div`
-  //position: fixed;
   background-color: #FFF;
-  //left : 30%;
   width: 700px;
   display: flex;
   flex-direction: column;
   padding: 0.25rem;
   align-items: center;
+  margin-bottom: 20px;
   @media (max-width: 1000px) {
     width: 500px;
   }
