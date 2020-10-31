@@ -5,6 +5,9 @@ import {withRouter} from "react-router";
 import Burger from "../../components/Molecules/Hamburger/Burger";
 import StudentIcon from '../../assets/images/students-cap.png';
 import BriefCaseIcon from '../../assets/images/briefcase.png';
+import UniversityIcon from '../../assets/images/university.png';
+import SubjectsIcon from '../../assets/images/reading-book.png';
+import CoursesIcon from '../../assets/images/wind-rose.png';
 
 
 const StyledMainPageContainer = styled.div`
@@ -48,6 +51,9 @@ const StyledIconDescription = styled.p`
   font-family: Montserrat,serif;
   font-weight: normal;
   font-size: 1.5rem;
+  @media (max-width: 850px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const AdminMainPage = ({loginReducer}) => {
@@ -67,6 +73,28 @@ const AdminMainPage = ({loginReducer}) => {
                           Pracownicy
                       </StyledIconDescription>
                       <img src={BriefCaseIcon} alt={'employee'}/>
+                  </StyledButton>
+              </MenuIconsRow>
+              <MenuIconsRow>
+                  <StyledButton>
+                      <StyledIconDescription>
+                          Uczelnie
+                      </StyledIconDescription>
+                      <img src={UniversityIcon} alt={'uczelnia'}/>
+                  </StyledButton>
+                  <StyledButton>
+                      <StyledIconDescription>
+                          Przedmioty
+                      </StyledIconDescription>
+                      <img src={SubjectsIcon} alt={'przedmioty'}/>
+                  </StyledButton>
+              </MenuIconsRow>
+              <MenuIconsRow>
+                  <StyledButton>
+                      <StyledIconDescription>
+                          Kierunki
+                      </StyledIconDescription>
+                      <img src={CoursesIcon} alt={'kierunki'}/>
                   </StyledButton>
               </MenuIconsRow>
           </StyledMainPageContainer>
