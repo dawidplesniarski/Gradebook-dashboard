@@ -13,6 +13,7 @@ const StudentGradesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 `;
 
 const StudentGradesPage = ({history, studentReducer, universityReducer, loginReducer}) => {
@@ -24,7 +25,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
     const fetchStudentGrades = (studentAlbum) => {
         try {
             axios.get(`${API_URL}/grades/findByAlbum/${studentAlbum}`).then(res => {
-               setStudentGradesData(res.data);
+                setStudentGradesData(res.data);
             });
         } catch (err) {
             console.log(err);
@@ -46,15 +47,17 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         fetchStudentGrades(studentReducer.currentStudent.albumNo);
     }, []);
 
-    return(
-        <StudentGradesWrapper>
+    return (
+        <>
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
-            <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
-            {studentGradesData.length > 0 && filterData.length > 0 ?
-                <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))} employeeSubjects={employeeSubjects}/>
-                : <></>}
-        </StudentGradesWrapper>
+            <StudentGradesWrapper>
+                <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
+                {studentGradesData.length > 0 && filterData.length > 0 ?
+                    <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))} employeeSubjects={employeeSubjects}/>
+                    : <></>}
+            </StudentGradesWrapper>
+        </>
     );
 };
 

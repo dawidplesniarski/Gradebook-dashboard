@@ -23,7 +23,7 @@ const SideBar = ({loginReducer, open, history, functionToLogoutUser}) => {
                 Ustawienia
             </SideBarButton>
             {loginReducer.loginData.employee.isAdmin === true ?
-                <SideBarButton>
+                <SideBarButton onClick={() => history.push('/adminMainPage')}>
                     Admin
                 </SideBarButton> :
                 <div/>
