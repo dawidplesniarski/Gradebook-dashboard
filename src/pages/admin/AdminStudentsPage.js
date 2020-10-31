@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from 'styled-components';
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
@@ -16,6 +16,12 @@ const StyledMainPageContainer = styled.div`
 `;
 
 const AdminStudentsPage = ({loginReducer, history}) => {
+    const [studentsData, setStudentsData] = useState([]);
+
+    const fetchAllStudents = () => {
+
+    }
+
     return(
         <>
             <Burger isAdminOpened={true}/>
