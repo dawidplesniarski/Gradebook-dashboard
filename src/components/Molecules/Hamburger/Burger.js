@@ -33,9 +33,9 @@ const StyledBurger = styled.div`
   }
 `;
 
-const Burger = () => {
-
+const Burger = ({isAdminOpened}) => {
     const [open, setOpen] = useState(false);
+
     return(
         <>
         <StyledBurger open={open} onClick={() => setOpen(!open)}>
@@ -43,7 +43,7 @@ const Burger = () => {
             <div/>
             <div/>
         </StyledBurger>
-        <SideBar open={open}/>
+        <SideBar open={open} isAdminOpened={isAdminOpened}/>
         </>
     )
 };

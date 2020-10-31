@@ -7,10 +7,12 @@ import LogoutIcon from '../../../assets/images/logout.png'
 import {functionToLogoutUser} from "../../../actions/loginActions";
 import {withRouter} from 'react-router';
 
-const SideBar = ({loginReducer, open, history, functionToLogoutUser}) => {
-    return(
+const SideBar = ({loginReducer, open, history, functionToLogoutUser, isAdminOpened}) => {
+    return (
         <SideBarWrapper open={open}>
-            <StyledImg src={loginReducer.loginData.employee.imageUrl !== '' ? loginReducer.loginData.employee.imageUrl : Avatar} alt={'Avatar'}/>
+            <StyledImg
+                src={loginReducer.loginData.employee.imageUrl !== '' ? loginReducer.loginData.employee.imageUrl : Avatar}
+                alt={'Avatar'}/>
             <StyledParagraph>{loginReducer.loginData.employee.academicTitle}</StyledParagraph>
             <StyledParagraph>{loginReducer.loginData.employee.name} {loginReducer.loginData.employee.lastName}</StyledParagraph>
             <SideBarButton>
@@ -22,13 +24,19 @@ const SideBar = ({loginReducer, open, history, functionToLogoutUser}) => {
             <SideBarButton>
                 Ustawienia
             </SideBarButton>
-            {loginReducer.loginData.employee.isAdmin === true ?
+            {loginReducer.loginData.employee.isAdmin && !isAdminOpened ?
                 <SideBarButton onClick={() => history.push('/adminMainPage')}>
                     Admin
                 </SideBarButton> :
-                <div/>
+                !loginReducer.loginData.employee.isAdmin ? <></>
+                    :
+                    <SideBarButton onClick={() => history.push('/mainPage')}>
+                        Wyjdź
+                    </SideBarButton>
             }
-            <StyledLogoutButton onClick={() => functionToLogoutUser(() => {history.push('/')})}>
+            <StyledLogoutButton onClick={() => functionToLogoutUser(() => {
+                history.push('/')
+            })}>
                 <StyledLogoutIcon src={LogoutIcon} alt={'Logout'}/>
             </StyledLogoutButton>
         </SideBarWrapper>
