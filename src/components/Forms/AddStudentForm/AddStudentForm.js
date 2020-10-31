@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import styled from "styled-components";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import Switch from '@material-ui/core/Switch';
 import List from "@material-ui/core/List";
@@ -11,54 +10,9 @@ import {connect} from 'react-redux';
 import SelectCourseMenu from "../../Atoms/SelectCourseMenu/SelectCourseMenu";
 import {getUniversities} from "../../../actions/universityActions";
 import SelectUniversity from "../../Atoms/SelectUniversityMenu/SelectUniversityMenu";
+import {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle, StyledListItemButton}
+from './AddStudentForm.styles';
 
-const AddStudentFormWrapper = styled.div`
-  //position: fixed;
-  background-color: #FFF;
-  //left : 30%;
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-  padding: 0.25rem;
-  align-items: center;
-  @media (max-width: 1000px) {
-    width: 500px;
-  }
-  @media (max-width: 800px) {
-    width: 400px;
-  }
-  @media (max-width: 700px) {
-    width: 350px;
-  }
-`;
-
-const TextInputWrapper = styled.div`
-  width: 80%;
-`;
-
-const StyledFormTitle = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: 500;
-  font-size: 25px;
-`;
-
-const StyledFormText = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: normal;
-  font-size: 20px;
-`;
-
-const StyledSwitchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const StyledListItemButton = styled.button`
-  font-family: Montserrat,serif;
-  font-weight: normal;
-  font-size: 1rem;
-`;
 
 const AddStudentForm = ({universityReducer}) => {
     const [name, setName] = useState('');
@@ -149,7 +103,7 @@ const AddStudentForm = ({universityReducer}) => {
                 </TextInputWrapper>
                  :
                 <></>}
-            <StyledFormText>Kierunki studiów:</StyledFormText>
+            <StyledFormText>Identyfikatory kierunków:</StyledFormText>
             <Paper elevation={5} style={{height: 100, width: 250, overflow: 'auto', textAlign: "center", marginBottom: 30}}>
                 <List height={200}>
                     {
@@ -162,7 +116,17 @@ const AddStudentForm = ({universityReducer}) => {
                     }
                 </List>
             </Paper>
-            <Button onClick={async () => await addStudent()}>
+            <Button
+                onClick={async () => await addStudent()}
+                disabled=
+                    {name === ''
+                    || lastName === ''
+                    || albumNumber === ''
+                    || login === ''
+                    || password === ''
+                    || email === ''
+                    || universityId ===''
+                    || studentCourses.length === 0}>
                 Dodaj studenta
             </Button>
         </AddStudentFormWrapper>
