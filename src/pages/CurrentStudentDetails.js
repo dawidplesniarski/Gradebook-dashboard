@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from "react-router";
 import {getCurrentStudent} from "../actions/studentActions";
 import Burger from "../components/Molecules/Hamburger/Burger";
+import DefaultAvatar from '../assets/images/default-user.png';
 import {
     StudentDetailsWrapper,
     StyledParagraph,
@@ -52,7 +53,9 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
             <AddButton onClick={() => setOpen(!isOpen)} open={isOpen}/>
             {studentReducer.currentStudent ?
                 <UserInfoBox>
-                    <ImageWrapper src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/>
+                    {studentReducer.currentStudent.imageUrl !== '' ?
+                        <ImageWrapper src={studentReducer.currentStudent.imageUrl} alt={'avatar'}/> :
+                        <ImageWrapper src={DefaultAvatar} alt={'avatar'}/>}
                     <StyledAlbumNumber>{studentReducer.currentStudent.albumNo}</StyledAlbumNumber>
                     <StyledParagraph>{studentReducer.currentStudent.name} {studentReducer.currentStudent.lastName}</StyledParagraph>
                     <StyledList>

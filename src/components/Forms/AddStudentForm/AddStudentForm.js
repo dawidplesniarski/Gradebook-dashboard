@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 import SelectCourseMenu from "../../Atoms/SelectCourseMenu/SelectCourseMenu";
 import {getUniversities} from "../../../actions/universityActions";
 import SelectUniversity from "../../Atoms/SelectUniversityMenu/SelectUniversityMenu";
-import {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle, StyledListItemButton}
+import {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle, StyledListItemButton, SmallNumberTextInput, StyledSelectMenuWrapper}
 from './AddStudentForm.styles';
 import AlertComponent from "../../Atoms/Alert/Alert";
 
@@ -27,6 +27,8 @@ const AddStudentForm = ({universityReducer}) => {
     const [imageUrl, setImageUrl] = useState('');
     const [coursesData, setCoursesData] = useState([]);
     const [studentCourses, setStudentCourses] = useState([]);
+    const [semesters, setSemesters] = useState([]);
+    const [inputSemester, setInputSemester] = useState('');
     const [isAlertVisible, setAlertVisible] = useState(false);
     const [isErrorAlertVisible, setErrorAlertVisible] = useState(false);
 
@@ -38,6 +40,11 @@ const AddStudentForm = ({universityReducer}) => {
       } catch(err) {
           console.log(err);
       }
+    };
+
+    function findCourseNameById(id) {
+      var index = coursesData.findIndex(i => i._id === id);
+      return coursesData[index].courseName;
     };
 
     const addStudent = (successCallback, errorCallback) => {
@@ -52,7 +59,8 @@ const AddStudentForm = ({universityReducer}) => {
                 universityId: universityId,
                 email: email,
                 imageUrl: imageUrl,
-                courseId: studentCourses
+                courseId: studentCourses,
+                semesters: semesters
             }).then(res =>{
                 successCallback();
         }).catch(err => {
@@ -61,12 +69,15 @@ const AddStudentForm = ({universityReducer}) => {
         });
     }
 
-    function pushCourseToArray(course) {
+    function pushCourseToArray(course, semester) {
         setStudentCourses(oldArray => [...oldArray, course])
+        setSemesters(oldArray => [...oldArray, semester])
     };
 
-    function deleteCourseFromArray(course) {
+    function deleteCourseFromArray(course, index) {
         setStudentCourses(studentCourses.filter((e) => (e !== course)));
+        setSemesters(semesters.splice(index, 1));
+        console.log(semesters);
     };
 
     useEffect(() =>{
@@ -100,24 +111,33 @@ const AddStudentForm = ({universityReducer}) => {
                         data={universityReducer.universities}
                     />
                 </TextInputWrapper>
-                {coursesData.length > 0 ?
-                    <TextInputWrapper>
-                        <SelectCourseMenu
-                            onChange={(event) => pushCourseToArray(event.target.value)}
-                            name={'course'}
-                            placeholder={'Dodaj kierunek'}
-                            data={coursesData}/>
-                    </TextInputWrapper>
-                    :
-                    <></>}
+                <StyledFormText>Semestr i kieurunek:</StyledFormText>
+                <StyledSelectMenuWrapper>
+                    <SmallNumberTextInput onChange={(event) => setInputSemester(event.target.value)}
+                                          type={'number'}
+                                          min={1}
+                                          max={10}
+                                          step={1}/>
+                    {coursesData.length > 0 ?
+                        <TextInputWrapper>
+                            <SelectCourseMenu
+                                onChange={(event) => pushCourseToArray(event.target.value, inputSemester)}
+                                name={'course'}
+                                placeholder={'Dodaj kierunek'}
+                                data={coursesData}/>
+                        </TextInputWrapper>
+                        :
+                        <></>}
+                </StyledSelectMenuWrapper>
+
                 <StyledFormText>Identyfikatory kierunków:</StyledFormText>
-                <Paper elevation={5} style={{height: 100, width: 250, overflow: 'auto', textAlign: "center", marginBottom: 30}}>
+                <Paper elevation={5} style={{height: 100, width: 350, overflow: 'auto', textAlign: "center", marginBottom: 30}}>
                     <List height={200}>
                         {
-                            studentCourses.map((element) =>
+                            studentCourses.map((element, index) =>
                                 <StyledListItemButton
                                     onClick={() => deleteCourseFromArray(element)}>
-                                    {element}
+                                    {findCourseNameById(element)}, semestr {semesters[index]}
                                 </StyledListItemButton>
                             )
                         }

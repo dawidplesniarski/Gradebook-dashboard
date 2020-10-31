@@ -42,10 +42,28 @@ const StyledSwitchWrapper = styled.div`
   align-items: center;
 `;
 
+const StyledSelectMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 60%;
+`;
+
 const StyledListItemButton = styled.button`
   font-family: Montserrat,serif;
   font-weight: normal;
   font-size: 1rem;
 `;
 
-export {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle, StyledListItemButton};
+const SmallNumberTextInput = styled.input`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  text-align: center;
+  background-color: #EEEEEE;
+  font-family: Montserrat,serif;
+  font-weight: bold;
+`;
+export {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle, StyledListItemButton, SmallNumberTextInput, StyledSelectMenuWrapper};

@@ -6,7 +6,7 @@ const StyledWrapper = styled.div`
   width: 100%;
   height: 40px;
   position: relative;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
 `;
 
 const Select = styled.select`
