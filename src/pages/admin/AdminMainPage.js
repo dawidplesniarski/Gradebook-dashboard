@@ -8,6 +8,7 @@ import BriefCaseIcon from '../../assets/images/briefcase.png';
 import UniversityIcon from '../../assets/images/university.png';
 import SubjectsIcon from '../../assets/images/reading-book.png';
 import CoursesIcon from '../../assets/images/wind-rose.png';
+import Footer from "../../components/Molecules/Footer/Footer";
 
 
 const StyledMainPageContainer = styled.div`

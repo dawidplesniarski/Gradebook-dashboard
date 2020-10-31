@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
+import AddStudentForm from "../../components/Forms/AddStudentForm/AddStudentForm";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const AdminStudentsPage = ({loginReducer, history}) => {
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledMainPageContainer>
-                <span>{loginReducer.loginData.employee.name}</span>
+                <AddStudentForm/>
             </StyledMainPageContainer>
         </>
     );
