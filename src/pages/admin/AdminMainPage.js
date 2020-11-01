@@ -25,7 +25,10 @@ const MenuIconsRow = styled.div`
   flex-direction: row;
   width: 70%;
   justify-content: space-around;
-
+  img {
+    width: 200px;
+    height: 200px;
+  }
   @media (max-width: 850px) {
     flex-direction: column;
     justify-content: center;

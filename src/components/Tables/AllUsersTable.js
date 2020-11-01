@@ -104,7 +104,7 @@ const AllUsersTable = ({data, setCurrentStudentId}) => {
                         accessor: 'email'
                     },
                     {
-                        Header: 'Wybierz',
+                        Header: 'Zarządzaj',
                         accessor: '_id',
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>

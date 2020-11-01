@@ -152,7 +152,8 @@ const AddStudentForm = ({universityReducer}) => {
                         || password === ''
                         || email === ''
                         || universityId ===''
-                        || studentCourses.length === 0}>
+                        || studentCourses.length === 0
+                        || studentCourses.length !== semesters.length}>
                     Dodaj studenta
                 </Button>
             </AddStudentFormWrapper>
