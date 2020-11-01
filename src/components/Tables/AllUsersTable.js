@@ -110,7 +110,7 @@ const AllUsersTable = ({data, setCurrentStudentId}) => {
                             <StyledLinkWrapper>
                                 <StyledLink
                                     onClick={() => setCurrentStudentId(values._id)}
-                                    to={'#'}>
+                                    to={'/selectedStudent'}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>

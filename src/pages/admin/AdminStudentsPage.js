@@ -26,7 +26,7 @@ const AdminStudentsPage = ({loginReducer, history}) => {
     const fetchAllStudents = () => {
         try {
             axios.get(`${API_URL}/users/findAll`).then(res => {
-               setStudentsData(res.data);
+                setStudentsData(res.data);
             });
         } catch (err) {
             console.log(err);
@@ -35,15 +35,19 @@ const AdminStudentsPage = ({loginReducer, history}) => {
 
     useEffect(() => {
         fetchAllStudents();
-    },[]);
+    }, []);
 
-    return(
+    return (
         <>
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <AddButton onClick={() => toggleForm(!formVisible)} open={formVisible}/>
             <StyledMainPageContainer>
-                {!formVisible ? <AllUsersTable data={studentsData}/> : <AddStudentForm/>}
+                {!formVisible ?
+                    <AllUsersTable data={studentsData}/>
+                    :
+                    <AddStudentForm/>
+                }
             </StyledMainPageContainer>
         </>
     );

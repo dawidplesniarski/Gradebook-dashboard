@@ -14,7 +14,6 @@ const initialState = {
     studentGrades: [],
     currentStudent: null,
     currentStudentError: null,
-    // currentStudentId: '5f738a7916bd0909c4d38a0d',
     currentStudentId: null,
     studentGradesError: null
 };

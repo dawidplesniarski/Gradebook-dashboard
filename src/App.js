@@ -8,6 +8,7 @@ import AddQuizPage from "./pages/AddQuizPage";
 import StudentGradesPage from "./pages/StudentGradesPage";
 import AdminMainPage from "./pages/admin/AdminMainPage";
 import AdminStudentsPage from "./pages/admin/AdminStudentsPage";
+import SelectedStudentPage from "./pages/admin/SelectedStudentPage";
 import {Switch, Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingSpinner from "./components/Atoms/LoadingSpinner/Spinner";
@@ -36,6 +37,7 @@ const App = ({loginReducer, authCheck, history}) =>{
                                         <>
                                             <Route path={'/adminMainPage'} component={AdminMainPage}/>
                                             <Route path={'/adminStudentsPage'} component={AdminStudentsPage}/>
+                                            <Route path={'/selectedStudent'} component={SelectedStudentPage}/>
                                         </>
                                     )
                                     : <></>

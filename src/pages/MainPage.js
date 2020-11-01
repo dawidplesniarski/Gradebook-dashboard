@@ -13,7 +13,6 @@ import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import Burger from "../components/Molecules/Hamburger/Burger";
 import Footer from "../components/Molecules/Footer/Footer";
-import AddStudentForm from "../components/Forms/AddStudentForm/AddStudentForm";
 
 const MainPage = ({universityReducer, getUniversities, loginReducer}) => {
 
