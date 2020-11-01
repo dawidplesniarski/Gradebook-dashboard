@@ -2,7 +2,7 @@ import React from "react";
 import {StyledTextInput} from "./TextInput.styles";
 import PropTypes from 'prop-types';
 
-const TextInput = ({placeholder, onChange, type, min, max, step, value}) => {
+const TextInput = ({placeholder, onChange, type, min, max, step, value, defaultValue}) => {
     return (
         <StyledTextInput
             type={type}
@@ -12,6 +12,7 @@ const TextInput = ({placeholder, onChange, type, min, max, step, value}) => {
             max={max}
             step={step}
             value={value}
+            defaultValue={defaultValue}
         />
     )
 };

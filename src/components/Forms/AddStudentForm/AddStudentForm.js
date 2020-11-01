@@ -48,6 +48,8 @@ const AddStudentForm = ({universityReducer}) => {
     };
 
     const addStudent = (successCallback, errorCallback) => {
+        const token = localStorage.getItem('token');
+
         axios.post(`${API_URL}/users/addUser`,
             {
                 name: name,
@@ -61,6 +63,8 @@ const AddStudentForm = ({universityReducer}) => {
                 imageUrl: imageUrl,
                 courseId: studentCourses,
                 semesters: semesters
+            },{
+                headers: {'Authorization': `Bearer ${token}`}
             }).then(res =>{
                 successCallback();
         }).catch(err => {

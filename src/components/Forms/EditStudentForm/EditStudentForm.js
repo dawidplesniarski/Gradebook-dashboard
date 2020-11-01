@@ -16,7 +16,6 @@ const EditStudentForm = ({studentReducer}) => {
     const [albumNumber, setAlbumNumber] = useState('');
     const [enabled, setEnabled] = useState(false);
     const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [isAlertVisible, setAlertVisible] = useState(false);
@@ -24,17 +23,20 @@ const EditStudentForm = ({studentReducer}) => {
     const [currentStudent, setCurrentStudent] = useState(null);
 
 
-    const editStudent = (successCallback, errorCallback) => {
-        axios.post(`${API_URL}/users/addUser`,
+    const editStudent = (studentId, successCallback, errorCallback) => {
+        const token = localStorage.getItem('token');
+        axios.put(`${API_URL}/users/editUserData/${studentId}`,
             {
                 name: name,
                 lastName: lastName,
                 albumNo: albumNumber,
                 enabled: enabled,
                 login: login,
-                password: password,
                 email: email,
                 imageUrl: imageUrl,
+            },
+            {
+                headers: {'Authorization': `Bearer ${token}`}
             }).then(res => {
             successCallback();
         }).catch(err => {
@@ -47,8 +49,13 @@ const EditStudentForm = ({studentReducer}) => {
         axios.get(`${API_URL}/users/findById/${studentId}`)
             .then(res => {
                 setCurrentStudent(res.data);
+                setName(res.data.name);
+                setLastName(res.data.lastName);
+                setAlbumNumber(res.data.albumNo);
                 setEnabled(res.data.isEnabled);
-                setPassword(res.data.password);
+                setLogin(res.data.login);
+                setEmail(res.data.email);
+                setImageUrl(res.data.imageUrl);
             }).catch(error => {
             console.log(error);
         });
@@ -64,42 +71,40 @@ const EditStudentForm = ({studentReducer}) => {
                                               message={'Student został dodany pomyślnie'}/> : <></>}
             {isErrorAlertVisible ? <AlertComponent type={'error'} onClick={() => setErrorAlertVisible(false)}
                                                    message={'Wystąpił błąd przy dodawaniu studenta'}/> : <></>}
-            {currentStudent &&
+            {currentStudent ?
             <AddStudentFormWrapper>
                 <StyledFormTitle>Edycja studenta</StyledFormTitle>
                 <TextInputWrapper>
                     <TextInput onChange={(event) => setName(event.target.value)} type={'text'} name={'Name'}
-                               placeholder={'Imie'} value={currentStudent.name}/>
+                               placeholder={'Imie'} defaultValue={currentStudent.name}/>
                     <TextInput onChange={(event) => setLastName(event.target.value)} type={'text'} name={'Last Name'}
-                               placeholder={'Nazwisko'} value={currentStudent.lastName}/>
+                               placeholder={'Nazwisko'} defaultValue={currentStudent.lastName}/>
                     <TextInput onChange={(event) => setAlbumNumber(event.target.value)} type={'text'} name={'Album'}
-                               placeholder={'Numer albumu'} value={currentStudent.albumNo}/>
+                               placeholder={'Numer albumu'} defaultValue={currentStudent.albumNo}/>
                     <TextInput onChange={(event) => setLogin(event.target.value)} type={'text'} name={'Login'}
-                               placeholder={'Login'} value={currentStudent.login}/>
-                    <TextInput onChange={(event) => setPassword(event.target.value)} type={'password'} name={'Password'}
-                               placeholder={'Hasło'}/>
+                               placeholder={'Login'} defaultValue={currentStudent.login}/>
                     <TextInput onChange={(event) => setEmail(event.target.value)} type={'text'} name={'Email'}
-                               placeholder={'Adres e-mail'} value={currentStudent.email}/>
+                               placeholder={'Adres e-mail'} defaultValue={currentStudent.email}/>
                     <TextInput onChange={(event) => setImageUrl(event.target.value)} type={'text'} name={'Image'}
-                               placeholder={'Link do zdjęcia'} value={currentStudent.imageUrl}/>
+                               placeholder={'Link do zdjęcia'} defaultValue={currentStudent.imageUrl}/>
                 </TextInputWrapper>
                 <StyledSwitchWrapper>
                     <StyledFormText>Aktywny: </StyledFormText>
                     <Switch size={'normal'} checked={enabled} onChange={() => setEnabled(!enabled)}/>
                 </StyledSwitchWrapper>
                 <Button
-                    onClick={async () => await editStudent(() => setAlertVisible(true), () => setErrorAlertVisible(true))}
+                    onClick={async () => await editStudent(studentReducer.currentStudentId,() => setAlertVisible(true), () => setErrorAlertVisible(true))}
                     disabled=
                         {name === ''
                         || lastName === ''
                         || albumNumber === ''
                         || login === ''
-                        || password === ''
                         || email === ''
                         }>
                     Zaktualizuj
                 </Button>
             </AddStudentFormWrapper>
+                : <></>
             }
         </>
     );

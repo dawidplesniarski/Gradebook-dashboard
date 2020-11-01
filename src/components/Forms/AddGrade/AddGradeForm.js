@@ -24,7 +24,7 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
                     subject: subjectId
                 },
                 {
-                    headers: {'authorization': `Bearer ${token}`}
+                    headers: {'Authorization': `Bearer ${token}`}
                 }
             );
             successCallback();
@@ -61,5 +61,6 @@ const AddGradeForm = ({open, studentAlbum, studentSubjects}) => {
         </>
     );
 };
+
 
 export default AddGradeForm;
