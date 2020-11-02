@@ -8,6 +8,10 @@ import {connect} from "react-redux";
 import {API_URL, compareGradesArrays, getEmployeeSubjects} from "../utils/helpers";
 import GradesTable from "../components/Tables/GradesTable";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
+import jsPDF from 'jspdf';
+import "jspdf-autotable";
+import Button from "../components/Atoms/Button/Button";
+
 
 const StudentGradesWrapper = styled.div`
   display: flex;
@@ -21,6 +25,27 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
     const [filterData, setFilterData] = useState([]);
     const [gradesFilter, setGradesFilter] = useState('');
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
+
+    const exportToPdf = () => {
+        const unit = "pt";
+        const size = "A4";
+        const orientation = "portrait";
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(15);
+        const title = "Protokol ocen studenta z przedmiotu Testowanie i Jakosc oprogramowania";
+        const headers = [["Przedmiot", "Ocena", "Data"]];
+        const data = studentGradesData.filter(grade => grade.subject.subjectName.includes('Grafika komputerowa')).map(element => [element.subject.subjectName, element.grade, element.date.substring(0,10)]);
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data
+        };
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save("protokol_ocen.pdf");
+    };
 
     const fetchStudentGrades = (studentAlbum) => {
         try {
@@ -58,6 +83,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
                                  employeeSubjects={employeeSubjects}/>
                     : <></>}
             </StudentGradesWrapper>
+            <Button onClick={() => exportToPdf()}>Export</Button>
         </>
     );
 };
