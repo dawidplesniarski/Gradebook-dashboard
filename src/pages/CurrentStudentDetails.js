@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
-import {getCurrentStudent} from "../actions/studentActions";
+import {getCurrentStudent, setCurrentStudentSubjects} from "../actions/studentActions";
 import Burger from "../components/Molecules/Hamburger/Burger";
 import DefaultAvatar from '../assets/images/default-user.png';
 import {
@@ -21,7 +21,7 @@ import {addGradeFormSubjects, API_URL} from "../utils/helpers";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 import Button from "../components/Atoms/Button/Button";
 
-const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, loginReducer, history}) => {
+const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, loginReducer, history, setCurrentStudentSubjects}) => {
     const [isOpen, setOpen] = useState(false);
     const [filterData, setFilterData] = useState([]);
     const [filteredSubjects, setFilteredSubjects] = useState([]);
@@ -36,6 +36,7 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
         } finally {
             if(filterData.length > 0){
                 setFilteredSubjects(addGradeFormSubjects(loginReducer.loginData.employee.subjectId, filterData));
+                setCurrentStudentSubjects(filteredSubjects);
             }
         }
     };
@@ -90,7 +91,8 @@ const mapStateToProps = ({studentReducer, universityReducer, loginReducer}) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getCurrentStudent: (studentId) => dispatch(getCurrentStudent(studentId))
+        getCurrentStudent: (studentId) => dispatch(getCurrentStudent(studentId)),
+        setCurrentStudentSubjects: (studentSubjects) => dispatch(setCurrentStudentSubjects(studentSubjects))
     }
 }
 

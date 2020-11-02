@@ -7,7 +7,8 @@ import {
     SET_STUDENT_GRADES_ERROR,
     SET_CURRENT_STUDENT,
     SET_CURRENT_STUDENT_ERROR,
-    SET_CURRENT_STUDENT_ID
+    SET_CURRENT_STUDENT_ID,
+    SET_CURRENT_STUDENT_SUBJECTS
 } from "../reducers/studentReducer";
 import {API_URL} from "../utils/helpers";
 
@@ -56,6 +57,13 @@ const setCurrentStudentError = (studentError) => {
     return {
         type: SET_CURRENT_STUDENT_ERROR,
         payload: studentError
+    }
+}
+
+export const setCurrentStudentSubjects = (studentSubjects) => {
+    return {
+        type: SET_CURRENT_STUDENT_SUBJECTS,
+        payload: studentSubjects
     }
 }
 

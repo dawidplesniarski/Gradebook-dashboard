@@ -10,7 +10,8 @@ import GradesTable from "../components/Tables/GradesTable";
 import SearchBar from "../components/Atoms/SearchBar/SearchBar";
 import jsPDF from 'jspdf';
 import "jspdf-autotable";
-import Button from "../components/Atoms/Button/Button";
+import EmployeeSubjectsMenu from "../components/Atoms/EmployeeSubjectsMenu/EmployeeSubjectsMenu";
+import PdfIcon from '../assets/images/pdf.png';
 
 
 const StudentGradesWrapper = styled.div`
@@ -20,10 +21,32 @@ const StudentGradesWrapper = styled.div`
   margin-top: 20px;
 `;
 
+const ExportFormWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  padding: 15px;
+  align-items: center;
+  button {
+    background-color: transparent;
+    border: 0;
+    &:hover {
+      img {
+        opacity: 60%;
+      }
+    }
+  }
+  img {
+    width: 60px;
+    height: 60px;
+  }
+`;
+
 const StudentGradesPage = ({history, studentReducer, universityReducer, loginReducer}) => {
     const [studentGradesData, setStudentGradesData] = useState([]);
     const [filterData, setFilterData] = useState([]);
     const [gradesFilter, setGradesFilter] = useState('');
+    const [selectedSubject, setSelectedSubject] = useState(null);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
 
     const exportToPdf = () => {
@@ -33,9 +56,9 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
         doc.setFontSize(15);
-        const title = "Protokol ocen studenta z przedmiotu Testowanie i Jakosc oprogramowania";
+        const title = `Protokol ocen z przedmioty ${selectedSubject}`;
         const headers = [["Przedmiot", "Ocena", "Data"]];
-        const data = studentGradesData.filter(grade => grade.subject.subjectName.includes('Grafika komputerowa')).map(element => [element.subject.subjectName, element.grade, element.date.substring(0,10)]);
+        const data = studentGradesData.filter(grade => grade.subject.subjectName.includes(selectedSubject)).map(element => [element.subject.subjectName, element.grade, element.date.substring(0, 10)]);
 
         let content = {
             startY: 50,
@@ -68,6 +91,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
     };
 
     useEffect(() => {
+        console.log(studentReducer.currentStudentSubjects);
         fetchStudentSubjects(universityReducer.currentCourse.courseName, studentReducer.currentStudent.albumNo);
         fetchStudentGrades(studentReducer.currentStudent.albumNo);
     }, []);
@@ -77,13 +101,22 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
             <StudentGradesWrapper>
+                <ExportFormWrapper>
+                    <EmployeeSubjectsMenu placeholder={'Przedmiot'}
+                                          onChange={e => setSelectedSubject(e.target.value)}
+                                          data={studentReducer.currentStudentSubjects} name={'Przedmioty'}/>
+                    <button onClick={() => exportToPdf()}>
+                        <img src={PdfIcon} alt={'Export to pdf'}/>
+                    </button>
+                </ExportFormWrapper>
                 <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
                 {studentGradesData.length > 0 && filterData.length > 0 ?
-                    <GradesTable data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))}
-                                 employeeSubjects={employeeSubjects}/>
+                    <GradesTable
+                        data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))}
+                        employeeSubjects={employeeSubjects}/>
                     : <></>}
+
             </StudentGradesWrapper>
-            <Button onClick={() => exportToPdf()}>Export</Button>
         </>
     );
 };
