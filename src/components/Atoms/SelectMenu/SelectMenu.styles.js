@@ -19,7 +19,7 @@ const Select = styled.select`
   border-radius: 50px;
   transition: all 0.4s ease;
   border: none;
-  background-color: #DADADA;
+  background-color: transparent;
   &:focus {
     outline: none;
   }

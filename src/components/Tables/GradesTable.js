@@ -7,12 +7,13 @@ import DeleteButton from "../Atoms/DeleteButton/DeleteButton";
 import AlertComponent from "../Atoms/Alert/Alert";
 
 const TableWrapper = styled.div`
-    width: 55%;
+    width: 100%;
     align-items: center;
     min-width: 300px;
     font-size: 20px;
     color: #464e51;
     font-family: Montserrat,serif;
+    margin-bottom: 30px;
 `;
 const Styles = styled.div`
   padding: 1rem;

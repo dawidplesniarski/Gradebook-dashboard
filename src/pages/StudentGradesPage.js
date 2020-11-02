@@ -12,35 +12,33 @@ import jsPDF from 'jspdf';
 import "jspdf-autotable";
 import EmployeeSubjectsMenu from "../components/Atoms/EmployeeSubjectsMenu/EmployeeSubjectsMenu";
 import PdfIcon from '../assets/images/pdf.png';
+import {Paper} from "@material-ui/core";
+import {MainTableWrapper, MainPageContainer, StyledWrapper, TableWrapper} from "../styles/MainPage.styles";
 
-
-const StudentGradesWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-`;
 
 const ExportFormWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 40%;
+  width: 70%;
   padding: 15px;
   align-items: center;
-  button {
-    background-color: transparent;
-    border: 0;
-    &:hover {
-      img {
-        opacity: 60%;
-      }
-    }
-  }
   img {
     width: 60px;
     height: 60px;
   }
 `;
+
+const StyledButton = styled.button`
+  background-color: transparent;
+  border-radius: 50%;
+  border: 0;
+  &:hover {
+    img {
+      opacity: 50%;
+    }
+  }
+`;
+
 
 const StudentGradesPage = ({history, studentReducer, universityReducer, loginReducer}) => {
     const [studentGradesData, setStudentGradesData] = useState([]);
@@ -56,7 +54,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
         doc.setFontSize(15);
-        const title = `Protokol ocen z przedmioty ${selectedSubject}`;
+        const title = `Protokol ocen z przedmiotu ${selectedSubject} studenta ${studentReducer.currentStudent.albumNo}`;
         const headers = [["Przedmiot", "Ocena", "Data"]];
         const data = studentGradesData.filter(grade => grade.subject.subjectName.includes(selectedSubject)).map(element => [element.subject.subjectName, element.grade, element.date.substring(0, 10)]);
 
@@ -100,23 +98,31 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         <>
             <Burger/>
             <BackButton onClick={() => history.push('/studentDetails')}/>
-            <StudentGradesWrapper>
-                <ExportFormWrapper>
-                    <EmployeeSubjectsMenu placeholder={'Przedmiot'}
-                                          onChange={e => setSelectedSubject(e.target.value)}
-                                          data={studentReducer.currentStudentSubjects} name={'Przedmioty'}/>
-                    <button onClick={() => exportToPdf()}>
-                        <img src={PdfIcon} alt={'Export to pdf'}/>
-                    </button>
-                </ExportFormWrapper>
-                <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
-                {studentGradesData.length > 0 && filterData.length > 0 ?
-                    <GradesTable
-                        data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))}
-                        employeeSubjects={employeeSubjects}/>
-                    : <></>}
+            <StyledWrapper>
+                <MainPageContainer>
+                    <MainTableWrapper>
+                        <ExportFormWrapper>
+                            <EmployeeSubjectsMenu placeholder={'Przedmiot'}
+                                                  onChange={e => setSelectedSubject(e.target.value)}
+                                                  data={studentReducer.currentStudentSubjects} name={'Przedmioty'}/>
+                            <StyledButton onClick={() => exportToPdf()}>
+                                <img src={PdfIcon} alt={'Export to pdf'}/>
+                            </StyledButton>
+                        </ExportFormWrapper>
+                        <TableWrapper>
+                            <SearchBar placeholder={'Wyszukaj po przedmiocie'} onChange={(e) => setGradesFilter(e.target.value)}/>
+                            {studentGradesData.length > 0 && filterData.length > 0 ?
+                                <Paper elevation={5}>
+                                    <GradesTable
+                                        data={compareGradesArrays(studentGradesData, filterData).filter(grade => grade.subject.subjectName.toLowerCase().includes(gradesFilter.toLowerCase()))}
+                                        employeeSubjects={employeeSubjects}/>
+                                </Paper>
 
-            </StudentGradesWrapper>
+                                : <></>}
+                        </TableWrapper>
+                    </MainTableWrapper>
+                </MainPageContainer>
+            </StyledWrapper>
         </>
     );
 };
