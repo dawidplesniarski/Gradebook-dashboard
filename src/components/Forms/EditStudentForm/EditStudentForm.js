@@ -68,9 +68,9 @@ const EditStudentForm = ({studentReducer}) => {
     return (
         <>
             {isAlertVisible ? <AlertComponent type={'success'} onClick={() => setAlertVisible(false)}
-                                              message={'Student został dodany pomyślnie'}/> : <></>}
+                                              message={'Dane studenta zostały zaktualizowane pomyślnie'}/> : <></>}
             {isErrorAlertVisible ? <AlertComponent type={'error'} onClick={() => setErrorAlertVisible(false)}
-                                                   message={'Wystąpił błąd przy dodawaniu studenta'}/> : <></>}
+                                                   message={'Wystąpił podczas aktualizacji danych studenta'}/> : <></>}
             {currentStudent ?
             <AddStudentFormWrapper>
                 <StyledFormTitle>Edycja studenta</StyledFormTitle>

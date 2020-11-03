@@ -25,7 +25,7 @@ const StyledLink = styled(Link)`
 `;
 
 const TableWrapper = styled.div`
-    width: 80%;
+    width: 100%;
     align-items: center;
     min-width: 300px;
     font-size: 20px;

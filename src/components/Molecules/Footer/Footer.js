@@ -11,6 +11,7 @@ const StyledFooter = styled.footer`
   position: fixed;
   bottom: 0;
   overflow: hidden;
+  background-color: #FFF;
 `;
 
 const StyledFooterText = styled.p`

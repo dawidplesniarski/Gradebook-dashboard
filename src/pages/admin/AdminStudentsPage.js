@@ -9,6 +9,9 @@ import axios from 'axios';
 import {API_URL} from "../../utils/helpers";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AllUsersTable from "../../components/Tables/AllUsersTable";
+import {Paper} from "@material-ui/core";
+import Footer from "../../components/Molecules/Footer/Footer";
+import AllStudentsImage from '../../assets/images/all-students.svg';
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -17,6 +20,7 @@ const StyledMainPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  margin-bottom: 50px;
 `;
 
 const AdminStudentsPage = ({loginReducer, history}) => {
@@ -44,11 +48,18 @@ const AdminStudentsPage = ({loginReducer, history}) => {
             <AddButton onClick={() => toggleForm(!formVisible)} open={formVisible}/>
             <StyledMainPageContainer>
                 {!formVisible ?
-                    <AllUsersTable data={studentsData}/>
+                    <>
+                        <img src={AllStudentsImage} alt={'students'}/>
+                        <Paper elevation={5}>
+                            <AllUsersTable data={studentsData}/>
+                        </Paper>
+                    </>
+
                     :
                     <AddStudentForm/>
                 }
             </StyledMainPageContainer>
+            <Footer/>
         </>
     );
 };

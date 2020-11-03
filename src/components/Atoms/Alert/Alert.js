@@ -76,6 +76,7 @@ const StyledAlertTitle = styled.p`
 
 const StyledAlertMessage = styled.p`
   font-family: Montserrat,serif;
+  text-align: center;
   font-weight: normal;
   font-size: 1.2rem;
   color: #5b6167;

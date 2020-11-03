@@ -8,6 +8,7 @@ import BriefCaseIcon from '../../assets/images/briefcase.png';
 import UniversityIcon from '../../assets/images/university.png';
 import SubjectsIcon from '../../assets/images/reading-book.png';
 import CoursesIcon from '../../assets/images/wind-rose.png';
+import AdminBaner from '../../assets/images/admin-text.svg';
 import Footer from "../../components/Molecules/Footer/Footer";
 
 
@@ -18,6 +19,7 @@ const StyledMainPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  margin-bottom: 50px;
 `;
 
 const MenuIconsRow = styled.div`
@@ -65,6 +67,7 @@ const AdminMainPage = ({loginReducer, history}) => {
       <>
           <Burger isAdminOpened={true}/>
           <StyledMainPageContainer>
+              <img src={AdminBaner} alt={'admin'}/>
               <MenuIconsRow>
                   <StyledButton onClick={() => history.push('/adminStudentsPage')}>
                       <StyledIconDescription>
@@ -102,6 +105,7 @@ const AdminMainPage = ({loginReducer, history}) => {
                   </StyledButton>
               </MenuIconsRow>
           </StyledMainPageContainer>
+          <Footer/>
       </>
   );
 };

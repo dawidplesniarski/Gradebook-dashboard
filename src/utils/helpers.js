@@ -20,7 +20,7 @@ export function compareSubjectArrays(arr1, arr2) { // compare subject object arr
     return finalArr;
 };
 
-export function addGradeFormSubjects(arr1, arr2) {
+export function addGradeFormSubjects(arr1, arr2) {  // return array of subjects to AddGradeForm
     let finalArr = [];
     arr1.forEach((el) => arr2.forEach((el1) => {
         if(el.subjectName === el1) {

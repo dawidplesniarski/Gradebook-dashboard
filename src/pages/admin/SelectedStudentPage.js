@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
 `;
 
 const SelectedStudentPage = ({studentReducer, history}) => {
-    return(
+    return (
         <>
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminStudentsPage')}/>
