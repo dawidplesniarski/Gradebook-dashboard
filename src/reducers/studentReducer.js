@@ -7,6 +7,7 @@ export const SET_CURRENT_STUDENT = 'SET_CURRENT_STUDENT';
 export const SET_CURRENT_STUDENT_ERROR = 'SET_CURRENT_STUDENT_ERROR';
 export const SET_CURRENT_STUDENT_ID = 'SET_CURRENT_STUDENT_ID';
 export const SET_CURRENT_STUDENT_SUBJECTS = 'SET_CURRENT_STUDENT_SUBJECTS';
+export const SET_CURRENT_SEMESTER = 'SET_CURRENT_SEMESTER';
 
 const initialState = {
     isLoading: false,
@@ -17,7 +18,8 @@ const initialState = {
     currentStudentError: null,
     currentStudentId: null,
     studentGradesError: null,
-    currentStudentSubjects: null
+    currentStudentSubjects: null,
+    currentSemester: null
 };
 
 export const studentReducer = (state = initialState, action) => {
@@ -80,6 +82,12 @@ export const studentReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 currentStudentSubjects: action.payload
+            };
+        case SET_CURRENT_SEMESTER:
+            return {
+                ...state,
+                isLoading: false,
+                currentSemester: action.payload
             }
         default:
             return state;

@@ -128,7 +128,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
                                 onClick={async () => await fetchPdfData(
                                     universityReducer.currentUniversity._id,
                                     universityReducer.currentCourse._id,
-                                    6,
+                                    studentReducer.currentSemester,
                                     selectedSubject,
                                     () => exportToPdf())}>
                                 <img src={PdfIcon} alt={'Export to pdf'}/>

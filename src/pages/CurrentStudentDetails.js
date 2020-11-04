@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from "react-router";
-import {getCurrentStudent, setCurrentStudentSubjects} from "../actions/studentActions";
+import {getCurrentStudent, setCurrentSemester, setCurrentStudentSubjects} from "../actions/studentActions";
 import Burger from "../components/Molecules/Hamburger/Burger";
 import DefaultAvatar from '../assets/images/default-user.png';
 import {
@@ -21,7 +21,7 @@ import {addGradeFormSubjects, API_URL} from "../utils/helpers";
 import BackButton from "../components/Atoms/BackButton/BackButton";
 import Button from "../components/Atoms/Button/Button";
 
-const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, loginReducer, history, setCurrentStudentSubjects}) => {
+const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityReducer, loginReducer, history, setCurrentStudentSubjects, setCurrentSemester}) => {
     const [isOpen, setOpen] = useState(false);
     const [filterData, setFilterData] = useState([]);
     const [filteredSubjects, setFilteredSubjects] = useState([]);
@@ -43,6 +43,8 @@ const CurrentStudentDetails = ({studentReducer, getCurrentStudent, universityRed
     useEffect(() => {
         if (universityReducer.currentCourse && studentReducer.currentStudent) {
             fetchStudentSubjects(universityReducer.currentCourse.courseName, studentReducer.currentStudent.albumNo);
+            const index = studentReducer.currentStudent.courseId.findIndex(i => i.courseName === universityReducer.currentCourse.courseName);
+            setCurrentSemester(studentReducer.currentStudent.semesters[index]);
         }
         getCurrentStudent(studentReducer.currentStudentId);
     }, [universityReducer.currentCourse, studentReducer.currentStudent]); // ! Put here arguments if you want to wait for redux !
@@ -92,7 +94,8 @@ const mapStateToProps = ({studentReducer, universityReducer, loginReducer}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getCurrentStudent: (studentId) => dispatch(getCurrentStudent(studentId)),
-        setCurrentStudentSubjects: (studentSubjects) => dispatch(setCurrentStudentSubjects(studentSubjects))
+        setCurrentStudentSubjects: (studentSubjects) => dispatch(setCurrentStudentSubjects(studentSubjects)),
+        setCurrentSemester: (semester) => dispatch(setCurrentSemester(semester))
     }
 }
 

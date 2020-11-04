@@ -8,7 +8,8 @@ import {
     SET_CURRENT_STUDENT,
     SET_CURRENT_STUDENT_ERROR,
     SET_CURRENT_STUDENT_ID,
-    SET_CURRENT_STUDENT_SUBJECTS
+    SET_CURRENT_STUDENT_SUBJECTS,
+    SET_CURRENT_SEMESTER
 } from "../reducers/studentReducer";
 import {API_URL} from "../utils/helpers";
 
@@ -72,6 +73,13 @@ export const setCurrentStudentId = (studentId) => {
         type: SET_CURRENT_STUDENT_ID,
         payload: studentId
     };
+};
+
+export const setCurrentSemester = (semester) => {
+  return {
+      type: SET_CURRENT_SEMESTER,
+      payload: semester
+  }
 };
 
 export const getCurrentStudent = (studentId) => async dispatch => {

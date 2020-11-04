@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
 const AddPermissionFormWrapper = styled.div`
-  //position: fixed;
   background-color: #FFF;
-  //left : 30%;
-  //top: 25%;
   width: 700px;
   display: flex;
   flex-direction: column;
