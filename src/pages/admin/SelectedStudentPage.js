@@ -6,6 +6,7 @@ import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import EditStudentForm from "../../components/Forms/EditStudentForm/EditStudentForm";
 import ChangeStudentSemester from "../../components/Forms/ChangeStudentSemester/ChangeStudentSemester";
+import AddStudentCourse from "../../components/Forms/AddStudentCourse/AddStudentCourse";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const SelectedStudentPage = ({studentReducer, history}) => {
             <StyledWrapper>
                 {studentReducer.currentStudentId && <EditStudentForm/>}
                 {studentReducer.currentStudent && <ChangeStudentSemester/>}
+                <AddStudentCourse/>
             </StyledWrapper>
         </>
     )

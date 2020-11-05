@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import styled from 'styled-components';
 import SelectStudentCourses from "../../Atoms/SelectStudentCoursesMenu/SelectStudentCourses";
 import {connect} from 'react-redux';
 import ArrowUp from '../../../assets/images/arrow-up.png';
@@ -57,7 +56,7 @@ const ChangeStudentSemester = ({studentReducer}) => {
         {increaseAlertVisible && <AlertComponent type={'success'} message={`Semestr z kierunku ${courseName} został zaliczony`} onClick={() => setIncreaseAlertVisible(false)}/>}
         {decreaseAlertVisible && <AlertComponent type={'success'} message={`Semestr z kierunku ${courseName} został cofnięty`} onClick={() => setDecreaseAlertVisible(false)}/>}
         <ChangeSemesterFormWrapper>
-            <StyledFormTitle>Zarządzaj kierunkami studenta</StyledFormTitle>
+            <StyledFormTitle>Semestry studenta</StyledFormTitle>
             <StyledContentWrapper>
                 <SelectStudentCourses
                     onChange={(event) => setCourseName(event.target.value)}

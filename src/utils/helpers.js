@@ -1,4 +1,6 @@
 export const API_URL = 'https://node-app-4fun.herokuapp.com';
+export const TOKEN = localStorage.getItem('token');
+
 
 export function compareArrays(arr1, arr2) { // compare two arrays by objects id
     let finalArr = [];

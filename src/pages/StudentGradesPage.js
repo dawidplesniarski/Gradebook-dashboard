@@ -46,16 +46,15 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
     const [gradesFilter, setGradesFilter] = useState('');
     const [selectedSubject, setSelectedSubject] = useState(null);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
-    const [protocolData, setProtocolData] = useState([]);
+    // const [protocolData, setProtocolData] = useState([]);
 
-    const exportToPdf = () => {
+    const exportToPdf = (protocolData) => {
         const unit = "pt";
         const size = "A4";
         const orientation = "portrait";
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
         const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
-        // const date = (new Date()).format('DD-MM.YYYY');
         doc.setFontSize(15);
         const title = `Protokol ocen z przedmiotu ${selectedSubject}`;
         const headers = [["Imie", "Nazwisko", "Album", "Ocena", "Data", "Podpis"]];
@@ -81,18 +80,14 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
         }
     };
 
-    const fetchPdfData = (universityId, courseId, semester, subject, successCallback) => {
+    const fetchPdfData = (universityId, courseId, semester, subject) => {
         try {
             axios.get(`${API_URL}/grades/findBySemesterAndSubject/${universityId}/${courseId}/${semester}/${subject}`).then(res => {
-                setProtocolData(res.data);
+                exportToPdf(res.data);
             })
         } catch (err) {
             console.log(err);
-        } finally {
-            if (protocolData.length > 0) {
-                successCallback();
-            }
-        }
+        };
     }
 
     const fetchStudentSubjects = (courseName, albumNo) => {
@@ -129,8 +124,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
                                     universityReducer.currentUniversity._id,
                                     universityReducer.currentCourse._id,
                                     studentReducer.currentSemester,
-                                    selectedSubject,
-                                    () => exportToPdf())}>
+                                    selectedSubject)}>
                                 <img src={PdfIcon} alt={'Export to pdf'}/>
                             </StyledButton>
                         </ExportFormWrapper>

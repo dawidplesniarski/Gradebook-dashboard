@@ -7,7 +7,7 @@ const AddStudentFormWrapper = styled.div`
   flex-direction: column;
   padding: 0.25rem;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   @media (max-width: 1000px) {
     width: 500px;
   }

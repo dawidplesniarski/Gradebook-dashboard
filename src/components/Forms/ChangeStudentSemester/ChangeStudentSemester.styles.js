@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const ChangeSemesterFormWrapper = styled.div`
   margin-top: 30px;
-  margin-bottom: 30px;
-  background-color: #FFF;
+  background-color: #fafafa;
+  border-radius: 15px;
   width: 700px;
   display: flex;
   flex-direction: column;

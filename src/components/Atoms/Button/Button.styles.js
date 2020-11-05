@@ -25,7 +25,7 @@ const ButtonWrapper = styled.button`
     ${({disabled}) =>
     disabled &&
     css`
-      opacity: 50%;
+      opacity: 70%;
     `}
 `;
 
