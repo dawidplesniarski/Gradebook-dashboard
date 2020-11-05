@@ -8,9 +8,10 @@ import {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWra
     from './EditStudentForm.styles';
 import AlertComponent from "../../Atoms/Alert/Alert";
 import {connect} from "react-redux";
+import {setCurrentStudent} from "../../../actions/studentActions";
 
 
-const EditStudentForm = ({studentReducer}) => {
+const EditStudentForm = ({studentReducer, setCurrentStudent}) => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [albumNumber, setAlbumNumber] = useState('');
@@ -20,8 +21,7 @@ const EditStudentForm = ({studentReducer}) => {
     const [imageUrl, setImageUrl] = useState('');
     const [isAlertVisible, setAlertVisible] = useState(false);
     const [isErrorAlertVisible, setErrorAlertVisible] = useState(false);
-    const [currentStudent, setCurrentStudent] = useState(null);
-
+    const [currentStudent, setCurrentStudentData] = useState(null);
 
     const editStudent = (studentId, successCallback, errorCallback) => {
         const token = localStorage.getItem('token');
@@ -48,7 +48,7 @@ const EditStudentForm = ({studentReducer}) => {
     const findStudent = (studentId) => {
         axios.get(`${API_URL}/users/findById/${studentId}`)
             .then(res => {
-                setCurrentStudent(res.data);
+                setCurrentStudentData(res.data);
                 setName(res.data.name);
                 setLastName(res.data.lastName);
                 setAlbumNumber(res.data.albumNo);
@@ -56,6 +56,7 @@ const EditStudentForm = ({studentReducer}) => {
                 setLogin(res.data.login);
                 setEmail(res.data.email);
                 setImageUrl(res.data.imageUrl);
+                setCurrentStudent(res.data);
             }).catch(error => {
             console.log(error);
         });
@@ -114,4 +115,10 @@ const mapStateToProps = ({studentReducer}) => {
     return {studentReducer};
 };
 
-export default connect(mapStateToProps)(EditStudentForm);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentStudent: (student) => dispatch(setCurrentStudent(student))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditStudentForm);

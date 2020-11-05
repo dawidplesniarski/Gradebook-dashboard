@@ -1,7 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
 import PropTypes from "prop-types";
-import SelectStudentMenu from "../SelectStudentMenu/SelectStudentMenu";
 
 const StyledWrapper = styled.div`
   border-radius: 50px;
@@ -36,7 +35,7 @@ const SelectStudentCourses = ({data, onChange, name, placeholder}) => {
                     <option defaultValue={null} selected disabled hidden>
                         {placeholder}
                     </option>
-                    {data.map((item, index) => <option key={index} value={index}>{item.courseName}</option>)}
+                    {data.map((item, index) => <option key={index} value={item.courseName}>{item.courseName}</option>)}
                 </Select>
             </StyledWrapper>
         </>

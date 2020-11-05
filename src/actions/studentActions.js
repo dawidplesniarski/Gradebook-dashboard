@@ -47,7 +47,7 @@ const setStudentGradesError = (error) => {
     };
 };
 
-const setCurrentStudent = (student) => {
+export const setCurrentStudent = (student) => {
     return {
         type: SET_CURRENT_STUDENT,
         payload: student
