@@ -53,5 +53,4 @@ SelectStudentCourses.defaultProps = {
     data: []
 };
 
-
 export default SelectStudentCourses;
