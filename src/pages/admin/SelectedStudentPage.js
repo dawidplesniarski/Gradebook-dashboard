@@ -7,6 +7,7 @@ import BackButton from "../../components/Atoms/BackButton/BackButton";
 import EditStudentForm from "../../components/Forms/EditStudentForm/EditStudentForm";
 import ChangeStudentSemester from "../../components/Forms/ChangeStudentSemester/ChangeStudentSemester";
 import AddStudentCourse from "../../components/Forms/AddStudentCourse/AddStudentCourse";
+import DeleteStudentCourse from "../../components/Forms/DeleteStudentCourse/DeleteStudentCourse";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const SelectedStudentPage = ({studentReducer, history}) => {
                 {studentReducer.currentStudentId && <EditStudentForm/>}
                 {studentReducer.currentStudent && <ChangeStudentSemester/>}
                 <AddStudentCourse/>
+                <DeleteStudentCourse/>
             </StyledWrapper>
         </>
     )
