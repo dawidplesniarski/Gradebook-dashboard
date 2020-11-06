@@ -75,7 +75,7 @@ const AdminMainPage = ({loginReducer, history}) => {
                       </StyledIconDescription>
                       <img src={StudentIcon} alt={'student'}/>
                   </StyledButton>
-                  <StyledButton>
+                  <StyledButton onClick={() => history.push('/adminEmployeesPage')}>
                       <StyledIconDescription>
                           Pracownicy
                       </StyledIconDescription>
