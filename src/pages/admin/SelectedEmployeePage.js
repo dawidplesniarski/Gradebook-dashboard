@@ -5,6 +5,7 @@ import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import styled from "styled-components";
 import EditEmployeeForm from "../../components/Forms/EditEmployeeForm/EditEmployeeForm";
+import AddEmployeeSubject from "../../components/Forms/AddEmployeeSubject/AddEmployeeSubject";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -19,6 +20,7 @@ const SelectedEmployeePage = ({employeeReducer, history}) => {
             <BackButton onClick={() => history.push('/adminEmployeesPage')}/>
             <StyledWrapper>
                 {employeeReducer.currentEmployee && <EditEmployeeForm employeeData={employeeReducer.currentEmployee}/>}
+                <AddEmployeeSubject currentEmployee={employeeReducer.currentEmployee}/>
             </StyledWrapper>
         </>
     );

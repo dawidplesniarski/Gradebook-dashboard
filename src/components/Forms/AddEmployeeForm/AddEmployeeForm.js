@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import axios from 'axios';
-import styled from 'styled-components';
 import {getUniversities} from "../../../actions/universityActions";
 import {API_URL, TOKEN} from "../../../utils/helpers";
 import SelectUniversity from "../../Atoms/SelectUniversityMenu/SelectUniversityMenu";
@@ -9,7 +8,7 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import {Paper} from "@material-ui/core";
 import List from "@material-ui/core/List";
 import {StyledListItemButton} from "../AddStudentForm/AddStudentForm.styles";
-import AcademicTitleMenu from "../../AcademicTitleSelectMenu/AcademicTitleMenu";
+import AcademicTitleMenu from "../../Atoms/AcademicTitleSelectMenu/AcademicTitleMenu";
 import SelectCourseMenu from "../../Atoms/SelectCourseMenu/SelectCourseMenu";
 import SelectMenu from "../../Atoms/SelectMenu/SelectMenu";
 import Button from "../../Atoms/Button/Button";
@@ -136,7 +135,7 @@ const AddEmployeeForm = ({getUniversities, universityReducer}) => {
                                placeholder={'Nazwisko'}/>
                     <TextInput onChange={e => setLogin(e.target.value)} type={'text'} name={'Login'}
                                placeholder={'Login'}/>
-                    <TextInput onChange={e => setPassword(e.target.value)} type={'text'} name={'Password'}
+                    <TextInput onChange={e => setPassword(e.target.value)} type={'password'} name={'Password'}
                                placeholder={'Hasło'}/>
                     <TextInput onChange={e => setEmail(e.target.value)} type={'text'} name={'Email'}
                                placeholder={'Email'}/>

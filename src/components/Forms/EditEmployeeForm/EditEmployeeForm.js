@@ -3,57 +3,17 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
 import Switch from '@material-ui/core/Switch';
 import axios from 'axios';
-import styled from 'styled-components';
-import AcademicTitleMenu from "../../AcademicTitleSelectMenu/AcademicTitleMenu";
+import AcademicTitleMenu from "../../Atoms/AcademicTitleSelectMenu/AcademicTitleMenu";
 import {API_URL, TOKEN} from "../../../utils/helpers";
 import AlertComponent from "../../Atoms/Alert/Alert";
+import {
+    StyledFormText,
+    StyledSwitchWrapper,
+    StyledFormTitle,
+    TextInputWrapper,
+    EditEmployeeFormWrapper
+} from './EditEmployeeForm.styles'
 
-const EditEmployeeFormWrapper = styled.div`
-  background-color: #FFF;
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-  padding: 0.25rem;
-  align-items: center;
-  margin-bottom: 10px;
-  @media (max-width: 1000px) {
-    width: 500px;
-  }
-  @media (max-width: 800px) {
-    width: 400px;
-  }
-  @media (max-width: 700px) {
-    width: 350px;
-  }
-`;
-
-const TextInputWrapper = styled.div`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledFormTitle = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: 500;
-  font-size: 25px;
-  @media(max-width: 768px) {
-    font-size: 20px;
-  }
-`;
-
-const StyledFormText = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: normal;
-  font-size: 20px;
-`;
-
-const StyledSwitchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 const EditEmployeeForm = ({employeeData}) => {
     const [academicTitle, setAcademicTitle] = useState(null);
