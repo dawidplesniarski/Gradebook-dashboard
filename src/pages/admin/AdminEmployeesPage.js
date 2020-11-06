@@ -7,6 +7,8 @@ import BackButton from "../../components/Atoms/BackButton/BackButton";
 import {getAllEmployees} from "../../actions/employeeActions";
 import AllEmployeesTable from "../../components/Tables/AllEmployeesTable";
 import {Paper} from "@material-ui/core";
+import AddButton from "../../components/Atoms/AddButton/AddButton";
+import AddEmployeeForm from "../../components/Forms/AddEmployeeForm/AddEmployeeForm";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -19,6 +21,7 @@ const StyledMainPageContainer = styled.div`
 `;
 
 const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
+    const [formVisible, setFormVisible] = useState(false);
 
     useEffect(() => {
         getAllEmployees();
@@ -26,12 +29,14 @@ const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
     return (
         <>
             <Burger/>
+            <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledMainPageContainer>
-                {employeeReducer.allEmployees.length > 0 &&
+                {!formVisible ?
                     <Paper elevation={5}>
                         <AllEmployeesTable data={employeeReducer.allEmployees}/>
-                    </Paper>}
+                    </Paper> :
+                    <AddEmployeeForm/>}
             </StyledMainPageContainer>
         </>
     );

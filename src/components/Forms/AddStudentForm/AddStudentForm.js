@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import {Paper} from "@material-ui/core";
 import Button from '../../Atoms/Button/Button';
 import axios from 'axios';
-import {API_URL} from "../../../utils/helpers";
+import {API_URL, TOKEN} from "../../../utils/helpers";
 import {connect} from 'react-redux';
 import SelectCourseMenu from "../../Atoms/SelectCourseMenu/SelectCourseMenu";
 import {getUniversities} from "../../../actions/universityActions";
@@ -48,7 +48,6 @@ const AddStudentForm = ({universityReducer}) => {
     };
 
     const addStudent = (successCallback, errorCallback) => {
-        const token = localStorage.getItem('token');
 
         axios.post(`${API_URL}/users/addUser`,
             {
@@ -64,7 +63,7 @@ const AddStudentForm = ({universityReducer}) => {
                 courseId: studentCourses,
                 semesters: semesters
             },{
-                headers: {'Authorization': `Bearer ${token}`}
+                headers: {'Authorization': `Bearer ${TOKEN}`}
             }).then(res =>{
                 successCallback();
         }).catch(err => {
@@ -78,7 +77,7 @@ const AddStudentForm = ({universityReducer}) => {
         setSemesters(oldArray => [...oldArray, semester])
     };
 
-    function deleteCourseFromArray(course, index) {
+    function deleteCourseFromArray() {
         setStudentCourses([]);
         setSemesters([]);
     };
@@ -139,7 +138,7 @@ const AddStudentForm = ({universityReducer}) => {
                         {
                             studentCourses.map((element, index) =>
                                 <StyledListItemButton
-                                    onClick={() => deleteCourseFromArray(element, index)}>
+                                    onClick={() => deleteCourseFromArray()}>
                                     {findCourseNameById(element)}, semestr {semesters[index]}
                                 </StyledListItemButton>
                             )
