@@ -5,6 +5,8 @@ import {withRouter} from "react-router";
 import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import {getAllEmployees} from "../../actions/employeeActions";
+import AllEmployeesTable from "../../components/Tables/AllEmployeesTable";
+import {Paper} from "@material-ui/core";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -20,13 +22,16 @@ const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
 
     useEffect(() => {
         getAllEmployees();
-    },[])
+    }, [])
     return (
         <>
             <Burger/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledMainPageContainer>
-                {employeeReducer.allEmployees.length > 0 && <span>{employeeReducer.allEmployees.length}</span>}
+                {employeeReducer.allEmployees.length > 0 &&
+                    <Paper elevation={5}>
+                        <AllEmployeesTable data={employeeReducer.allEmployees}/>
+                    </Paper>}
             </StyledMainPageContainer>
         </>
     );
@@ -37,7 +42,7 @@ const mapStateToProps = ({employeeReducer}) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         getAllEmployees: () => dispatch(getAllEmployees())
     }
 }
