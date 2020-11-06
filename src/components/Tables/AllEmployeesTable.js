@@ -72,7 +72,7 @@ const AllEmployeesTable = ({data, getCurrentEmployee}) => {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Studenci',
+                Header: 'Pracownicy',
                 columns: [
                     {
                         Header: 'Tytuł',
@@ -92,6 +92,15 @@ const AllEmployeesTable = ({data, getCurrentEmployee}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 {values.isEnabled === true ? <span>Aktywny</span> : <span>Nie aktywny</span>}
+                            </StyledLinkWrapper>
+                        )
+                    },
+                    {
+                        Header: 'Admin',
+                        accessor: 'isAdmin',
+                        Cell: ({row: {values}}) => (
+                            <StyledLinkWrapper>
+                                {values.isAdmin === true ? <span>Tak</span> : <span>Nie</span>}
                             </StyledLinkWrapper>
                         )
                     },
