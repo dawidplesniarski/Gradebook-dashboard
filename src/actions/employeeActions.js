@@ -4,7 +4,8 @@ import {
     SET_CURRENT_EMPLOYEE,
     SET_ALL_EMPLOYEES_ERROR,
     SET_ALL_EMPLOYEES,
-    SET_CURRENT_EMPLOYEE_ERROR
+    SET_CURRENT_EMPLOYEE_ERROR,
+    RESET_CURRENT_EMPLOYEE
 } from '../reducers/employeeReducer';
 import axios from 'axios';
 import {API_URL} from "../utils/helpers";
@@ -12,6 +13,12 @@ import {API_URL} from "../utils/helpers";
 const fetchStart = () => {
     return {
         type: FETCH_START
+    };
+};
+
+const resetCurrentEmployee = () => {
+    return {
+        type: RESET_CURRENT_EMPLOYEE
     };
 };
 
@@ -62,6 +69,7 @@ export const getAllEmployees = () => async dispatch => {
 
 export const getCurrentEmployee = (employeeId) => async dispatch => {
     dispatch(fetchStart());
+    dispatch(resetCurrentEmployee());
     try {
         const {data} = await axios.get(`${API_URL}/employee/findById/${employeeId}`);
         dispatch(setCurrentEmployee(data));

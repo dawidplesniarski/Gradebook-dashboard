@@ -3,7 +3,7 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import Switch from '@material-ui/core/Switch';
 import Button from '../../Atoms/Button/Button';
 import axios from 'axios';
-import {API_URL} from "../../../utils/helpers";
+import {API_URL, TOKEN} from "../../../utils/helpers";
 import {AddStudentFormWrapper, TextInputWrapper, StyledFormText, StyledSwitchWrapper, StyledFormTitle}
     from './EditStudentForm.styles';
 import AlertComponent from "../../Atoms/Alert/Alert";
@@ -24,7 +24,6 @@ const EditStudentForm = ({studentReducer, setCurrentStudent}) => {
     const [currentStudent, setCurrentStudentData] = useState(null);
 
     const editStudent = (studentId, successCallback, errorCallback) => {
-        const token = localStorage.getItem('token');
         axios.put(`${API_URL}/users/editUserData/${studentId}`,
             {
                 name: name,
@@ -36,7 +35,7 @@ const EditStudentForm = ({studentReducer, setCurrentStudent}) => {
                 imageUrl: imageUrl,
             },
             {
-                headers: {'Authorization': `Bearer ${token}`}
+                headers: {'Authorization': `Bearer ${TOKEN}`}
             }).then(res => {
             successCallback();
         }).catch(err => {

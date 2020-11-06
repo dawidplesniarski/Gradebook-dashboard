@@ -15,53 +15,13 @@ import SelectMenu from "../../Atoms/SelectMenu/SelectMenu";
 import Button from "../../Atoms/Button/Button";
 import Switch from '@material-ui/core/Switch';
 import AlertComponent from "../../Atoms/Alert/Alert";
-
-const AddEmployeeFormWrapper = styled.div`
-  background-color: #FFF;
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-  padding: 0.25rem;
-  align-items: center;
-  margin-bottom: 20px;
- 
-  @media (max-width: 1000px) {
-    width: 500px;
-  }
-  @media (max-width: 800px) {
-    width: 400px;
-  }
-  @media (max-width: 700px) {
-    width: 350px;
-  }
-`;
-
-const TextInputWrapper = styled.div`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledFormTitle = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: 500;
-  font-size: 25px;
-  @media(max-width: 768px) {
-    font-size: 20px;
-  }
-`;
-const StyledFormText = styled.p`
-  font-family: Montserrat,serif;
-  font-weight: normal;
-  font-size: 20px;
-`;
-
-const StyledSwitchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
+import {
+    StyledFormText,
+    StyledSwitchWrapper,
+    TextInputWrapper,
+    StyledFormTitle,
+    AddEmployeeFormWrapper
+} from './AddEmployeForm.styles'
 
 const AddEmployeeForm = ({getUniversities, universityReducer}) => {
     const [name, setName] = useState(null);
@@ -132,22 +92,24 @@ const AddEmployeeForm = ({getUniversities, universityReducer}) => {
     };
 
     const addNewEmployee = () => {
-            axios.post(`${API_URL}/employee/addEmployee`, {
-                academicTitle: academictitle,
-                name: name,
-                lastName: lastName,
-                isAdmin: isAdmin,
-                enabled: enabled,
-                login: login,
-                password: password,
-                universityId: employeeUniversities,
-                courseId: employeeCourses,
-                subjectId: employeeSubjects,
-                email: email,
-                imageUrl: imageUrl
-            })
-                .then(setAlertVisible(true))
-                .catch(err => {
+        axios.post(`${API_URL}/employee/addEmployee`, {
+            academicTitle: academictitle,
+            name: name,
+            lastName: lastName,
+            isAdmin: isAdmin,
+            enabled: enabled,
+            login: login,
+            password: password,
+            universityId: employeeUniversities,
+            courseId: employeeCourses,
+            subjectId: employeeSubjects,
+            email: email,
+            imageUrl: imageUrl
+        },{
+            headers: {'Authorization': `Bearer ${TOKEN}`}
+        })
+            .then(setAlertVisible(true))
+            .catch(err => {
                 console.log(err);
             });
 

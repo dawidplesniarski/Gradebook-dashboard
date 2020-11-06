@@ -1,5 +1,6 @@
 export const FETCH_START = 'FETCH_START';
 export const SET_CURRENT_EMPLOYEE = 'SET_CURRENT_EMPLOYEE';
+export const RESET_CURRENT_EMPLOYEE = 'RESET_CURRENT_EMPLOYEE';
 export const SET_CURRENT_EMPLOYEE_ERROR = 'SET_CURRENT_EMPLOYEE_ERROR';
 export const SET_CURRENT_EMPLOYEE_ID = 'SET_CURRENT_EMPLOYEE_ID';
 export const SET_ALL_EMPLOYEES = 'SET_ALL_EMPLOYEES';
@@ -38,6 +39,12 @@ export const employeeReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 allEmployees: action.payload
+            };
+        case RESET_CURRENT_EMPLOYEE:
+            return {
+                ...state,
+                isLoading: false,
+                currentEmployee: null
             };
         case SET_ALL_EMPLOYEES_ERROR:
             return {

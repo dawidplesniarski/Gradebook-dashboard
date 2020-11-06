@@ -15,6 +15,8 @@ const Select = styled.select`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Montserrat,serif;
+  font-weight: normal;
   flex-direction: row;
   border-radius: 50px;
   transition: all 0.4s ease;
@@ -22,6 +24,11 @@ const Select = styled.select`
   background-color: transparent;
   &:focus {
     outline: none;
+  }
+  option {
+    font-family: Montserrat,serif;
+    font-weight: normal;
+    font-size: 17px;
   }
 `;
 
