@@ -6,7 +6,10 @@ import {withRouter} from "react-router";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import {getUniversities} from "../../actions/universityActions";
 import AllUniversitiesTable from "../../components/Tables/AllUniversitiesTable";
+import AllUniversitiesImage from '../../assets/images/all-universities.svg';
 import {Paper} from "@material-ui/core";
+import AddButton from "../../components/Atoms/AddButton/AddButton";
+import AddUniversityForm from "../../components/Forms/AddUniversityForm/AddUniversityForm";
 
 const StyledUniversitiesPageContainer = styled.div`
   display: flex;
@@ -19,6 +22,7 @@ const StyledUniversitiesPageContainer = styled.div`
 `;
 
 const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) => {
+    const [formVisible, setFormVisible] = useState(false);
 
     useEffect(() => {
         getUniversities();
@@ -27,10 +31,18 @@ const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) =>
         <>
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
+            <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
             <StyledUniversitiesPageContainer>
-                <Paper elevation={5}>
-                    <AllUniversitiesTable data={universityReducer.universities}/>
-                </Paper>
+                {!formVisible ?
+                    <>
+                        <img src={AllUniversitiesImage} alt={'Universities'}/>
+                        <Paper elevation={5}>
+                            <AllUniversitiesTable data={universityReducer.universities}/>
+                        </Paper>
+                    </>
+                     :
+                    <AddUniversityForm/>
+                }
             </StyledUniversitiesPageContainer>
         </>
     );
