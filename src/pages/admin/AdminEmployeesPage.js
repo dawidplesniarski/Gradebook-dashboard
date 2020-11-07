@@ -30,7 +30,7 @@ const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
     }, [])
     return (
         <>
-            <Burger/>
+            <Burger isAdminOpened={true}/>
             <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledMainPageContainer>

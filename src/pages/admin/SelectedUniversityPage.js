@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
 const SelectedUniversityPage = ({history, universityReducer}) => {
   return(
       <>
-          <Burger/>
+          <Burger isAdminOpened={true}/>
           <BackButton onClick={() => history.push('/adminUniversitiesPage')}/>
           <StyledWrapper>
               {universityReducer.currentUniversity && <span>{universityReducer.currentUniversity.universityName}</span>}

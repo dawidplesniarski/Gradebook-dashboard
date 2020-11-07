@@ -21,7 +21,7 @@ const StyledWrapper = styled.div`
 const SelectedEmployeePage = ({employeeReducer, history}) => {
     return(
         <>
-            <Burger/>
+            <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminEmployeesPage')}/>
             <StyledWrapper>
                 {employeeReducer.currentEmployee &&

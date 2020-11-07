@@ -25,7 +25,7 @@ const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) =>
     }, []);
     return (
         <>
-            <Burger/>
+            <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledUniversitiesPageContainer>
                 <Paper elevation={5}>
