@@ -30,12 +30,11 @@ const AddEmployeeCourse = ({employeeData}) => {
             if(res.data) {
                 setAlertVisible(true);
             }
+        }).catch(err => {
+            if(err) {
+                setErrorAlertVisible(true);
+            }
         })
-            .catch(err => {
-                if (err) {
-                    setErrorAlertVisible(true);
-                }
-            })
     }
 
     useEffect(() => {
