@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {withRouter} from "react-router";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import {getUniversities} from "../../actions/universityActions";
+import AllUniversitiesTable from "../../components/Tables/AllUniversitiesTable";
+import {Paper} from "@material-ui/core";
 
 const StyledUniversitiesPageContainer = styled.div`
   display: flex;
@@ -26,7 +28,9 @@ const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) =>
             <Burger/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledUniversitiesPageContainer>
-                {universityReducer.universities.length > 0 && <span>{universityReducer.universities.length}</span>}
+                <Paper elevation={5}>
+                    <AllUniversitiesTable data={universityReducer.universities}/>
+                </Paper>
             </StyledUniversitiesPageContainer>
         </>
     );

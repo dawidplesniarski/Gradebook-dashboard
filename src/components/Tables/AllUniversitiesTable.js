@@ -26,10 +26,13 @@ const StyledLink = styled(Link)`
 
 const TableWrapper = styled.div`
     width: 100%;
-    min-width: 300px;
+    min-width: 600px;
     font-size: 20px;
     color: #464e51;
     font-family: Montserrat,serif;
+    @media (max-width: 768px) {
+      min-width: 300px;
+    }
 `;
 const Styles = styled.div`
   padding: 1rem;
@@ -62,7 +65,7 @@ const Styles = styled.div`
   }
 `;
 
-const UniversitiesTable = ({data, getCurrentUniversity}) => {
+const AllUniversitiesTable = ({data, getCurrentUniversity}) => {
 
     const columns = React.useMemo(
         () => [
@@ -79,8 +82,8 @@ const UniversitiesTable = ({data, getCurrentUniversity}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                    onClick={() => setCurrentUniversity(values)}
-                                    to={'#'}>
+                                    onClick={() => getCurrentUniversity(values._id)}
+                                    to={'/selectedUniversity'}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>
@@ -140,4 +143,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(UniversitiesTable);
+export default connect(null, mapDispatchToProps)(AllUniversitiesTable);
