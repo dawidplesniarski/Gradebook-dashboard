@@ -9,6 +9,8 @@ import AllEmployeesTable from "../../components/Tables/AllEmployeesTable";
 import {Paper} from "@material-ui/core";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddEmployeeForm from "../../components/Forms/AddEmployeeForm/AddEmployeeForm";
+import AllEmployeesImage from '../../assets/images/all-employees.svg';
+import Footer from "../../components/Molecules/Footer/Footer";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -33,11 +35,15 @@ const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledMainPageContainer>
                 {!formVisible ?
-                    <Paper elevation={5}>
-                        <AllEmployeesTable data={employeeReducer.allEmployees}/>
-                    </Paper> :
+                    <>
+                        <img src={AllEmployeesImage} alt={'Employees'}/>
+                        <Paper elevation={5}>
+                            <AllEmployeesTable data={employeeReducer.allEmployees}/>
+                        </Paper>
+                    </> :
                     <AddEmployeeForm/>}
             </StyledMainPageContainer>
+            <Footer/>
         </>
     );
 };

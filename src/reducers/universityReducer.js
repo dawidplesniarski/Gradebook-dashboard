@@ -4,7 +4,10 @@ export const UNIVERSITIES_ERROR = 'UNIVERSITIES_ERROR';
 export const SET_UNIVERSITY_STUDENTS = 'SET_UNIVERSITY_STUDENTS';
 export const UNIVERSITY_STUDENTS_ERROR = 'UNIVERSITY_STUDENTS_ERROR';
 export const SET_CURRENT_UNIVERSITY = 'SET_CURRENT_UNIVERSITY';
+export const SET_CURRENT_UNIVERSITY_ERROR = 'SET_CURRENT_UNIVERSITY_ERROR';
+export const SET_CURRENT_UNIVERSITY_ID = 'SET_CURRENT_UNIVERSITY_ID';
 export const SET_CURRENT_COURSE = 'SET_CURRENT_COURSE';
+export const RESET_CURRENT_UNIVERSITY = 'RESET_CURRENT_UNIVERSITY';
 
 const initialState = {
     isLoading: false,
@@ -13,6 +16,8 @@ const initialState = {
     universityStudents: [],
     universityStudentsError: null,
     currentUniversity: null,
+    currentUniversityError: null,
+    currentUniversityId: null,
     currentCourse: null
 };
 
@@ -53,7 +58,24 @@ export const universityReducer = (state = initialState, action) => {
         case SET_CURRENT_UNIVERSITY:
             return {
                 ...state,
+                isLoading: false,
                 currentUniversity: action.payload
+            };
+        case SET_CURRENT_UNIVERSITY_ERROR:
+            return {
+              ...state,
+              isLoading: false,
+              currentUniversityError: action.payload
+            };
+        case SET_CURRENT_UNIVERSITY_ID:
+            return {
+              ...state,
+              currentUniversityId: action.payload
+            };
+        case RESET_CURRENT_UNIVERSITY:
+            return {
+              ...state,
+              currentUniversity: null
             };
         case SET_CURRENT_COURSE:
             return {

@@ -83,7 +83,7 @@ const AdminMainPage = ({loginReducer, history}) => {
                   </StyledButton>
               </MenuIconsRow>
               <MenuIconsRow>
-                  <StyledButton>
+                  <StyledButton onClick={() => history.push('/adminUniversitiesPage')}>
                       <StyledIconDescription>
                           Uczelnie
                       </StyledIconDescription>

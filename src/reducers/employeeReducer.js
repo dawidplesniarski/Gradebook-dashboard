@@ -43,7 +43,6 @@ export const employeeReducer = (state = initialState, action) => {
         case RESET_CURRENT_EMPLOYEE:
             return {
                 ...state,
-                isLoading: false,
                 currentEmployee: null
             };
         case SET_ALL_EMPLOYEES_ERROR:
