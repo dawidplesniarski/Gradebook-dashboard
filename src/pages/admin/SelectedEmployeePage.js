@@ -10,6 +10,7 @@ import DeleteEmployeeSubject from "../../components/Forms/DeleteEmployeeSubject/
 import AddEmployeeCourse from "../../components/Forms/AddEmployeeCourse/AddEmployeeCourse";
 import DeleteEmployeeCourse from "../../components/Forms/DeleteEmployeeCourse/DeleteEmployeeCourse";
 import AddEmployeeUniversity from "../../components/Forms/AddEmployeeUniversity/AddEmployeeUniversity";
+import DeleteEmployeeUniversity from "../../components/Forms/DeleteEmployeeUniversity/DeleteEmployeeUniversity";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ const SelectedEmployeePage = ({employeeReducer, history}) => {
                     <AddEmployeeCourse employeeData={employeeReducer.currentEmployee}/>
                     <DeleteEmployeeCourse employeeData={employeeReducer.currentEmployee}/>
                     <AddEmployeeUniversity employeeData={employeeReducer.currentEmployee}/>
+                    <DeleteEmployeeUniversity employeeData={employeeReducer.currentEmployee}/>
                 </>}
             </StyledWrapper>
         </>
