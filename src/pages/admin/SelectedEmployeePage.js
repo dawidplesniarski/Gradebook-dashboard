@@ -7,6 +7,7 @@ import styled from "styled-components";
 import EditEmployeeForm from "../../components/Forms/EditEmployeeForm/EditEmployeeForm";
 import AddEmployeeSubject from "../../components/Forms/AddEmployeeSubject/AddEmployeeSubject";
 import DeleteEmployeeSubject from "../../components/Forms/DeleteEmployeeSubject/DeleteEmployeeSubject";
+import AddEmployeeCourse from "../../components/Forms/AddEmployeeCourse/AddEmployeeCourse";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ const SelectedEmployeePage = ({employeeReducer, history}) => {
                     <EditEmployeeForm employeeData={employeeReducer.currentEmployee}/>
                     <AddEmployeeSubject employeeData={employeeReducer.currentEmployee}/>
                     <DeleteEmployeeSubject employeeData={employeeReducer.currentEmployee}/>
+                    <AddEmployeeCourse employeeData={employeeReducer.currentEmployee}/>
                 </>}
             </StyledWrapper>
         </>

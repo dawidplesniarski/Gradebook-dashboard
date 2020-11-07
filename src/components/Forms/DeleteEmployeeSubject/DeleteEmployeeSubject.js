@@ -33,7 +33,7 @@ const DeleteEmployeeSubject = ({employeeData}) => {
             <DeleteEmployeeSubjectWrapper>
                 <StyledContentWrapper>
                     <StyledFormTitle>Usuń przedmiot:</StyledFormTitle>
-                    <SelectMenu onChange={e => setSelectedSubject(e.target.value)} name={'Subject'} data={employeeData.subjectId}/>
+                    <SelectMenu onChange={e => setSelectedSubject(e.target.value)} placeholder={`Przedmioty pracownika ${employeeData.name} ${employeeData.lastName}`} name={'Subject'} data={employeeData.subjectId}/>
                     <Button disabled={!selectedSubject} onClick={async () => await deleteEmployeeSubject(selectedSubject)}>
                         Usuń przedmiot
                     </Button>
