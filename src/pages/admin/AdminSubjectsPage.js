@@ -8,6 +8,8 @@ import Footer from "../../components/Molecules/Footer/Footer";
 import {getSubjects} from "../../actions/subjectActions";
 import AllSubjectsTable from "../../components/Tables/AllSubjectsTable";
 import {Paper} from "@material-ui/core";
+import AddButton from "../../components/Atoms/AddButton/AddButton";
+import AddSubjectWithDetails from "../../components/Forms/AddSubjectWithDetails/AddSubjectWithDetails";
 
 
 const StyledSubjectsPageContainer = styled.div`
@@ -17,10 +19,11 @@ const StyledSubjectsPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 `;
 
 const AdminSubjectsPage = ({history, getSubjects, subjectReducer}) => {
+    const [formVisible, setFormVisible] = useState(false);
     useEffect(() => {
         getSubjects();
     },[])
@@ -28,10 +31,15 @@ const AdminSubjectsPage = ({history, getSubjects, subjectReducer}) => {
       <>
           <Burger isAdminOpened={true}/>
           <BackButton onClick={() => history.push('/adminMainPage')}/>
+          <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
           <StyledSubjectsPageContainer>
-              <Paper elevation={5}>
-                  <AllSubjectsTable data={subjectReducer.subjects}/>
-              </Paper>
+              {!formVisible ?
+                  <Paper elevation={5}>
+                      <AllSubjectsTable data={subjectReducer.subjects}/>
+                  </Paper> :
+                  <AddSubjectWithDetails/>
+              }
+
           </StyledSubjectsPageContainer>
           <Footer/>
       </>

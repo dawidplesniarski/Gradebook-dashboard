@@ -5,7 +5,6 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
 import {API_URL, TOKEN} from "../../../utils/helpers";
 import AlertComponent from "../../Atoms/Alert/Alert";
-import Footer from "../../Molecules/Footer/Footer";
 
 const AddUniversityForm = () => {
     const [universityName, setUniversityName] = useState(null);
@@ -44,7 +43,6 @@ const AddUniversityForm = () => {
                     </Button>
                 </StyledContentWrapper>
             </AddUniversityWrapper>
-            <Footer/>
         </>
     );
 };
