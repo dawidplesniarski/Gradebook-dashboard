@@ -10,6 +10,7 @@ import AllSubjectsTable from "../../components/Tables/AllSubjectsTable";
 import {Paper} from "@material-ui/core";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddSubjectWithDetails from "../../components/Forms/AddSubjectWithDetails/AddSubjectWithDetails";
+import TextInput from "../../components/Atoms/TextInput/TextInput";
 
 
 const StyledSubjectsPageContainer = styled.div`
@@ -22,8 +23,13 @@ const StyledSubjectsPageContainer = styled.div`
   margin-bottom: 70px;
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 40%;
+`;
+
 const AdminSubjectsPage = ({history, getSubjects, subjectReducer}) => {
     const [formVisible, setFormVisible] = useState(false);
+    const [filter, setFilter] = useState('');
     useEffect(() => {
         getSubjects();
     },[])
@@ -34,9 +40,14 @@ const AdminSubjectsPage = ({history, getSubjects, subjectReducer}) => {
           <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
           <StyledSubjectsPageContainer>
               {!formVisible ?
-                  <Paper elevation={5}>
-                      <AllSubjectsTable data={subjectReducer.subjects}/>
-                  </Paper> :
+                  <>
+                      <SearchBarWrapper>
+                          <TextInput onChange={e => setFilter(e.target.value)} type={'texr'} name={'Filter'} placeholder={'Filtruj po nazwie'}/>
+                      </SearchBarWrapper>
+                      <Paper elevation={5}>
+                          <AllSubjectsTable data={subjectReducer.subjects.filter(e => e.subjectName.toLowerCase().includes(filter.toLowerCase()))}/>
+                      </Paper>
+                  </> :
                   <AddSubjectWithDetails/>
               }
 

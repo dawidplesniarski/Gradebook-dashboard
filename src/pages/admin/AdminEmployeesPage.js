@@ -11,6 +11,7 @@ import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddEmployeeForm from "../../components/Forms/AddEmployeeForm/AddEmployeeForm";
 import AllEmployeesImage from '../../assets/images/all-employees.svg';
 import Footer from "../../components/Molecules/Footer/Footer";
+import TextInput from "../../components/Atoms/TextInput/TextInput";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -22,8 +23,13 @@ const StyledMainPageContainer = styled.div`
   margin-bottom: 50px;
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 40%;
+`;
+
 const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
     const [formVisible, setFormVisible] = useState(false);
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         getAllEmployees();
@@ -37,8 +43,11 @@ const AdminEmployeesPage = ({history, getAllEmployees, employeeReducer}) => {
                 {!formVisible ?
                     <>
                         <img src={AllEmployeesImage} alt={'Employees'}/>
+                        <SearchBarWrapper>
+                            <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwisku'}/>
+                        </SearchBarWrapper>
                         <Paper elevation={5}>
-                            <AllEmployeesTable data={employeeReducer.allEmployees}/>
+                            <AllEmployeesTable data={employeeReducer.allEmployees.filter(e => e.lastName.toLowerCase().includes(filter.toLowerCase()))}/>
                         </Paper>
                     </> :
                     <AddEmployeeForm/>}

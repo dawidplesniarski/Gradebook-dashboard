@@ -11,6 +11,7 @@ import {Paper} from "@material-ui/core";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddUniversityForm from "../../components/Forms/AddUniversityForm/AddUniversityForm";
 import Footer from "../../components/Molecules/Footer/Footer";
+import TextInput from "../../components/Atoms/TextInput/TextInput";
 
 const StyledUniversitiesPageContainer = styled.div`
   display: flex;
@@ -22,8 +23,13 @@ const StyledUniversitiesPageContainer = styled.div`
   margin-bottom: 50px;
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 40%;
+`;
+
 const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) => {
     const [formVisible, setFormVisible] = useState(false);
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         getUniversities();
@@ -37,8 +43,11 @@ const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) =>
                 {!formVisible ?
                     <>
                         <img src={AllUniversitiesImage} alt={'Universities'}/>
+                        <SearchBarWrapper>
+                            <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwie'}/>
+                        </SearchBarWrapper>
                         <Paper elevation={5}>
-                            <AllUniversitiesTable data={universityReducer.universities}/>
+                            <AllUniversitiesTable data={universityReducer.universities.filter(e => e.universityName.toLowerCase().includes(filter.toLowerCase()))}/>
                         </Paper>
                     </>
                      :

@@ -12,6 +12,7 @@ import AllUsersTable from "../../components/Tables/AllUsersTable";
 import {Paper} from "@material-ui/core";
 import Footer from "../../components/Molecules/Footer/Footer";
 import AllStudentsImage from '../../assets/images/all-students.svg';
+import TextInput from "../../components/Atoms/TextInput/TextInput";
 
 const StyledMainPageContainer = styled.div`
   display: flex;
@@ -23,9 +24,14 @@ const StyledMainPageContainer = styled.div`
   margin-bottom: 50px;
 `;
 
+const SearchBarWrapper = styled.div`
+  width: 40%;
+`;
+
 const AdminStudentsPage = ({loginReducer, history}) => {
     const [studentsData, setStudentsData] = useState([]);
     const [formVisible, toggleForm] = useState(false);
+    const [filter, setFilter] = useState('');
 
     const fetchAllStudents = () => {
         try {
@@ -50,8 +56,11 @@ const AdminStudentsPage = ({loginReducer, history}) => {
                 {!formVisible ?
                     <>
                         <img src={AllStudentsImage} alt={'students'}/>
+                        <SearchBarWrapper>
+                            <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwisku'}/>
+                        </SearchBarWrapper>
                         <Paper elevation={5}>
-                            <AllUsersTable data={studentsData}/>
+                            <AllUsersTable data={studentsData.filter(e => e.lastName.toLowerCase().includes(filter.toLowerCase()))}/>
                         </Paper>
                     </>
 
