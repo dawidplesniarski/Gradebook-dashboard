@@ -59,9 +59,9 @@ export const setCurrentSubjectId = (id) => {
 
 export const getSubjects = () => async dispatch => {
     dispatch(fetchStart());
+    dispatch(resetCurrentSubject());
     try {
         const {data} = await axios.get(`${API_URL}/subject/findAll`);
-        dispatch(resetCurrentSubject());
         dispatch(setAllSubjects(data));
     } catch(err) {
         dispatch(setAllSubjectsError(err));

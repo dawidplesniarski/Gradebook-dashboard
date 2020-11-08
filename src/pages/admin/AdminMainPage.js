@@ -89,7 +89,7 @@ const AdminMainPage = ({loginReducer, history}) => {
                       </StyledIconDescription>
                       <img src={UniversityIcon} alt={'uczelnia'}/>
                   </StyledButton>
-                  <StyledButton>
+                  <StyledButton onClick={() => history.push('/adminSubjectsPage')}>
                       <StyledIconDescription>
                           Przedmioty
                       </StyledIconDescription>

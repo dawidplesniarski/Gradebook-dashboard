@@ -27,7 +27,6 @@ export const subjectReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 subjects: action.payload,
-                subjectsError: null
             };
         case SET_ALL_SUBJECTS_ERROR:
             return {
