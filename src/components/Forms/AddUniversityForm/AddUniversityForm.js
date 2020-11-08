@@ -3,7 +3,7 @@ import axios from 'axios';
 import {AddUniversityWrapper, StyledFormTitle, StyledContentWrapper} from './AddUniversityForm.styles';
 import TextInput from "../../Atoms/TextInput/TextInput";
 import Button from "../../Atoms/Button/Button";
-import {API_URL} from "../../../utils/helpers";
+import {API_URL, TOKEN} from "../../../utils/helpers";
 import AlertComponent from "../../Atoms/Alert/Alert";
 import Footer from "../../Molecules/Footer/Footer";
 
@@ -15,6 +15,8 @@ const AddUniversityForm = () => {
     const addUniversity = (universityName) => {
         axios.post(`${API_URL}/university/addUniversity`, {
             universityName: universityName
+        },{
+            headers: {'Authorization': `Bearer ${TOKEN}`}
         }).then(res => {
             if (res.data) {
                 setAlertVisible(true);

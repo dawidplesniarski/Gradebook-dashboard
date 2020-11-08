@@ -10,6 +10,7 @@ import AllUniversitiesImage from '../../assets/images/all-universities.svg';
 import {Paper} from "@material-ui/core";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddUniversityForm from "../../components/Forms/AddUniversityForm/AddUniversityForm";
+import Footer from "../../components/Molecules/Footer/Footer";
 
 const StyledUniversitiesPageContainer = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ const AdminUniversitiesPage = ({history, universityReducer, getUniversities}) =>
                     <AddUniversityForm/>
                 }
             </StyledUniversitiesPageContainer>
+            <Footer/>
         </>
     );
 };
