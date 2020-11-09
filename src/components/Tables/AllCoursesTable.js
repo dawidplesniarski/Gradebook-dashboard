@@ -82,7 +82,7 @@ const AllCoursesTable = ({data, getCurrentCourse}) => {
                         Cell: ({row: {values}}) => (
                             <StyledLinkWrapper>
                                 <StyledLink
-                                    onClick={() => getCurrentCourse(values._id)}
+                                    onClick={() => getCurrentCourse(values.courseName)}
                                     to={'/selectedCourse'}>
                                     Przejdź
                                 </StyledLink>

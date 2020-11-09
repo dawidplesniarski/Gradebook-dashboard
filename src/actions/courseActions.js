@@ -68,11 +68,11 @@ export const getCourses = () => async dispatch => {
     }
 };
 
-export const getCurrentCourse = (id) => async dispatch => {
+export const getCurrentCourse = (courseName) => async dispatch => {
     dispatch(fetchStart());
     dispatch(resetCurrentCourse());
     try {
-        const {data} = await axios.get(`${API_URL}/course/findById/${id}`);
+        const {data} = await axios.get(`${API_URL}/course/findCourseWithSubjects/${courseName}`);
         dispatch(setCurrentCourse(data));
     } catch (err) {
         dispatch(setCurrentCourseError(err));

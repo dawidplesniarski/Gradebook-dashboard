@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import Footer from "../../components/Molecules/Footer/Footer";
+import EditCourseForm from "../../components/Forms/EditCourseForm/EditCourseForm";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const SelectedCoursePage = ({history, courseReducer}) => {
           <Burger isAdminOpened={true}/>
           <BackButton onClick={() => history.push('/adminCoursesPage')}/>
           <StyledWrapper>
-              {courseReducer.currentCourse && <span>{courseReducer.currentCourse.courseName}</span>}
+              {courseReducer.currentCourse && <EditCourseForm courseData={courseReducer.currentCourse}/>}
           </StyledWrapper>
           <Footer/>
       </>
