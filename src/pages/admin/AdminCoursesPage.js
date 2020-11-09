@@ -10,6 +10,7 @@ import AllCoursesTable from "../../components/Tables/AllCoursesTable";
 import {Paper} from '@material-ui/core'
 import TextInput from "../../components/Atoms/TextInput/TextInput";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
+import AddCourseForm from "../../components/Forms/AddCourseForm/AddCourseForm";
 
 const StyledCoursesPageContainer = styled.div`
   display: flex;
@@ -47,7 +48,7 @@ const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
                             <AllCoursesTable data={courseReducer.courses.filter(e => e.courseName.toLowerCase().includes(filter.toLowerCase()))}/>
                         </Paper>
                     </> :
-                    <span>Form</span>
+                    <AddCourseForm/>
                 }
             </StyledCoursesPageContainer>
             <Footer/>
