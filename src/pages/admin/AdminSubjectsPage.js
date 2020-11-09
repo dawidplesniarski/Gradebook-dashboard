@@ -11,6 +11,7 @@ import {Paper} from "@material-ui/core";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddSubjectWithDetails from "../../components/Forms/AddSubjectWithDetails/AddSubjectWithDetails";
 import TextInput from "../../components/Atoms/TextInput/TextInput";
+import AllSubjectsImage from '../../assets/images/all-subjects.svg';
 
 
 const StyledSubjectsPageContainer = styled.div`
@@ -41,6 +42,7 @@ const AdminSubjectsPage = ({history, getSubjects, subjectReducer}) => {
           <StyledSubjectsPageContainer>
               {!formVisible ?
                   <>
+                      <img src={AllSubjectsImage} alt={'subjects'}/>
                       <SearchBarWrapper>
                           <TextInput onChange={e => setFilter(e.target.value)} type={'texr'} name={'Filter'} placeholder={'Filtruj po nazwie'}/>
                       </SearchBarWrapper>

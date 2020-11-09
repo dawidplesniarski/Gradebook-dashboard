@@ -11,6 +11,7 @@ import {Paper} from '@material-ui/core'
 import TextInput from "../../components/Atoms/TextInput/TextInput";
 import AddButton from "../../components/Atoms/AddButton/AddButton";
 import AddCourseForm from "../../components/Forms/AddCourseForm/AddCourseForm";
+import AllCoursesImage from '../../assets/images/all-courses.svg';
 
 const StyledCoursesPageContainer = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
             <StyledCoursesPageContainer>
                 {!formVisible ?
                     <>
+                        <img src={AllCoursesImage} alt={'courses'}/>
                         <SearchBarWrapper>
                             <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwie'}/>
                         </SearchBarWrapper>

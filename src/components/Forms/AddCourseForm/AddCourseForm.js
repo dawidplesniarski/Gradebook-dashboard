@@ -84,6 +84,7 @@ const AddCourseForm = () => {
                     <SelectSubjectMenu onChange={e => pushSubject(e.target.value)} name={'Subject'}
                                        placeholder={'Dodaj przedmiot'} data={subjectsData}/>
                     }
+
                     <StyledListWrapper>
                         <SemesterNumberWrapper>
                             <p>Semestr:</p>
