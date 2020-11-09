@@ -83,7 +83,7 @@ const AllCoursesTable = ({data, getCurrentCourse}) => {
                             <StyledLinkWrapper>
                                 <StyledLink
                                     onClick={() => getCurrentCourse(values._id)}
-                                    to={'#'}>
+                                    to={'/selectedCourse'}>
                                     Przejdź
                                 </StyledLink>
                             </StyledLinkWrapper>

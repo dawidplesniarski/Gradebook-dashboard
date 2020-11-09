@@ -9,6 +9,7 @@ import Footer from "../../components/Molecules/Footer/Footer";
 import AllCoursesTable from "../../components/Tables/AllCoursesTable";
 import {Paper} from '@material-ui/core'
 import TextInput from "../../components/Atoms/TextInput/TextInput";
+import AddButton from "../../components/Atoms/AddButton/AddButton";
 
 const StyledCoursesPageContainer = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const SearchBarWrapper = styled.div`
 
 const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
     const [filter, setFilter] = useState('');
+    const [formVisible, setFormVisible] = useState(false);
 
     useEffect(() => {
         getCourses();
@@ -34,13 +36,19 @@ const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
         <>
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
+            <AddButton open={formVisible} onClick={() => setFormVisible(!formVisible)}/>
             <StyledCoursesPageContainer>
-                <SearchBarWrapper>
-                    <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwie'}/>
-                </SearchBarWrapper>
-                <Paper elevation={5}>
-                    <AllCoursesTable data={courseReducer.courses.filter(e => e.courseName.toLowerCase().includes(filter.toLowerCase()))}/>
-                </Paper>
+                {!formVisible ?
+                    <>
+                        <SearchBarWrapper>
+                            <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwie'}/>
+                        </SearchBarWrapper>
+                        <Paper elevation={5}>
+                            <AllCoursesTable data={courseReducer.courses.filter(e => e.courseName.toLowerCase().includes(filter.toLowerCase()))}/>
+                        </Paper>
+                    </> :
+                    <span>Form</span>
+                }
             </StyledCoursesPageContainer>
             <Footer/>
         </>
