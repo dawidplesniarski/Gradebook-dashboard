@@ -10,13 +10,14 @@ import {
     StyledAddButton
 } from './AddCourseForm.styles';
 import TextInput from "../../Atoms/TextInput/TextInput";
-import {API_URL} from "../../../utils/helpers";
+import {API_URL, TOKEN} from "../../../utils/helpers";
 import List from "@material-ui/core/List";
 import {Paper} from '@material-ui/core';
 import SelectSubjectMenu from "../../Atoms/SelectSubjectMenu/SelectSubjectMenu";
 import {StyledListItemButton} from "../AddStudentForm/AddStudentForm.styles";
 import PlusIcon from '../../../assets/images/plus.png';
 import Button from "../../Atoms/Button/Button";
+import AlertComponent from "../../Atoms/Alert/Alert";
 
 const AddCourseForm = () => {
     const [subjectsData, setSubjectsData] = useState([]);
@@ -24,6 +25,8 @@ const AddCourseForm = () => {
     const [semesters, setSemesters] = useState([]);
     const [semesterSubjects, setSemesterSubjects] = useState([]);
     const [index, setIndex] = useState(1);
+    const [alertVisible, setAlertVisible] = useState(false);
+    const [errorAlertVisible, setErrorAlertVisible] = useState(false);
 
     const pushSemesterSubjectsToSemesters = (subjects) => {
         setSemesters(oldArr => [...oldArr, subjects]);
@@ -46,11 +49,30 @@ const AddCourseForm = () => {
         });
     };
 
+    const addCourse = (courseName) => {
+        axios.post(`${API_URL}/course/addCourseWithSubjects`,{
+            courseName: courseName,
+            semesters: semesters
+        },{
+            headers: {'Authorization': `Bearer ${TOKEN}`}
+        }).then(res => {
+            if(res.data) {
+                setAlertVisible(true);
+            }
+        }).catch(err => {
+            if (err) {
+                setErrorAlertVisible(true);
+            }
+        })
+    }
+
     useEffect(() => {
         fetchSubjects();
     }, [])
     return (
         <>
+            {alertVisible && <AlertComponent type={'success'} message={`Kierunek ${courseName} został dodany`} onClick={() => setAlertVisible(false)}/>}
+            {errorAlertVisible && <AlertComponent type={'error'} message={`Kierunek ${courseName} już istnieje!`} onClick={() => setErrorAlertVisible(false)}/>}
             <AddCourseWrapper>
                 <StyledContentWrapper>
                     <StyledFormTitle>Dodaj nowy kierunek:</StyledFormTitle>
@@ -89,7 +111,7 @@ const AddCourseForm = () => {
                             <img src={PlusIcon} alt={'plus'}/>
                         </StyledAddButton>
                     </StyledListWrapper>
-                    <Button disabled={!courseName || semesters.length === 0}>
+                    <Button disabled={!courseName || semesters.length === 0} onClick={async () => addCourse(courseName)}>
                         Dodaj kierunek
                     </Button>
                 </StyledContentWrapper>
