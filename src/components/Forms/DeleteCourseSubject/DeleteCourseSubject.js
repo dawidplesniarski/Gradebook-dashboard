@@ -35,7 +35,7 @@ const DeleteCourseSubject = ({subjects}) => {
                         <SmallNumberTextInput onChange={(event) => setSemester(event.target.value)}
                                               type={'number'}
                                               min={1}
-                                              max={10}
+                                              max={subjects.semesters.length}
                                               step={1}
                                               defaultValue={1}
                         />
