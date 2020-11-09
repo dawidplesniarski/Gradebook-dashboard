@@ -6,6 +6,7 @@ import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import Footer from "../../components/Molecules/Footer/Footer";
 import EditCourseForm from "../../components/Forms/EditCourseForm/EditCourseForm";
+import DeleteCourseSubject from "../../components/Forms/DeleteCourseSubject/DeleteCourseSubject";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -23,7 +24,12 @@ const SelectedCoursePage = ({history, courseReducer}) => {
           <Burger isAdminOpened={true}/>
           <BackButton onClick={() => history.push('/adminCoursesPage')}/>
           <StyledWrapper>
-              {courseReducer.currentCourse && <EditCourseForm courseData={courseReducer.currentCourse}/>}
+              {courseReducer.currentCourse &&
+                  <>
+                      <EditCourseForm courseData={courseReducer.currentCourse}/>
+                      <DeleteCourseSubject subjects={courseReducer.currentCourse.courseSubjects}/>
+                  </>
+              }
           </StyledWrapper>
           <Footer/>
       </>

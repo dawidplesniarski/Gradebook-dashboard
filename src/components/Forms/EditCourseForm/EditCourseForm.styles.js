@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const EditCourseFormWrapper = styled.div`
-  background-color: #fcfcfc;
+  background-color: #fafafa;
   width: 700px;
   display: flex;
   flex-direction: column;
