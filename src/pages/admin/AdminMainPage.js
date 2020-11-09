@@ -97,7 +97,7 @@ const AdminMainPage = ({loginReducer, history}) => {
                   </StyledButton>
               </MenuIconsRow>
               <MenuIconsRow>
-                  <StyledButton>
+                  <StyledButton onClick={() => history.push('/adminCoursesPage')}>
                       <StyledIconDescription>
                           Kierunki
                       </StyledIconDescription>

@@ -7,7 +7,7 @@ import {
     SET_ALL_COURSES,
     RESET_CURRENT_COURSE,
     SET_CURRENT_COURSE_ERROR
-} from "../reducers/coursesReducer";
+} from "../reducers/courseReducer";
 import {API_URL} from "../utils/helpers";
 
 const fetchStart = () => {

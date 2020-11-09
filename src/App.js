@@ -15,6 +15,7 @@ import AdminUniversitiesPage from "./pages/admin/AdminUniversitiesPage";
 import SelectedUniversityPage from "./pages/admin/SelectedUniversityPage";
 import AdminSubjectsPage from "./pages/admin/AdminSubjectsPage";
 import SelectedSubjectPage from "./pages/admin/SelectedSubjectPage";
+import AdminCoursesPage from "./pages/admin/AdminCoursesPage";
 import {Switch, Route, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
 import LoadingSpinner from "./components/Atoms/LoadingSpinner/Spinner";
@@ -50,6 +51,7 @@ const App = ({loginReducer}) =>{
                                             <Route path={'/selectedUniversity'} component={SelectedUniversityPage}/>
                                             <Route path={'/adminSubjectsPage'} component={AdminSubjectsPage}/>
                                             <Route path={'/selectedSubject'} component={SelectedSubjectPage}/>
+                                            <Route path={'/adminCoursesPage'} component={AdminCoursesPage}/>
                                         </>
                                     )
                                     : <></>
