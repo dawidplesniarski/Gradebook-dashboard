@@ -6,6 +6,9 @@ import {getCourses} from "../../actions/courseActions";
 import Burger from "../../components/Molecules/Hamburger/Burger";
 import BackButton from "../../components/Atoms/BackButton/BackButton";
 import Footer from "../../components/Molecules/Footer/Footer";
+import AllCoursesTable from "../../components/Tables/AllCoursesTable";
+import {Paper} from '@material-ui/core'
+import TextInput from "../../components/Atoms/TextInput/TextInput";
 
 const StyledCoursesPageContainer = styled.div`
   display: flex;
@@ -14,7 +17,7 @@ const StyledCoursesPageContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 `;
 
 const SearchBarWrapper = styled.div`
@@ -22,6 +25,7 @@ const SearchBarWrapper = styled.div`
 `;
 
 const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         getCourses();
@@ -31,7 +35,12 @@ const AdminCoursesPage = ({courseReducer, getCourses, history}) => {
             <Burger isAdminOpened={true}/>
             <BackButton onClick={() => history.push('/adminMainPage')}/>
             <StyledCoursesPageContainer>
-                <span>{courseReducer.courses.length}</span>
+                <SearchBarWrapper>
+                    <TextInput onChange={e => setFilter(e.target.value)} type={'text'} name={'Search'} placeholder={'Filtruj po nazwie'}/>
+                </SearchBarWrapper>
+                <Paper elevation={5}>
+                    <AllCoursesTable data={courseReducer.courses.filter(e => e.courseName.toLowerCase().includes(filter.toLowerCase()))}/>
+                </Paper>
             </StyledCoursesPageContainer>
             <Footer/>
         </>
