@@ -7,7 +7,8 @@ import {
     StyledFormText,
     StyledListWrapper,
     StyledSemesterCounter,
-    StyledAddButton
+    StyledAddButton,
+    SemesterNumberWrapper
 } from './AddCourseForm.styles';
 import TextInput from "../../Atoms/TextInput/TextInput";
 import {API_URL, TOKEN} from "../../../utils/helpers";
@@ -84,9 +85,13 @@ const AddCourseForm = () => {
                                        placeholder={'Dodaj przedmiot'} data={subjectsData}/>
                     }
                     <StyledListWrapper>
-                        <StyledSemesterCounter>
-                            <span>{index}</span>
-                        </StyledSemesterCounter>
+                        <SemesterNumberWrapper>
+                            <p>Semestr:</p>
+                            <StyledSemesterCounter>
+                                <span>{index}</span>
+                            </StyledSemesterCounter>
+                        </SemesterNumberWrapper>
+
                         <Paper elevation={5}
                                style={{
                                    height: 100,

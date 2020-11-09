@@ -47,7 +47,7 @@ const StyledFormText = styled.p`
 const StyledListWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 30px;
   @media (max-width: 768px) {
@@ -84,4 +84,24 @@ const StyledAddButton = styled.button`
   }
 `;
 
-export {AddCourseWrapper, StyledContentWrapper, StyledFormTitle, StyledFormText, StyledListWrapper, StyledSemesterCounter, StyledAddButton};
+const SemesterNumberWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    font-family: Montserrat,serif;
+    font-weight: 200;
+    font-size: 16px;
+  }
+`;
+
+export {
+    AddCourseWrapper,
+    StyledContentWrapper,
+    StyledFormTitle,
+    StyledFormText,
+    StyledListWrapper,
+    StyledSemesterCounter,
+    StyledAddButton,
+    SemesterNumberWrapper
+};
