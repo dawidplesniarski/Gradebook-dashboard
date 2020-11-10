@@ -52,6 +52,7 @@ const StyledListWrapper = styled.div`
   margin-bottom: 30px;
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 

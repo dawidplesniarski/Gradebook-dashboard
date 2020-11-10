@@ -7,7 +7,7 @@ const AddCourseSubjectWrapper = styled.div`
   width: 700px;
   display: flex;
   flex-direction: column;
-  padding: 0.25rem;
+  padding: 1rem;
   align-items: center;
   @media (max-width: 1000px) {
     width: 500px;

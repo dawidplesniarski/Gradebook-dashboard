@@ -6,13 +6,14 @@ import BackButton from "../components/Atoms/BackButton/BackButton";
 import AddQuiz from "../components/Forms/AddTest/AddQuiz";
 import QuizBanerImage from '../assets/images/quiz-image.svg'
 import AddPermission from "../components/Forms/AddPermissionForm/AddPermission";
+import Footer from "../components/Molecules/Footer/Footer";
 
 
 const AddQuizPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
+  margin-bottom: 100px;
 `;
 
 const StyledQuizImage = styled.img`
@@ -30,6 +31,7 @@ const AddQuizPage = ({history}) => {
                 <AddQuiz/>
                 <AddPermission/>
             </AddQuizPageWrapper>
+            <Footer/>
         </>
     );
 };

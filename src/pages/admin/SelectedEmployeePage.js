@@ -11,11 +11,13 @@ import AddEmployeeCourse from "../../components/Forms/AddEmployeeCourse/AddEmplo
 import DeleteEmployeeCourse from "../../components/Forms/DeleteEmployeeCourse/DeleteEmployeeCourse";
 import AddEmployeeUniversity from "../../components/Forms/AddEmployeeUniversity/AddEmployeeUniversity";
 import DeleteEmployeeUniversity from "../../components/Forms/DeleteEmployeeUniversity/DeleteEmployeeUniversity";
+import Footer from "../../components/Molecules/Footer/Footer";
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 `;
 
 const SelectedEmployeePage = ({employeeReducer, history}) => {
@@ -35,6 +37,7 @@ const SelectedEmployeePage = ({employeeReducer, history}) => {
                     <DeleteEmployeeUniversity employeeData={employeeReducer.currentEmployee}/>
                 </>}
             </StyledWrapper>
+            <Footer/>
         </>
     );
 };

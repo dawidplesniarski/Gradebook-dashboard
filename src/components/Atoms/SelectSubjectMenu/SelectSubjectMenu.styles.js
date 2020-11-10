@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   border-radius: 50px;
-  width: 100%;
+  width: 400px;
   height: 40px;
   position: relative;
   margin-bottom: 20px;
   padding: 0 1rem;
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 `;
 
 const Select = styled.select`

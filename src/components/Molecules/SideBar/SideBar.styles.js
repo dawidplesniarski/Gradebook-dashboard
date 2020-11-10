@@ -36,13 +36,14 @@ const StyledImg = styled.img`
 `;
 
 const StyledParagraph = styled.p`
-font-size: 1.25rem;
+font-size: 1rem;
 font-weight: 450;
 color: #fff;
 margin: 5px;
+font-family: Montserrat,serif;
 
 @media (max-width: 900px) {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
@@ -71,5 +72,22 @@ const StyledLogoutIcon = styled.img`
   }
 `;
 
+const StyledHomeIcon = styled.img`
+  display: flex;
+  text-align: center;
+  width: 35px;
+  @media (max-width: 768px) {
+    width: 25px;
+  }
+`;
 
-export { SideBarWrapper, StyledImg, StyledParagraph, StyledLogoutButton, StyledLogoutIcon };
+const StyledHomeButton = styled.button`
+  display: flex;
+  background-color: transparent;
+  border-width: 0;
+  margin-top: 35px;
+  margin-bottom: -10px;
+`;
+
+
+export { SideBarWrapper, StyledImg, StyledParagraph, StyledLogoutButton, StyledLogoutIcon, StyledHomeIcon, StyledHomeButton };

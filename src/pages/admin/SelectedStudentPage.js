@@ -8,11 +8,13 @@ import EditStudentForm from "../../components/Forms/EditStudentForm/EditStudentF
 import ChangeStudentSemester from "../../components/Forms/ChangeStudentSemester/ChangeStudentSemester";
 import AddStudentCourse from "../../components/Forms/AddStudentCourse/AddStudentCourse";
 import DeleteStudentCourse from "../../components/Forms/DeleteStudentCourse/DeleteStudentCourse";
+import Footer from "../../components/Molecules/Footer/Footer";
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 `;
 
 const SelectedStudentPage = ({studentReducer, history}) => {
@@ -26,6 +28,7 @@ const SelectedStudentPage = ({studentReducer, history}) => {
                 <AddStudentCourse/>
                 <DeleteStudentCourse/>
             </StyledWrapper>
+            <Footer/>
         </>
     )
 };

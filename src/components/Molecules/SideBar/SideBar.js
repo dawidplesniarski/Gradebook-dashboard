@@ -1,6 +1,15 @@
 import React from "react";
-import {SideBarWrapper, StyledImg, StyledParagraph, StyledLogoutButton, StyledLogoutIcon} from "./SideBar.styles";
+import {
+    SideBarWrapper,
+    StyledImg,
+    StyledParagraph,
+    StyledLogoutButton,
+    StyledLogoutIcon,
+    StyledHomeIcon,
+    StyledHomeButton
+} from "./SideBar.styles";
 import Avatar from '../../../assets/images/male-avatar.svg';
+import HomeIcon from '../../../assets/images/home.png';
 import {connect} from "react-redux";
 import SideBarButton from "../../Atoms/SideBarButton/SideBarButton";
 import LogoutIcon from '../../../assets/images/logout.png'
@@ -15,9 +24,9 @@ const SideBar = ({loginReducer, open, history, functionToLogoutUser, isAdminOpen
                 alt={'Avatar'}/>
             <StyledParagraph>{loginReducer.loginData.employee.academicTitle}</StyledParagraph>
             <StyledParagraph>{loginReducer.loginData.employee.name} {loginReducer.loginData.employee.lastName}</StyledParagraph>
-            <SideBarButton>
-                Konto
-            </SideBarButton>
+            <StyledHomeButton onClick={() => history.push('/mainPage')}>
+                <StyledHomeIcon src={HomeIcon} alt={'home'}/>
+            </StyledHomeButton>
             <SideBarButton onClick={() => history.push('/addQuiz')}>
                 Dodaj test
             </SideBarButton>
