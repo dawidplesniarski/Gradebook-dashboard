@@ -51,6 +51,7 @@ const SmallNumberTextInput = styled.input`
   background-color: #EEEEEE;
   font-family: Montserrat,serif;
   font-weight: bold;
+  padding-left: 3px;
 `;
 
 export {StyledFormTitle, StyledContentWrapper, AddCourseSubjectWrapper, SelectMenuWrapper, SmallNumberTextInput};

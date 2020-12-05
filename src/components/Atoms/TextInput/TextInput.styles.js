@@ -9,6 +9,7 @@ const StyledTextInput = styled.input`
     margin-bottom: 20px;
     font-family: Helvetica, serif;
     font-size: 15px;
+    padding-left: 10px;
 `;
 
 export { StyledTextInput };

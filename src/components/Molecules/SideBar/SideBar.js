@@ -30,7 +30,7 @@ const SideBar = ({loginReducer, open, history, functionToLogoutUser, isAdminOpen
             <SideBarButton onClick={() => history.push('/addQuiz')}>
                 Dodaj test
             </SideBarButton>
-            <SideBarButton>
+            <SideBarButton onClick={() => history.push('/settingsPage')}>
                 Ustawienia
             </SideBarButton>
             {loginReducer.loginData.employee.isAdmin && !isAdminOpened ?
