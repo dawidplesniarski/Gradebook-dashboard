@@ -46,7 +46,6 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
     const [gradesFilter, setGradesFilter] = useState('');
     const [selectedSubject, setSelectedSubject] = useState(null);
     const employeeSubjects = getEmployeeSubjects(loginReducer.loginData.employee.subjectId);
-    // const [protocolData, setProtocolData] = useState([]);
 
     const exportToPdf = (protocolData) => {
         const unit = "pt";
@@ -119,7 +118,7 @@ const StudentGradesPage = ({history, studentReducer, universityReducer, loginRed
                                                   onChange={e => setSelectedSubject(e.target.value)}
                                                   data={studentReducer.currentStudentSubjects} name={'Przedmioty'}/>
                             <StyledButton
-                                // TODO: Muszę poprawić wywołanie funkcji
+                                disabled={!selectedSubject}
                                 onClick={async () => await fetchPdfData(
                                     universityReducer.currentUniversity._id,
                                     universityReducer.currentCourse._id,

@@ -10,16 +10,17 @@ import Button from "../components/Atoms/Button/Button";
 import axios from 'axios';
 import {API_URL, TOKEN} from "../utils/helpers";
 import AlertComponent from "../components/Atoms/Alert/Alert";
+import Footer from "../components/Molecules/Footer/Footer";
 
 const StyledSettingsContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  margin-bottom: 100px;
 `;
 
 const FormsWrapper = styled.div`
-  width: 50%;
+  width: 40%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -43,6 +44,14 @@ const ImageWrapper = styled.img`
   }
 `;
 
+const StyledTopBar = styled.div`
+  position: fixed;
+  top: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #0099ff;
+`;
+
 const StyledFormTitle = styled.p`
   font-family: Montserrat,serif;
   font-weight: 500;
@@ -56,6 +65,11 @@ const SettingsPage = ({loginReducer, history}) => {
     const [employeeImageUrl, setEmployeeImageUrl] = useState('');
     const [newImageUrl, setNewImageUrl] = useState('');
     const [alertVisible, setAlertVisible] = useState(false);
+    const [passwordAlertVisible, setPasswordAlertVisible] = useState(false);
+    const [errorAlertVisible, setErrorAlertVisible] = useState(false);
+    const [password, setPassword] = useState(null);
+    const [newPassword, setNewPassword] = useState(null);
+    const [confirmPassword, setConfirmPassword] = useState(null);
 
     const updateUserAvatar = (id, url) => {
         setEmployeeImageUrl(newImageUrl);
@@ -71,15 +85,36 @@ const SettingsPage = ({loginReducer, history}) => {
         })
     };
 
+    const updatePassword = (id, password, newPassword, confirmPassword) => {
+        axios.put(`${API_URL}/employee/changePassword/${id}`,{
+            password: password,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword
+        },{
+            headers: {'Authorization': `Bearer ${TOKEN}`}
+        }).then(res => {
+            if(res.data) {
+                setPasswordAlertVisible(true);
+            }
+        }).catch(err => {
+            if(err) {
+                setErrorAlertVisible(true);
+            }
+        })
+    }
+
     useEffect(() => {
         setEmployeeImageUrl(loginReducer.loginData.employee.imageUrl);
     },[])
 
     return(
         <>
+            <StyledTopBar/>
             <BackButton onClick={() => history.push('/mainPage')}/>
             <Burger isAdminOpened={false}/>
             {alertVisible && <AlertComponent type={'success'} message={'Zdjęcie zostało zaktualizowane'} onClick={() => setAlertVisible(false)}/>}
+            {errorAlertVisible && <AlertComponent type={'error'} message={'Nie udało się zaktualizować hasła'} onClick={() => setErrorAlertVisible(false)}/>}
+            {passwordAlertVisible && <AlertComponent type={'success'} message={'Hasło zostało zaktualizowane'} onClick={() => setPasswordAlertVisible(false)}/>}
             <StyledSettingsContainer>
                 {employeeImageUrl !== '' ?
                     <ImageWrapper src={employeeImageUrl} alt={'avatar'}/> :
@@ -93,7 +128,17 @@ const SettingsPage = ({loginReducer, history}) => {
                         Zaktualizuj
                     </Button>
                 </FormsWrapper>
+                <FormsWrapper>
+                    <StyledFormTitle>Zaktualizuj hasło konta</StyledFormTitle>
+                    <TextInput onChange={e => setPassword(e.target.value)} type={'password'} name={'password'} placeholder={'Podaj hasło do konta'}/>
+                    <TextInput onChange={e => setNewPassword(e.target.value)} type={'password'} name={'newPassword'} placeholder={'Podaj nowe hasło do konta'}/>
+                    <TextInput onChange={e => setConfirmPassword(e.target.value)} type={'password'} name={'confirmPassword'} placeholder={'Potwierdź hasło do konta'}/>
+                    <Button onClick={() => updatePassword(loginReducer.loginData.employee._id, password, newPassword, confirmPassword)} disabled={!password || !newPassword || !confirmPassword}>
+                        Zaktualizuj
+                    </Button>
+                </FormsWrapper>
             </StyledSettingsContainer>
+            <Footer/>
         </>
     );
 };
