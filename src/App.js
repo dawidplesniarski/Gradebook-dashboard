@@ -40,6 +40,7 @@ const App = ({loginReducer}) =>{
                             <Route path={'/studentDetails'} component={CurrentStudentDetails}/>
                             <Route path={'/addQuiz'} component={AddQuizPage}/>
                             <Route path={'/studentGrades'} component={StudentGradesPage}/>
+                            <Route path={'/settingsPage'} component={SettingsPage}/>
                             {
                                 loginReducer.loginData.employee.isAdmin ?
                                     (
@@ -55,7 +56,6 @@ const App = ({loginReducer}) =>{
                                             <Route path={'/selectedSubject'} component={SelectedSubjectPage}/>
                                             <Route path={'/adminCoursesPage'} component={AdminCoursesPage}/>
                                             <Route path={'/selectedCourse'} component={SelectedCoursePage}/>
-                                            <Route path={'/settingsPage'} component={SettingsPage}/>
                                         </>
                                     )
                                     : <></>

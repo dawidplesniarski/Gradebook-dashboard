@@ -111,7 +111,7 @@ const SettingsPage = ({loginReducer, history}) => {
         <>
             <StyledTopBar/>
             <BackButton onClick={() => history.push('/mainPage')}/>
-            <Burger isAdminOpened={false}/>
+            <Burger/>
             {alertVisible && <AlertComponent type={'success'} message={'Zdjęcie zostało zaktualizowane'} onClick={() => setAlertVisible(false)}/>}
             {errorAlertVisible && <AlertComponent type={'error'} message={'Nie udało się zaktualizować hasła'} onClick={() => setErrorAlertVisible(false)}/>}
             {passwordAlertVisible && <AlertComponent type={'success'} message={'Hasło zostało zaktualizowane'} onClick={() => setPasswordAlertVisible(false)}/>}

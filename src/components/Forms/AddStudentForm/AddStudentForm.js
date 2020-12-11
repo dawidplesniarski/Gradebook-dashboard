@@ -47,7 +47,7 @@ const AddStudentForm = ({universityReducer}) => {
       return coursesData[index].courseName;
     };
 
-    const addStudent = (successCallback, errorCallback) => {
+    const addStudent = () => {
 
         axios.post(`${API_URL}/users/addUser`,
             {
@@ -65,10 +65,9 @@ const AddStudentForm = ({universityReducer}) => {
             },{
                 headers: {'Authorization': `Bearer ${TOKEN}`}
             }).then(res =>{
-                successCallback();
+                setAlertVisible(true);
         }).catch(err => {
-            console.log(err);
-            errorCallback();
+            setErrorAlertVisible(true);
         });
     }
 
@@ -146,7 +145,7 @@ const AddStudentForm = ({universityReducer}) => {
                     </List>
                 </Paper>
                 <Button
-                    onClick={async () => await addStudent(() => setAlertVisible(true), () => setErrorAlertVisible(true))}
+                    onClick={async () => await addStudent()}
                     disabled=
                         {name === ''
                         || lastName === ''

@@ -87,7 +87,7 @@ const AllUsersTable = ({data, setCurrentStudentId}) => {
                         accessor: 'albumNo'
                     },
                     {
-                        Header: 'Uniwersytet',
+                        Header: 'Uczelnia',
                         accessor: 'universityId.universityName'
                     },
                     {
