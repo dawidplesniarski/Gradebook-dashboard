@@ -76,7 +76,10 @@ const GradesTable = ({data, employeeSubjects}) => {
                     },
                     {
                         Header: 'Ocena',
-                        accessor: 'grade'
+                        accessor: 'grade',
+                        Cell: ({row: {values}}) => (
+                            values.grade.toFixed(1)
+                        )
                     },
                     {
                         Header: 'Data wystawienia',
