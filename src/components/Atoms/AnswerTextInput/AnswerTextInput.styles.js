@@ -8,6 +8,7 @@ const StyledAnswerText = styled.input`
     background-color: #eeeeee;
     font-family: Helvetica, serif;
     font-size: 15px;
+    padding-left: 10px;
 `;
 
 export { StyledAnswerText };
