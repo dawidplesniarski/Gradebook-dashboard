@@ -1,4 +1,4 @@
-# Welcome in my Gradebook project!
+# Welcome to my Gradebook project!
 
 ## Project implemented as part of an engineering thesis.
 
